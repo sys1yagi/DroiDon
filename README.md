@@ -17,6 +17,16 @@ VIPER Architecture like.
 
 TODO
 
+- create client id and secret
+- create `app/mastodon.gradle`
+
+```groovy
+ext.CLIENT_ID=$client id
+ext.CLIENT_SECRET=$client secret
+
+```
+
+
 # Development
 
 TODO
