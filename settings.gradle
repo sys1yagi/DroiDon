@@ -1,1 +1,1 @@
-include ':app', ':mastodon4j'
+include ':app', ':mastodon4j', ':mastodon4j-rx'
