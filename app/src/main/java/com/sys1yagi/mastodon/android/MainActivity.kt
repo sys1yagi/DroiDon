@@ -3,34 +3,36 @@ package com.sys1yagi.mastodon.android
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.sys1yagi.mastodon.android.databinding.ActivityMainBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     val binding: ActivityMainBinding by contentViewBinding(R.layout.activity_main)
 
-    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                binding.message.setText(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
+    override fun onNavigationItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    binding.message.setText(R.string.title_home)
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    binding.message.setText(R.string.title_dashboard)
+                    true
+                }
+                R.id.navigation_notifications -> {
+                    binding.message.setText(R.string.title_notifications)
+                    true
+                }
+                else ->
+                    false
             }
-            R.id.navigation_dashboard -> {
-                binding.message.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                binding.message.setText(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        binding.navigation.setOnNavigationItemSelectedListener(this)
+
     }
 
 }
