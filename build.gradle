@@ -12,6 +12,7 @@ buildscript {
     ext.rxJavaVersion = '2.0.8'
     ext.rxAndroidVersion = '2.0.1'
     ext.dagger2Version = '2.10'
+    ext.gsonVersion = '2.8.0'
 
     repositories {
         jcenter()
