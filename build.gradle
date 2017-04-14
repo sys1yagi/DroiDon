@@ -16,6 +16,7 @@ buildscript {
     repositories {
         jcenter()
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleToolsVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

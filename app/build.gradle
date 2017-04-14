@@ -9,6 +9,11 @@ apply plugin: 'com.github.gfx.ribbonizer'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
+    dataBinding {
+        enabled true
+    }
+
     defaultConfig {
         applicationId "com.sys1yagi.mastodon.android"
         minSdkVersion 19
