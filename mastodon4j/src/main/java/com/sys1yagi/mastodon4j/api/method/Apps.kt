@@ -9,10 +9,9 @@ import okhttp3.RequestBody
  * see more https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#apps
  */
 class Apps(private val client: MastodonClient) {
-    fun createApp(instanceName: String, clientName: String, redirectUris: String = "urn:ietf:wg:oauth:2.0:oob", scope: Scope, website: String? = null) {
+    fun createApp(clientName: String, redirectUris: String = "urn:ietf:wg:oauth:2.0:oob", scope: Scope, website: String? = null) {
         scope.validate()
-
-        val response = client.post("https://${instanceName}/api/v1/apps",
+        val response = client.post("https://${client.instanceName}/api/v1/apps",
                 RequestBody.create(
                         MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
                         arrayListOf(
