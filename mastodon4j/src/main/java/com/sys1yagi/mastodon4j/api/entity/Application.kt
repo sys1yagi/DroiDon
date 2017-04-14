@@ -7,8 +7,8 @@ import com.google.gson.annotations.SerializedName
  */
 class Application {
     @SerializedName("name")
-    private val name = ""
+    val name = ""
 
     @SerializedName("website")
-    private val website = ""
+    val website = ""
 }

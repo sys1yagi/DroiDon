@@ -8,62 +8,62 @@ import com.google.gson.annotations.SerializedName
 class Status {
 
     @SerializedName("id")
-    private val id: Long = 0L
+    val id: Long = 0L
 
     @SerializedName("uri")
-    private val uri: String = ""
+    val uri: String = ""
 
     @SerializedName("url")
-    private val url: String = ""
+    val url: String = ""
 
     @SerializedName("account")
-    private val account: Account? = null
+    val account: Account? = null
 
     @SerializedName("in_reply_to_id")
-    private val inReplyToId: Long? = null
+    val inReplyToId: Long? = null
 
     @SerializedName("in_reply_to_account_id")
-    private val inReplyToAccountId: Long? = null
+    val inReplyToAccountId: Long? = null
 
     @SerializedName("reblog")
-    private val reblog: Status? = null
+    val reblog: Status? = null
 
     @SerializedName("content")
-    private val content: String = ""
+    val content: String = ""
 
     @SerializedName("created_at")
-    private val createdAt: String = ""
+    val createdAt: String = ""
 
     @SerializedName("reblogs_count")
-    private val reblogsCount: Int = 0
+    val reblogsCount: Int = 0
 
     @SerializedName("favourites_count")
-    private val favouritesCount: Int = 0
+    val favouritesCount: Int = 0
 
     @SerializedName("reblogged")
-    private val reblogged: Boolean = false
+    val reblogged: Boolean = false
 
     @SerializedName("favourited")
-    private val favourited: Boolean = false
+    val favourited: Boolean = false
 
     @SerializedName("sensitive")
-    private val sensitive: Boolean = false
+    val sensitive: Boolean = false
 
     @SerializedName("spoiler_text")
-    private val spoilerText: String = ""
+    val spoilerText: String = ""
 
     @SerializedName("visibility")
-    private val visibility: Visibility = Visibility.Public
+    val visibility: String = Visibility.Public.value
 
     @SerializedName("media_attachments")
-    private val mediaAttachments: List<Attachment> = emptyList()
+    val mediaAttachments: List<Attachment> = emptyList()
 
     @SerializedName("mentions")
-    private val mentions: List<Mention> = emptyList()
+    val mentions: List<Mention> = emptyList()
 
     @SerializedName("tags")
-    private val tags: List<Tag> = emptyList()
+    val tags: List<Tag> = emptyList()
 
     @SerializedName("application")
-    private val application: Application? = null
+    val application: Application? = null
 }

@@ -8,15 +8,15 @@ import com.google.gson.annotations.SerializedName
 class Mention {
 
     @SerializedName("url")
-    private val url: String = ""
+    val url: String = ""
 
     @SerializedName("username")
-    private val username: String = ""
+    val username: String = ""
 
     @SerializedName("acct")
-    private val acct: String = ""
+    val acct: String = ""
 
     @SerializedName("id	")
-    private val id: Long = 0
+    val id: Long = 0
 
 }

@@ -13,21 +13,21 @@ class Attachment {
     }
 
     @SerializedName("id")
-    private val id = 0L
+    val id = 0L
 
     @SerializedName("type")
-    private val type: Type = Type.Image
+    val type: String = Type.Image.value
 
     @SerializedName("url")
-    private val url: String = ""
+    val url: String = ""
 
     @SerializedName("remote_url")
-    private val remoteUrl: String = ""
+    val remoteUrl: String = ""
 
     @SerializedName("preview_url")
-    private val previewUrl: String = ""
+    val previewUrl: String = ""
 
     @SerializedName("text_url")
-    private val textUrl: String = ""
+    val textUrl: String = ""
 
 }
