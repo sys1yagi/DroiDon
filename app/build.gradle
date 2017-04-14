@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'com.cookpad.android.licensetools'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'com.github.gfx.ribbonizer'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.sys1yagi.mastodon.android"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    kapt "com.android.databinding:compiler:$gradleToolsVersion"
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:support-vector-drawable:$supportLibraryVersion"
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile("com.github.gfx.android.orma:orma:$ormaVersion") {
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
+    }
+    compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    kapt "com.github.gfx.android.orma:orma-processor:$ormaVersion"
+
+    compile "com.google.dagger:dagger:$dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
+
+    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
+
+    compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    compile 'com.facebook.fresco:fresco:1.1.0'
+
+    compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'
+    kapt 'com.github.sys1yagi.fragment-creator:processor:0.8.2'
+
+    configurations {
+        // To avoid conflict
+        androidTestCompile.exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    testCompile 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:3.3.2"
+    testCompile "org.assertj:assertj-core:3.6.2"
+    testCompile("com.squareup.assertj:assertj-android:$assertjAndroidVersion") {
+        exclude group: 'com.android.support'
+    }
+    testCompile("com.squareup.assertj:assertj-android-appcompat-v7:$assertjAndroidVersion") {
+        exclude group: 'com.android.support'
+    }
+    testCompile("com.squareup.assertj:assertj-android-recyclerview-v7:$assertjAndroidVersion") {
+        exclude group: 'com.android.support'
+    }
+    testCompile('com.github.sys1yagi:kmockito:0.1.2') {
+        exclude group: 'org.mockito', module: 'mockito-core'
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
+    testCompile("com.squareup.okhttp3:mockwebserver:$okhttpVersion") {
+        exclude group: 'com.squareup.okio', 'module': 'okio'
+        exclude group: 'com.squareup.okhttp', 'module': 'okhttp'
+    }
+    testCompile 'org.mockito:mockito-core:2.7.22'
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
+repositories {
+    mavenCentral()
+}
