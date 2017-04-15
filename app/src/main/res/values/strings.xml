@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="status_now">Now</string>
+    <string name="status_second">%1$ds</string>
+    <string name="status_min">%1$dm</string>
+    <string name="status_hour">%1$dh</string>
+    <string name="status_day">%1$dd</string>
 </resources>
