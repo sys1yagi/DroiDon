@@ -4,13 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sys1yagi.mastodon.android.databinding.ListItemStatusBinding
 import com.sys1yagi.mastodon.android.extensions.layoutInflator
-import com.sys1yagi.mastodon4j.api.entity.Status
 
 class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
 
     class Holder(val binding: ListItemStatusBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private val statues = arrayListOf<Status>()
+    private val statues = arrayListOf<TimelineStatus>()
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.binding.status = statues[position]
@@ -21,7 +20,7 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             Holder(ListItemStatusBinding.inflate(parent.layoutInflator(), parent, false))
 
-    fun addAll(statues: List<Status>) {
+    fun addAll(statues: List<TimelineStatus>) {
         this.statues.addAll(statues)
         notifyDataSetChanged()
     }

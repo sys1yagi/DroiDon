@@ -1,7 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.main
 
 import com.sys1yagi.mastodon4j.api.entity.Status
-import timber.log.Timber
 
 class MainPresenter(val view: MainContract.View, val interactor: MainContract.Interactor) : MainContract.Presenter, MainContract.InteractorOutput {
 
@@ -18,7 +17,7 @@ class MainPresenter(val view: MainContract.View, val interactor: MainContract.In
 
     override fun onPublicTimeline(statuses: List<Status>) {
         // transform for view
-        viewModel.statuses = statuses
+        viewModel.statuses = statuses.map(::TimelineStatus)
         view.showTimeline(viewModel)
     }
 
