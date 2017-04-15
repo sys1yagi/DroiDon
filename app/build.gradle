@@ -54,7 +54,7 @@ android {
         textReport true
         textOutput 'stdout'
     }
-    
+
     testOptions {
         unitTests.all {
             maxParallelForks = 1

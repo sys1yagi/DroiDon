@@ -3,7 +3,6 @@ package com.sys1yagi.mastodon4j.api.entity
 import com.google.gson.annotations.SerializedName
 
 class Account {
-
     @SerializedName("id")
     val id: Long = 0L
 

@@ -6,6 +6,12 @@ import com.google.gson.annotations.SerializedName
  * see more https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#status
  */
 class Status {
+    enum class Visibility(val value: String) {
+        Public("public"),
+        Unlisted("unlisted"),
+        Private("private"),
+        Direct("direct")
+    }
 
     @SerializedName("id")
     val id: Long = 0L

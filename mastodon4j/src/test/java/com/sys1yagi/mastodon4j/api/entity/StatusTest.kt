@@ -12,7 +12,7 @@ class StatusTest {
         val json = AssetsUtil.readFromAssets("status.json")
         val status:Status = Gson().fromJson(json, Status::class.java)
         assertThat(status.id).isEqualTo(172429L)
-        assertThat(status.visibility).isEqualTo(Visibility.Public.value)
+        assertThat(status.visibility).isEqualTo(Status.Visibility.Public.value)
         assertThat(status.content).isEqualTo("Test Status")
         val account = status.account
         requireNotNull(account)
