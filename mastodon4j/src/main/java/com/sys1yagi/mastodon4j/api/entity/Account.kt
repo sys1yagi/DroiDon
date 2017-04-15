@@ -8,13 +8,13 @@ class Account {
     val id: Long = 0L
 
     @SerializedName("username")
-    val username: String = ""
+    val userName: String = ""
 
     @SerializedName("acct")
     val acct: String = ""
 
     @SerializedName("display_name")
-    val display_name: String = ""
+    val displayName: String = ""
 
     @SerializedName("note")
     val note: String = ""

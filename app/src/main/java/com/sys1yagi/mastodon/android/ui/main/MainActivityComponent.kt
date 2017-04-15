@@ -10,8 +10,8 @@ interface MainActivityComponent : AndroidInjector<MainActivity> {
 
         abstract fun objectModule(objectModule: MainActivityObjectModule)
 
-        override fun seedInstance(instance: MainActivity?) {
-            objectModule(MainActivityObjectModule())
+        override fun seedInstance(instance: MainActivity) {
+            objectModule(MainActivityObjectModule(instance))
         }
     }
 }

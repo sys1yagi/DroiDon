@@ -1,4 +1,28 @@
 package com.sys1yagi.mastodon.android.ui.main
 
-class MainPresenter : MainContract.Presenter, MainContract.InteractorOutput {
+import com.sys1yagi.mastodon4j.api.entity.Status
+import timber.log.Timber
+
+class MainPresenter(val view: MainContract.View, val interactor: MainContract.Interactor) : MainContract.Presenter, MainContract.InteractorOutput {
+
+    val viewModel = MainViewModel()
+
+    override fun onResume() {
+        interactor.startInteraction(this)
+        interactor.getPublicTimeline()
+    }
+
+    override fun onPause() {
+        interactor.stoplInteraction(this)
+    }
+
+    override fun onPublicTimeline(statuses: List<Status>) {
+        // transform for view
+        viewModel.statuses = statuses
+        view.showTimeline(viewModel)
+    }
+
+    override fun onError(t: Throwable) {
+        view.showError(t.message ?: "error")
+    }
 }

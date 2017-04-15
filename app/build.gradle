@@ -51,12 +51,19 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // UI
+    compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'
+    kapt 'com.github.sys1yagi.fragment-creator:processor:0.8.2'
     kapt "com.android.databinding:compiler:$gradleToolsVersion"
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$supportLibraryVersion"
     compile "com.android.support:support-vector-drawable:$supportLibraryVersion"
-    compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'
-    kapt 'com.github.sys1yagi.fragment-creator:processor:0.8.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.android:flexbox:0.2.5'
+    compile('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.5@aar') {
+        transitive = true
+    }
+    compile 'me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:2.0.0'
 
     // Rx
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"

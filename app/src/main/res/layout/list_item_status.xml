@@ -1,0 +1,71 @@
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <!-- TODO -->
+        <variable name="status" type="com.sys1yagi.mastodon4j.api.entity.Status"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+            <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    tools:src="@drawable/ic_dashboard_black_24dp"
+            />
+            <TextView
+                    android:id="@+id/display_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{status.account.displayName}"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toRightOf="@+id/icon"
+                    tools:text="display name"
+            />
+            <TextView
+                    android:id="@+id/user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@{status.account.userName}"
+                    android:textColor="@color/gray"
+                    app:layout_constraintLeft_toRightOf="@+id/display_name"
+                    tools:text="user name"
+            />
+            <TextView
+                    android:id="@+id/created_at"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@{status.createdAt}"
+                    android:textColor="@color/gray"
+                    app:layout_constraintLeft_toRightOf="@+id/user_id"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:text="3分前"
+            />
+            <TextView
+                    android:id="@+id/content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{status.content}"
+                    android:textColor="@color/black"
+                    tools:text="content content content content content content content content"
+                    app:layout_constraintTop_toBottomOf="@+id/display_name"
+                    app:layout_constraintLeft_toLeftOf="@+id/display_name"
+                    app:layout_constraintRight_toRightOf="parent"
+            />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>
