@@ -2,6 +2,8 @@ package com.sys1yagi.mastodon4j.api.method
 
 import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.api.Scope
+import com.sys1yagi.mastodon4j.api.entity.auth.AppRegistration
+import com.sys1yagi.mastodon4j.api.exception.Mastodon4jRequestException
 import okhttp3.MediaType
 import okhttp3.RequestBody
 
@@ -9,9 +11,9 @@ import okhttp3.RequestBody
  * see more https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#apps
  */
 class Apps(private val client: MastodonClient) {
-    fun createApp(clientName: String, redirectUris: String = "urn:ietf:wg:oauth:2.0:oob", scope: Scope, website: String? = null) {
+    fun createApp(clientName: String, redirectUris: String = "urn:ietf:wg:oauth:2.0:oob", scope: Scope, website: String? = null): AppRegistration {
         scope.validate()
-        val response = client.post("https://${client.instanceName}/api/v1/apps",
+        val response = client.post("https://${client.getInstanceName()}/api/v1/apps",
                 RequestBody.create(
                         MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
                         arrayListOf(
@@ -25,14 +27,14 @@ class Apps(private val client: MastodonClient) {
                         }.joinToString(separator = "&")
                 ))
 
-        if(response.isSuccessful){
-            println(response.message())
-            println(response.body().string())
-        }
-        else{
-            println(response.code())
-            println(response.message())
-            println(response.body().string())
+        if (response.isSuccessful) {
+            val json = response.body().string()
+            return client.getSerializer().fromJson(json, AppRegistration::class.java)
+                    .apply {
+                        instanceName = client.getInstanceName()
+                    }
+        } else {
+            throw Mastodon4jRequestException(response.message())
         }
     }
 }

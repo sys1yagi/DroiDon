@@ -26,6 +26,7 @@ class TimelinesTest {
                 .build()
         client.get(anyString()).invoked.thenReturn(response)
         client.getSerializer().invoked.thenReturn(Gson())
+
         val timelines = Timelines(client)
         val statuses = timelines.public()
         assertThat(statuses.size).isEqualTo(20)

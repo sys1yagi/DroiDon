@@ -14,7 +14,7 @@ class Timelines(val client: MastodonClient) {
     }
 
     fun public(): List<Status> {
-        val response = client.get("https://${client.instanceName}/api/v1/timelines/public")
+        val response = client.get("https://${client.getInstanceName()}/api/v1/timelines/public")
         if (response.isSuccessful) {
             val body = response.body().string()
             return client.getSerializer().fromJson<List<Status>>(

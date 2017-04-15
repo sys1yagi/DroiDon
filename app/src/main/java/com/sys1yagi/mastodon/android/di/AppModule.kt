@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.sys1yagi.mastodon4j.MastodonClient
 import dagger.Module
 import dagger.Provides
+import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
@@ -14,13 +15,14 @@ class AppModule {
     @Singleton
     @Provides
     fun provideMastodonClient(client: OkHttpClient, gson: Gson): MastodonClient {
-        return MastodonClient("pawoo.net", client, gson)
+        return MastodonClient("mstdn.jp", client, gson)
     }
 
     @Singleton
     @Provides
     fun provideOkHttpClient() = OkHttpClient
             .Builder()
+            .connectionSpecs(listOf(ConnectionSpec.MODERN_TLS))
             .build()
 
     @Singleton
