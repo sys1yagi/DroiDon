@@ -7,8 +7,16 @@ apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'com.github.gfx.ribbonizer'
 apply plugin: 'jacoco-android'
 
-apply from: "${project.rootDir}/app/mastodon.gradle"
-
+try {
+    apply from: "${project.rootDir}/app/mastodon.gradle"
+} catch (MissingResourceException e) {
+    println("=============")
+    println("warn: " + e.getMessage())
+    println("warn: You should create mastodon.gradle and set client_id and client_secret.")
+    println("=============")
+    ext.CLIENT_ID = ""
+    ext.CLIENT_SECRET = ""
+}
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
