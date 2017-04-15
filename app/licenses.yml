@@ -1,0 +1,285 @@
+- artifact: com.android.databinding:adapters:+
+  name: adapters
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  skip: true
+- artifact: com.android.databinding:baseLibrary:+
+  name: com.android.databinding.baseLibrary
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://tools.android.com/
+  skip: true
+- artifact: com.android.databinding:library:+
+  name: library
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  skip: true
+- artifact: com.android.support.constraint:constraint-layout-solver:+
+  name: constraint-layout-solver
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support.constraint:constraint-layout:+
+  name: constraint-layout
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:animated-vector-drawable:+
+  name: animated-vector-drawable
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:appcompat-v7:+
+  name: appcompat-v7
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:cardview-v7:+
+  name: cardview-v7
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:design:+
+  name: design
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:multidex:+
+  name: multidex
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:recyclerview-v7:+
+  name: recyclerview-v7
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-annotations:+
+  name: support-annotations
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-compat:+
+  name: support-compat
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-core-ui:+
+  name: support-core-ui
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-core-utils:+
+  name: support-core-utils
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-fragment:+
+  name: support-fragment
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-media-compat:+
+  name: support-media-compat
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-v4:+
+  name: support-v4
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:support-vector-drawable:+
+  name: support-vector-drawable
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.android.support:transition:+
+  name: transition
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.facebook.fresco:drawee:+
+  name: Drawee
+  copyrightHolder: Facebook, Inc.
+  license: BSD License
+  licenseUrl: https://github.com/facebook/fresco/blob/master/LICENSE
+  url: https://github.com/facebook/fresco
+  skip: true
+- artifact: com.facebook.fresco:fbcore:+
+  name: Facebook Core
+  copyrightHolder: Facebook, Inc.
+  license: BSD License
+  licenseUrl: https://github.com/facebook/fresco/blob/master/LICENSE
+  url: https://github.com/facebook/fresco
+  skip: true
+- artifact: com.facebook.fresco:fresco:+
+  name: Fresco
+  copyrightHolder: Facebook, Inc.
+  license: BSD License
+  licenseUrl: https://github.com/facebook/fresco/blob/master/LICENSE
+  url: https://github.com/facebook/fresco
+- artifact: com.facebook.fresco:imagepipeline-base:+
+  name: ImagePipelineBase
+  copyrightHolder: Facebook, Inc.
+  license: BSD License
+  licenseUrl: https://github.com/facebook/fresco/blob/master/LICENSE
+  url: https://github.com/facebook/fresco
+  skip: true
+- artifact: com.facebook.fresco:imagepipeline:+
+  name: ImagePipeline
+  copyrightHolder: Facebook, Inc.
+  license: BSD License
+  licenseUrl: https://github.com/facebook/fresco/blob/master/LICENSE
+  url: https://github.com/facebook/fresco
+  skip: true
+- artifact: com.github.gfx.android.orma:orma-annotations:+
+  name: orma-annotations
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.github.gfx.android.orma:orma-migration:+
+  name: orma-migration
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: com.github.gfx.android.orma:orma:+
+  name: Orma
+  copyrightHolder: FUJI Goro (gfx)
+  license: The Apache Software License, Version 2.0
+- artifact: com.github.sys1yagi.fragment-creator:library:+
+  name: sys1yagi/fragment-creator
+  copyrightHolder: Toshihiro Yagi
+  license: MIT License
+  licenseUrl: https://api.github.com/licenses/mit
+  url: https://github.com/sys1yagi/fragment-creator
+- artifact: com.google.android:flexbox:+
+  name: flexbox-layout
+  copyrightHolder: Google Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/flexbox-layout
+- artifact: com.google.code.findbugs:jsr305:+
+  name: FindBugs-jsr305
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://findbugs.sourceforge.net/
+  skip: true
+- artifact: com.google.code.gson:gson:+
+  name: Gson
+  copyrightHolder: Google Inc.
+  license: The Apache Software License, Version 2.0
+- artifact: com.google.dagger:dagger-android-support:+
+  name: Dagger Android Support
+  copyrightHolder: The Apache Software License, Version 2.0
+  license: Apache 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/dagger
+- artifact: com.google.dagger:dagger-android:+
+  name: Dagger Android
+  copyrightHolder: The Apache Software License, Version 2.0
+  license: Apache 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/dagger
+- artifact: com.google.dagger:dagger:+
+  name: Dagger
+  copyrightHolder: The Apache Software License, Version 2.0
+  license: Apache 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/dagger
+- artifact: com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:+
+  name: Advanced RecyclerView
+  copyrightHolder: Haruki Hasegawa
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.jakewharton.threetenabp:threetenabp:+
+  name: ThreeTenAbp
+  copyrightHolder: Jake Wharton
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/ThreeTenABP/
+- artifact: com.jakewharton.timber:timber:+
+  name: Timber
+  copyrightHolder: Jake Wharton
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/timber
+- artifact: com.parse.bolts:bolts-tasks:+
+  name: Bolts-Tasks
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: BSD License
+  licenseUrl: https://github.com/BoltsFramework/Bolts-Android/blob/master/LICENSE
+  url: https://github.com/BoltsFramework/Bolts-Android
+  skip: true
+- artifact: com.squareup.okhttp3:okhttp:+
+  name: OkHttp
+  copyrightHolder: Square
+  license: The Apache Software License, Version 2.0
+- artifact: com.squareup.okio:okio:+
+  name: Okio
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: io.reactivex.rxjava2:rxandroid:+
+  name: RxAndroid
+  copyrightHolder: The RxAndroid authors
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxAndroid
+- artifact: io.reactivex.rxjava2:rxjava:+
+  name: Rxjava
+  copyrightHolder: RxJava Contributors.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxJava
+- artifact: javax.inject:javax.inject:+
+  name: javax.inject
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://code.google.com/p/atinject/
+  skip: true
+- artifact: me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:+
+  name: RecyclerViewMergeAdapter
+  copyrightHolder: martijnvdwoude
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/martijnvdwoude/recycler-view-merge-adapter
+- artifact: org.antlr:antlr4-runtime:+
+  name: ANTLR 4 Runtime
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: #LICENSE#
+  skip: true
+- artifact: org.jetbrains.kotlin:kotlin-stdlib-jre7:+
+  name: kotlin-stdlib-jre7
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+  skip: true
+- artifact: org.jetbrains.kotlin:kotlin-stdlib:+
+  name: kotlin-stdlib
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+- artifact: org.jetbrains:annotations:+
+  name: IntelliJ IDEA Annotations
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://www.jetbrains.org
+  skip: true
+- artifact: org.reactivestreams:reactive-streams:+
+  name: reactive-streams
+  copyrightHolder: #COPYRIGHT_HOLDER#
+  license: CC0
+  licenseUrl: http://creativecommons.org/publicdomain/zero/1.0/
+  url: http://www.reactive-streams.org/
+  skip: true
+- artifact: org.threeten:threetenbp:+
+  name: ThreeTen backport
+  copyrightHolder: Stephen Colebourne & Michael Nascimento Santos
+  license: BSD 3-clause
+  licenseUrl: https://raw.githubusercontent.com/ThreeTen/threetenbp/master/LICENSE.txt
+  url: https://www.threeten.org/threetenbp
