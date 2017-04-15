@@ -37,16 +37,31 @@ android {
         buildConfigField "String", "client_id", "\"$CLIENT_ID\""
         buildConfigField "String", "client_secret", "\"$CLIENT_SECRET\""
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dexOptions {
+        dexInProcess = true
+    }
+
     lintOptions {
         disable 'InvalidPackage', 'RtlSymmetry', 'RtlHardcoded'
         textReport true
         textOutput 'stdout'
+    }
+    
+    testOptions {
+        unitTests.all {
+            maxParallelForks = 1
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
     }
 }
 
