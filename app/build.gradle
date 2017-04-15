@@ -5,6 +5,7 @@ apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.cookpad.android.licensetools'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'com.github.gfx.ribbonizer'
+apply plugin: 'jacoco-android'
 
 apply from: "${project.rootDir}/app/mastodon.gradle"
 
@@ -33,6 +34,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        disable 'InvalidPackage', 'RtlSymmetry', 'RtlHardcoded'
+        textReport true
+        textOutput 'stdout'
     }
 }
 
@@ -125,4 +131,11 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+
+jacocoAndroidUnitTestReport {
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
+    excludes += ["jp/co/tokubai/android/bargain/databinding/*.class"]
 }

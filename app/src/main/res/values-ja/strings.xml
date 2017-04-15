@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">mastodon-android</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
     <string name="status_now">たった今</string>
     <string name="status_second">%1$d秒前</string>
     <string name="status_min">%1$d分前</string>
