@@ -3,6 +3,9 @@ UNDER DEVELOPMENT
 
 # mastodon-android
 
+[![wercker status](https://app.wercker.com/status/f1349138cc7a3c6ba5275ee2136560ed/s/master "wercker status")](https://app.wercker.com/project/byKey/f1349138cc7a3c6ba5275ee2136560ed)
+[![codecov](https://codecov.io/gh/sys1yagi/mastodon-android/branch/master/graph/badge.svg)](https://codecov.io/gh/sys1yagi/mastodon-android)
+
 Mastadon  https://mastodon.social
 
 # Language
