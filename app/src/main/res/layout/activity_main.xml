@@ -7,7 +7,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context="com.sys1yagi.mastodon.android.MainActivity">
+            tools:context="com.sys1yagi.mastodon.android.ui.main.MainActivity">
 
         <FrameLayout
                 android:id="@+id/content"

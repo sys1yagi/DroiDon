@@ -24,7 +24,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-
+        multiDexEnabled = true
         buildConfigField "String", "client_id", "\"$CLIENT_ID\""
         buildConfigField "String", "client_secret", "\"$CLIENT_SECRET\""
     }
@@ -36,42 +36,59 @@ android {
     }
 }
 
+configurations {
+    all {
+        resolutionStrategy {
+            force "com.android.support:support-annotations:${supportLibraryVersion}"
+            force "com.google.code.findbugs:jsr305:3.0.2"
+        }
+    }
+}
+
 dependencies {
 
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // UI
     kapt "com.android.databinding:compiler:$gradleToolsVersion"
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:support-vector-drawable:$supportLibraryVersion"
+    compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'
+    kapt 'com.github.sys1yagi.fragment-creator:processor:0.8.2'
 
+    // Rx
+    compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    // Dagger
+    compile "com.google.dagger:dagger:$dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
+    compile "com.google.dagger:dagger-android-support:$dagger2Version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2Version"
+
+    // Network
+    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile project(':mastodon4j-rx')
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.facebook.fresco:fresco:1.1.0'
+
+    // DB
     compile("com.github.gfx.android.orma:orma:$ormaVersion") {
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
         exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
     }
-    compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     kapt "com.github.gfx.android.orma:orma-processor:$ormaVersion"
 
-    compile "com.google.dagger:dagger:$dagger2Version"
-    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
-
-    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
-
-    compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-
-    compile 'com.facebook.fresco:fresco:1.1.0'
-
-    compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'
-    kapt 'com.github.sys1yagi.fragment-creator:processor:0.8.2'
-
+    // Util
     compile "com.google.code.gson:gson:$gsonVersion"
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
 
-    configurations {
-        // To avoid conflict
-        androidTestCompile.exclude group: 'com.android.support', module: 'support-annotations'
-    }
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.android.support:multidex:1.0.1'
 
+    // Test
     testCompile 'junit:junit:4.12'
     testCompile "org.robolectric:robolectric:3.3.2"
     testCompile "org.assertj:assertj-core:3.6.2"
