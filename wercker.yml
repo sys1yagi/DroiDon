@@ -1,0 +1,40 @@
+box: chibatching/docker-android-sdk
+
+build:
+  steps:
+    - script:
+        name: set android sdk location
+        code: |
+          echo "sdk.dir=${ANDROID_HOME}" > local.properties
+    - script:
+        name: setup cache
+        code: |
+            mkdir -p $WERCKER_CACHE_DIR/.gradle
+            mkdir -p $WERCKER_CACHE_DIR/.bundle
+            mkdir -p .bundle
+            ln -sf $WERCKER_CACHE_DIR/.gradle ~/.gradle
+            ln -sf $WERCKER_CACHE_DIR/.bundle .bundle
+    - script:
+        name: run check licenses
+        code: |
+          ./gradlew --stacktrace clean app:checkLicenses -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false
+    - script:
+        name: run lint
+        code: |
+          ./gradlew --stacktrace app:lintDebug -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false
+          cp ./app/build/reports/lint-* $WERCKER_REPORT_ARTIFACTS_DIR/
+    - script:
+        name: run unit test
+        code: |
+          ./gradlew --stacktrace app:jacocoTestDebugUnitTestReport -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false
+          cp -r ./app/build/reports/tests/* $WERCKER_REPORT_ARTIFACTS_DIR/
+          cp -r ./app/build/reports/jacoco/* $WERCKER_REPORT_ARTIFACTS_DIR/
+    - script:
+        name: upload test result to codecov
+        code: |
+          bash <(curl -s https://codecov.io/bash)
+    - script:
+        name: build pull request debug
+        code: |
+          ./gradlew --stacktrace app:assembleDebug -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false
+          cp -r ./app/build/outputs/apk/* $WERCKER_REPORT_ARTIFACTS_DIR/
