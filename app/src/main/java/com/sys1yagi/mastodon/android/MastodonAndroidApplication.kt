@@ -2,6 +2,7 @@ package com.sys1yagi.mastodon.android
 
 import android.app.Activity
 import android.support.multidex.MultiDexApplication
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.sys1yagi.mastodon.android.di.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
@@ -23,6 +24,7 @@ class MastodonAndroidApplication : MultiDexApplication(), HasDispatchingActivity
                 .inject(this)
         Timber.plant(DebugTree())
         AndroidThreeTen.init(this)
+        Fresco.initialize(this)
     }
 
     override fun activityInjector() = activityInjector

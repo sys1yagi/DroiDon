@@ -79,7 +79,7 @@ dependencies {
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile project(':mastodon4j-rx')
 
-    compile 'com.facebook.fresco:fresco:1.1.0'
+    compile 'com.facebook.fresco:fresco:1.2.0'
 
     // DB
     compile("com.github.gfx.android.orma:orma:$ormaVersion") {

@@ -15,11 +15,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp">
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    tools:src="@drawable/ic_dashboard_black_24dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:placeholderImage="@mipmap/ic_launcher_round"
             />
             <TextView
                     android:id="@+id/display_name"

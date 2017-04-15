@@ -14,7 +14,7 @@ class AppModule {
     @Singleton
     @Provides
     fun provideMastodonClient(client: OkHttpClient, gson: Gson): MastodonClient {
-        return MastodonClient("mstdn.jp", client, gson)
+        return MastodonClient("pawoo.net", client, gson)
     }
 
     @Singleton

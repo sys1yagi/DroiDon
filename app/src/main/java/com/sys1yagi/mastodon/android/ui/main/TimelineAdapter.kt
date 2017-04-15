@@ -12,7 +12,11 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
     private val statues = arrayListOf<TimelineStatus>()
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.binding.status = statues[position]
+        val status = statues[position]
+        holder.binding.status = status
+        status.entity.account?.let {
+            holder.binding.icon.setImageURI(it.avatar)
+        } ?: holder.binding.icon.setImageURI(null as String?)
     }
 
     override fun getItemCount() = statues.size
