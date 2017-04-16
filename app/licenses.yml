@@ -283,3 +283,27 @@
   license: BSD 3-clause
   licenseUrl: https://raw.githubusercontent.com/ThreeTen/threetenbp/master/LICENSE.txt
   url: https://www.threeten.org/threetenbp
+- artifact: com.chibatching.kotpref:enum-support:+
+  name: Kotpref enum support
+  copyrightHolder: Takao Chiba
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/chibatching/kotpref
+- artifact: com.chibatching.kotpref:kotpref:+
+  name: Kotpref
+  copyrightHolder: Takao Chiba
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/chibatching/kotpref
+- artifact: com.jakewharton.rxbinding2:rxbinding-kotlin:+
+  name: RxBinding Kotlin
+  copyrightHolder: Jake Wharton
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/RxBinding/
+- artifact: com.jakewharton.rxbinding2:rxbinding:+
+  name: RxBinding
+  copyrightHolder: Jake Wharton
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/RxBinding/
