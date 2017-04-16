@@ -5,36 +5,49 @@
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <android.support.design.widget.AppBarLayout
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay"
-                app:elevation="0dp">
-
-            <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    style="@style/AppTheme.PopupOverlay"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/ToolbarTheme"
-                    app:contentInsetStartWithNavigation="0dp"
-                    app:layout_collapseMode="pin"/>
-
-        </android.support.design.widget.AppBarLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+    >
         <FrameLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                android:layout_height="match_parent"
+        >
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-            />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="42dp">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Mastdon Android"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="which instance name?"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"/>
+                <EditText
+                        android:id="@+id/instance_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:hint="instance name"
+                />
+                <Button
+                        android:id="@+id/login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Login With Mastodon"/>
+
+            </LinearLayout>
             <TextView
                     android:id="@+id/error_text"
                     android:layout_width="match_parent"
@@ -47,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:visibility="gone"
             />
         </FrameLayout>
     </android.support.design.widget.CoordinatorLayout>
