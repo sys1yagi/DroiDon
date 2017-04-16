@@ -33,7 +33,7 @@ cd ../
 ./gradlew app:assembleDebug
 ```
 
-[https://github.com/sys1yagi/mastodon-android/tree/master/templates](VIPER templates) is a template for Android Studio which generates necessary files for VIPER architecture.
+[VIPER templates](https://github.com/sys1yagi/mastodon-android/tree/master/templates) is a template for Android Studio which generates necessary files for VIPER architecture.
 
 # Test
 
