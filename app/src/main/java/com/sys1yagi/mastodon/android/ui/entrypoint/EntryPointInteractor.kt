@@ -1,15 +1,18 @@
 package com.sys1yagi.mastodon.android.ui.entrypoint
 
+import com.sys1yagi.mastodon.android.data.database.OrmaDatabase
+import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
 
 class EntryPointInteractor
 @Inject
 constructor(
-        // add dependencies
+        databaseProvider: OrmaDatabaseProvider
 )
     : EntryPointContract.Interactor {
 
+    val database: OrmaDatabase = databaseProvider.database
     var out: EntryPointContract.InteractorOutput? = null
     var disposable = Disposables.empty()
 
@@ -23,7 +26,9 @@ constructor(
     }
 
     override fun checkInstanceName() {
-        out?.onInstanceNameNotRegistered()
+        database.selectFromCredential().firstOrNull()?.let{
+          out?.onInstanceNameFound()
+        } ?: out?.onInstanceNameNotRegistered()
     }
 
     override fun checkRegistration() {

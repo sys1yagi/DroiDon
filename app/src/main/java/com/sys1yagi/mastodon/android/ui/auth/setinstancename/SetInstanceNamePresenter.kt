@@ -14,11 +14,11 @@ class SetInstanceNamePresenter
     val viewModel = SetInstanceNameViewModel()
 
     override fun onResume() {
-        // do nothing
+        interactor.startInteraction(this)
     }
 
     override fun onPause() {
-        // do nothing
+        interactor.stoplInteraction(this)
     }
 
     override fun saveInstanceName(instanceName: String) {
