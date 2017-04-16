@@ -1,6 +1,7 @@
 package com.sys1yagi.mastodon.android.di
 
 import com.sys1yagi.mastodon.android.MastodonAndroidApplication
+import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivityModule
 import com.sys1yagi.mastodon.android.ui.main.MainActivityModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -10,7 +11,8 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         AndroidInjectionModule::class,
         AppModule::class,
-        MainActivityModule::class
+        MainActivityModule::class,
+        SetInstanceNameActivityModule::class
 ))
 interface AppComponent {
 

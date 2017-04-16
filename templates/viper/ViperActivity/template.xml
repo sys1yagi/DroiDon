@@ -1,0 +1,32 @@
+<template format="4"
+          revision="1"
+          name="VIPER Activity Template"
+          description="Creates a new VIPER Activity">
+
+    <category value="VIPER Template"/>
+
+    <parameter id="className"
+               name="View Name"
+               type="string"
+               constraints="class|unique|nonempty"
+               default="Viper"
+               help="The name of the view"/>
+
+    <parameter
+            id="applicationId"
+            name="Application Id"
+            type="string"
+            constraints="package"
+            default="com.sys1yagi.mastodon.android"/>
+
+    <parameter
+            id="packageName"
+            name="Package Name"
+            type="string"
+            constraints="package"
+            default="com.sys1yagi.mastodon.android.ui"/>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

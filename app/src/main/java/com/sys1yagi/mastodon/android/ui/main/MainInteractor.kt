@@ -4,8 +4,12 @@ import com.sys1yagi.mastodon4j.rx.RxTimelines
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainInteractor(val timelines: RxTimelines) : MainContract.Interactor {
+class MainInteractor
+@Inject
+constructor(val timelines: RxTimelines)
+    : MainContract.Interactor {
 
     var out: MainContract.InteractorOutput? = null
     var disposable = Disposables.empty()

@@ -1,37 +1,40 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.auth.setinstancename
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import com.sys1yagi.mastodon.android.R
-import com.sys1yagi.mastodon.android.databinding.ActivityMainBinding
+import com.sys1yagi.mastodon.android.databinding.ActivitySetInstanceNameBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
-import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class SetInstanceNameActivity : AppCompatActivity(), SetInstanceNameContract.View {
+
+    companion object {
+        fun createIntent(context: Context): Intent {
+            return Intent(context, SetInstanceNameActivity::class.java)
+        }
+    }
 
     @Inject
-    lateinit var presenter: MainContract.Presenter
+    lateinit var presenter: SetInstanceNameContract.Presenter
 
-    val binding: ActivityMainBinding by contentViewBinding(R.layout.activity_main)
-
-    val adapter: TimelineAdapter = TimelineAdapter()
+    val binding: ActivitySetInstanceNameBinding by contentViewBinding(R.layout.activity_set_instance_name)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = getString(R.string.app_name)
         }
+        binding.apply {
 
-        binding.recyclerView.also {
-            it.adapter = adapter
-            it.layoutManager = LinearLayoutManager(this)
         }
     }
 
@@ -41,14 +44,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun onPause() {
-        presenter.onPause()
         super.onPause()
-    }
-
-    override fun showTimeline(viewModel: MainViewModel) {
-        binding.progressBar.gone()
-        binding.recyclerView.visible()
-        adapter.addAll(viewModel.statuses)
+        presenter.onPause()
     }
 
     override fun showError(message: String) {
