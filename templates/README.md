@@ -40,7 +40,7 @@ interface AppComponent {
 6. Add Activity to AndroidManifest.xml
 
 ```xml
-<activity android:name=".ui.tootdetail.TootDetail"
+<activity android:name=".ui.tootdetail.TootDetailActivity"
   android:exported="false"
 />
 ```
