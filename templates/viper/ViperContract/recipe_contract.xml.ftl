@@ -8,4 +8,6 @@
                  to="${escapeXmlAttribute(srcOut)}/${className}ViewModel.kt"/>
     <instantiate from="root/src/app_package/ViperInteractor.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/${className}Interactor.kt"/>
+    <instantiate from="root/src/app_package/ViperRouter.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/${className}Router.kt"/>
 </recipe>
