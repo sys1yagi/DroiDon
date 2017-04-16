@@ -85,6 +85,8 @@ dependencies {
     // Rx
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0'
 
     // Dagger
     compile "com.google.dagger:dagger:$dagger2Version"
@@ -98,12 +100,14 @@ dependencies {
 
     compile 'com.facebook.fresco:fresco:1.2.0'
 
-    // DB
+    // Data
     compile("com.github.gfx.android.orma:orma:$ormaVersion") {
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
         exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
     }
     kapt "com.github.gfx.android.orma:orma-processor:$ormaVersion"
+    compile 'com.chibatching.kotpref:kotpref:2.1.1'
+    compile 'com.chibatching.kotpref:enum-support:2.1.1'
 
     // Util
     compile "com.google.code.gson:gson:$gsonVersion"

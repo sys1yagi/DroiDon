@@ -2,8 +2,11 @@ package com.sys1yagi.mastodon.android.di
 
 import android.app.Application
 import android.content.Context
+import com.github.gfx.android.orma.AccessThreadConstraint
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.sys1yagi.mastodon.android.data.database.OrmaDatabase
+import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
 import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.rx.RxTimelines
 import dagger.Module
@@ -45,4 +48,12 @@ class AppModule(val application: Application) {
     @Singleton
     @Provides
     fun provideRxTimeline(client: MastodonClient) = RxTimelines(client)
+
+    @Singleton
+    @Provides
+    fun provideOrmaDatabaseProvider(context: Context) = OrmaDatabaseProvider(OrmaDatabase
+            .builder(context)
+            .writeOnMainThread(AccessThreadConstraint.FATAL)
+            .readOnMainThread(AccessThreadConstraint.WARNING)
+            .build())
 }

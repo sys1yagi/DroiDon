@@ -42,10 +42,10 @@
                         android:hint="instance name"
                 />
                 <Button
-                        android:id="@+id/login_button"
+                        android:id="@+id/add_instance_name_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Login With Mastodon"/>
+                        android:text="Add Instance Name"/>
 
             </LinearLayout>
             <TextView

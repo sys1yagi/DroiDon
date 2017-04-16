@@ -29,7 +29,6 @@ class EntryPointActivity : AppCompatActivity(), EntryPointContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
-        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 
         binding.apply {
 
