@@ -21,25 +21,30 @@ VIPER Architecture like.
 
 # SetUp
 
-TODO
 
-- create client id and secret
-- create `app/mastodon.gradle`
+```sh
+git clone git@github.com:sys1yagi/mastodon-android.git
 
-```groovy
-ext.CLIENT_ID=$client id
-ext.CLIENT_SECRET=$client secret
+# install VIPER template for Android Studio
+cd mastodon-android/templates
+./install.sh
+cd ../
 
+./gradlew app:assembleDebug
 ```
-
-
-# Development
-
-TODO
 
 # Test
 
-TODO
+```sh
+# app test
+./gradlew app:testDebugUnitTest
+
+# mastodon4j test
+./gradlew mastodon4j:test
+
+# mastodon4j-rx test
+./gradlew mastodon4j-rx:test
+```
 
 # Release
 
