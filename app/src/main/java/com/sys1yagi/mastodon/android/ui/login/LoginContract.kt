@@ -1,6 +1,6 @@
-package ${packageName}
+package com.sys1yagi.mastodon.android.ui.login
 
-interface ${className}Contract {
+interface LoginContract {
 
     interface View {
         fun showError(message: String)
@@ -13,7 +13,7 @@ interface ${className}Contract {
 
     interface Interactor {
         fun startInteraction(out: InteractorOutput) // base
-        fun stopInteraction(out: InteractorOutput) // base
+        fun stoplInteraction(out: InteractorOutput) // base
     }
 
     interface InteractorOutput {

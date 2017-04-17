@@ -56,6 +56,8 @@ class EntryPointPresenter
 
     override fun onRegistrationFound(credential: Credential) {
         view.showMessage("check ${credential.instanceName} access token...")
+
+        // TODO check token
         interactor.login(activity, credential)
     }
 

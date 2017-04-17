@@ -39,6 +39,7 @@ interface EntryPointContract {
 
     interface Router {
         fun openSetInstanceNameActivity(activity: Activity)
+        fun openLoginActivity(activity: Activity)
         fun openHomeActivity(activity: Activity)
     }
 }

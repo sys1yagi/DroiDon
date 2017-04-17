@@ -1,6 +1,7 @@
 package ${packageName}
 
 import javax.inject.Inject
+import android.app.Activity
 
 class ${className}Presenter
 @Inject constructor(
