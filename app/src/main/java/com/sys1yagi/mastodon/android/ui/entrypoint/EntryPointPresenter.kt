@@ -2,8 +2,10 @@ package com.sys1yagi.mastodon.android.ui.entrypoint
 
 import android.app.Activity
 import android.content.Context
+import com.sys1yagi.mastodon.android.data.database.Credential
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -19,6 +21,7 @@ class EntryPointPresenter
 
     override fun onResume() {
         interactor.startInteraction(this)
+        view.showMessage("check instance name...")
         interactor.checkInstanceName()
     }
 
@@ -41,15 +44,18 @@ class EntryPointPresenter
                 }
     }
 
-    override fun onInstanceNameFound() {
+    override fun onInstanceNameFound(credential: Credential) {
+        view.showMessage("check ${credential.instanceName} credential...")
         interactor.checkRegistration()
     }
 
-    override fun onRegistrationNotRegistered() {
-        // TODO
+    override fun onRegistrationNotRegistered(credential: Credential) {
+        view.showMessage("register ${credential.instanceName} credential...")
+        interactor.registerCredential()
     }
 
-    override fun onRegistrationFound() {
+    override fun onRegistrationFound(credential: Credential) {
+        view.showMessage("check ${credential.instanceName} access token...")
         interactor.checkAccessToken()
     }
 
@@ -57,7 +63,7 @@ class EntryPointPresenter
         // TODO
     }
 
-    override fun onAccessTokenFound() {
+    override fun onAccessTokenFound(credential: Credential) {
         router.openHomeActivity(activity)
     }
 }

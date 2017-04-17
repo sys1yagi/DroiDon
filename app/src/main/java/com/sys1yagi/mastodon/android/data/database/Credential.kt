@@ -9,6 +9,9 @@ class Credential {
     @PrimaryKey(autoincrement = true)
     var id: Long = 0L
 
+    @Column("registration_id", indexed = true)
+    var registrationId: Long = 0
+
     @Column("instance_name", indexed = true)
     var instanceName: String = ""
 
@@ -17,5 +20,9 @@ class Credential {
 
     @Column("client_secret")
     var clientSecret: String = ""
+
+    override fun toString(): String {
+        return "Credential(id=$id, registrationId=$registrationId, instanceName='$instanceName', clientId='$clientId', clientSecret='$clientSecret')"
+    }
 
 }

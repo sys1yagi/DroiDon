@@ -1,10 +1,12 @@
 package com.sys1yagi.mastodon.android.ui.entrypoint
 
 import android.app.Activity
+import com.sys1yagi.mastodon.android.data.database.Credential
 
 interface EntryPointContract {
 
     interface View {
+        fun showMessage(message: String)
         fun showError(message: String)
         fun finish()
     }
@@ -20,16 +22,18 @@ interface EntryPointContract {
         fun checkInstanceName()
         fun checkRegistration()
         fun checkAccessToken()
+
+        fun registerCredential()
     }
 
     interface InteractorOutput {
         fun onError(t: Throwable)
         fun onInstanceNameNotRegistered()
-        fun onInstanceNameFound()
-        fun onRegistrationNotRegistered()
-        fun onRegistrationFound()
+        fun onInstanceNameFound(credential:Credential)
+        fun onRegistrationNotRegistered(credential:Credential)
+        fun onRegistrationFound(credential:Credential)
         fun onAccessTokenNotFoundOrExpired()
-        fun onAccessTokenFound()
+        fun onAccessTokenFound(credential:Credential)
     }
 
     interface Router {

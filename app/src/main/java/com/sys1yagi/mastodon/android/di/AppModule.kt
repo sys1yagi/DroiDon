@@ -29,12 +29,6 @@ class AppModule(val application: Application) {
 
     @Singleton
     @Provides
-    fun provideMastodonClient(client: OkHttpClient, gson: Gson): MastodonClient {
-        return MastodonClient("mstdn.jp", client, gson)
-    }
-
-    @Singleton
-    @Provides
     fun provideOkHttpClient() = OkHttpClient
             .Builder()
             .connectionSpecs(listOf(ConnectionSpec.MODERN_TLS))
@@ -44,10 +38,6 @@ class AppModule(val application: Application) {
     @Provides
     fun provideGson() = GsonBuilder()
             .create()
-
-    @Singleton
-    @Provides
-    fun provideRxTimeline(client: MastodonClient) = RxTimelines(client)
 
     @Singleton
     @Provides

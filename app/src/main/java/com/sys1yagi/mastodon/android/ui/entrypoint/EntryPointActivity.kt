@@ -45,7 +45,11 @@ class EntryPointActivity : AppCompatActivity(), EntryPointContract.View {
         presenter.onPause()
     }
 
+    override fun showMessage(message: String) {
+        binding.message.text = message
+    }
+
     override fun showError(message: String) {
-        // TODO
+        binding.message.text = "error:$message"
     }
 }
