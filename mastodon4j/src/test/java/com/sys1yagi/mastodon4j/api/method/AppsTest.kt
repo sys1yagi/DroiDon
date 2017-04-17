@@ -40,4 +40,13 @@ class AppsTest {
         assertThat(registration.clientSecret).isEqualTo("client secret")
         assertThat(registration.redirectUri).isEqualTo("urn:ietf:wg:oauth:2.0:oob")
     }
+
+    @Test
+    fun getOAuthUrl(){
+        val client: MastodonClient = mock()
+        client.getInstanceName().invoked.thenReturn("mastodon.cloud")
+
+        val url = Apps(client).getOAuthUrl("client_id", Scope(Scope.Name.ALL))
+        assertThat(url).isEqualTo("https://mastodon.cloud/oauth/authorize?client_id=client_id&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&scope=read write follow")
+    }
 }

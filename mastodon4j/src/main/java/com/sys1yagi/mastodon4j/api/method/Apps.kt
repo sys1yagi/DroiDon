@@ -6,6 +6,7 @@ import com.sys1yagi.mastodon4j.api.entity.auth.AppRegistration
 import com.sys1yagi.mastodon4j.api.exception.Mastodon4jRequestException
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import java.net.URLEncoder
 
 /**
  * see more https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#apps
@@ -36,5 +37,16 @@ class Apps(private val client: MastodonClient) {
         } else {
             throw Mastodon4jRequestException(response.message())
         }
+    }
+
+    fun getOAuthUrl(clientId: String, scope: Scope, redirectUri: String = "urn:ietf:wg:oauth:2.0:oob"): String {
+        val endpoint = "/oauth/authorize"
+        val parameters = listOf(
+                "client_id=$clientId",
+                "redirect_uri=$redirectUri",
+                "response_type=code",
+                "scope=$scope"
+        ).joinToString(separator = "&")
+        return "https://${client.getInstanceName()}$endpoint?${parameters}"
     }
 }
