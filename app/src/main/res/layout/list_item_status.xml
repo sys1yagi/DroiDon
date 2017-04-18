@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <!-- TODO -->
-        <variable name="status" type="com.sys1yagi.mastodon.android.ui.main.TimelineStatus"/>
+        <variable name="status" type="com.sys1yagi.mastodon.android.ui.home.TimelineStatus"/>
     </data>
 
     <android.support.v7.widget.CardView

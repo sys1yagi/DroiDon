@@ -4,7 +4,7 @@ import com.sys1yagi.mastodon.android.MastodonAndroidApplication
 import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivityModule
 import com.sys1yagi.mastodon.android.ui.entrypoint.EntryPointActivityModule
 import com.sys1yagi.mastodon.android.ui.login.LoginActivityModule
-import com.sys1yagi.mastodon.android.ui.main.MainActivityModule
+import com.sys1yagi.mastodon.android.ui.home.HomeActivityModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
@@ -14,7 +14,7 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         EntryPointActivityModule::class,
-        MainActivityModule::class,
+        HomeActivityModule::class,
         SetInstanceNameActivityModule::class,
         LoginActivityModule::class
 ))

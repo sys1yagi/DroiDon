@@ -4,7 +4,7 @@ import android.app.Activity
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivity
 import com.sys1yagi.mastodon.android.ui.login.LoginActivity
-import com.sys1yagi.mastodon.android.ui.main.MainActivity
+import com.sys1yagi.mastodon.android.ui.home.HomeActivity
 import javax.inject.Inject
 
 class EntryPointRouter
@@ -17,7 +17,7 @@ constructor()
     }
 
     override fun openHomeActivity(activity: Activity) {
-        activity.startActivity(MainActivity.createIntent(activity))
+        activity.startActivity(HomeActivity.createIntent(activity))
     }
 
     override fun openLoginActivity(activity: Activity, instanceName: String) {

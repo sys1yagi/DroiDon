@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.home
 
 import android.content.Context
 import android.content.Intent
@@ -6,24 +6,23 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.sys1yagi.mastodon.android.R
-import com.sys1yagi.mastodon.android.databinding.ActivityMainBinding
+import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
-import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivity
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class HomeActivity : AppCompatActivity(), HomeContract.View {
 
     companion object {
-        fun createIntent(context: Context) = Intent(context, MainActivity::class.java)
+        fun createIntent(context: Context) = Intent(context, HomeActivity::class.java)
     }
 
     @Inject
-    lateinit var presenter: MainContract.Presenter
+    lateinit var presenter: HomeContract.Presenter
 
-    val binding: ActivityMainBinding by contentViewBinding(R.layout.activity_main)
+    val binding: ActivityHomeBinding by contentViewBinding(R.layout.activity_home)
 
     val adapter: TimelineAdapter = TimelineAdapter()
 
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onPause()
     }
 
-    override fun showTimeline(viewModel: MainViewModel) {
+    override fun showTimeline(viewModel: HomeViewModel) {
         binding.progressBar.gone()
         binding.recyclerView.visible()
         adapter.addAll(viewModel.statuses)

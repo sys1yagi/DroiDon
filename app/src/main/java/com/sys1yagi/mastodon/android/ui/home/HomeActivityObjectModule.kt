@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.home
 
 import com.google.gson.Gson
 import com.sys1yagi.mastodon4j.MastodonClient
@@ -8,10 +8,10 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 
 @Module
-class MainActivityObjectModule(val view: MainContract.View) {
+class HomeActivityObjectModule(val view: HomeContract.View) {
     @Provides
-    fun providePresenter(interactor: MainInteractor): MainContract.Presenter {
-        return MainPresenter(view, interactor)
+    fun providePresenter(interactor: HomeInteractor): HomeContract.Presenter {
+        return HomePresenter(view, interactor)
     }
 
     @Provides

@@ -1,10 +1,10 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.home
 
 import com.sys1yagi.mastodon4j.api.entity.Status
 
-class MainPresenter(val view: MainContract.View, val interactor: MainContract.Interactor) : MainContract.Presenter, MainContract.InteractorOutput {
+class HomePresenter(val view: HomeContract.View, val interactor: HomeContract.Interactor) : HomeContract.Presenter, HomeContract.InteractorOutput {
 
-    val viewModel = MainViewModel()
+    val viewModel = HomeViewModel()
 
     override fun onResume() {
         interactor.startInteraction(this)

@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.home
 
 import android.content.Context
 import android.text.Html

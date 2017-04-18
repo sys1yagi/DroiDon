@@ -1,10 +1,10 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.home
 
 import com.sys1yagi.mastodon4j.api.entity.Status
 
-interface MainContract {
+interface HomeContract {
     interface View {
-        fun showTimeline(viewModel: MainViewModel)
+        fun showTimeline(viewModel: HomeViewModel)
         fun showError(message: String)
     }
 

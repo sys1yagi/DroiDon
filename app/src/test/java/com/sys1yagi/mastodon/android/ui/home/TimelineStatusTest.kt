@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.main
+package com.sys1yagi.mastodon.android.ui.home
 
 import com.google.gson.Gson
 import com.sys1yagi.mastodon.android.TestApplication

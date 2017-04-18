@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import com.google.gson.Gson
 import com.sys1yagi.mastodon.android.data.database.Credential
-import com.sys1yagi.mastodon.android.ui.main.MainActivity
+import com.sys1yagi.mastodon.android.ui.home.HomeActivity
 import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.api.Scope
 import com.sys1yagi.mastodon4j.api.method.Apps
@@ -31,6 +31,6 @@ constructor(
     }
 
     override fun openHome(context: Context, instanceName: String) {
-        context.startActivity(MainActivity.createIntent(context))
+        context.startActivity(HomeActivity.createIntent(context))
     }
 }
