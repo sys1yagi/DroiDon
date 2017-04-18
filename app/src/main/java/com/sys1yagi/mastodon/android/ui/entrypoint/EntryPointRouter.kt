@@ -18,7 +18,6 @@ constructor()
 
     override fun openHomeActivity(activity: Activity) {
         activity.startActivity(HomeActivity.createIntent(activity))
-        slideInBottomToUp(activity)
     }
 
     override fun openLoginActivity(activity: Activity, instanceName: String) {
