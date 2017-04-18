@@ -46,26 +46,24 @@ class EntryPointPresenter
 
     override fun onInstanceNameFound(credential: Credential) {
         view.showMessage("check ${credential.instanceName} credential...")
-        interactor.checkRegistration()
+        interactor.checkRegistration(credential)
     }
 
     override fun onRegistrationNotRegistered(credential: Credential) {
         view.showMessage("register ${credential.instanceName} credential...")
-        interactor.registerCredential()
+        interactor.registerCredential(credential)
     }
 
     override fun onRegistrationFound(credential: Credential) {
-        view.showMessage("check ${credential.instanceName} access token...")
-
-        // TODO check token
-        interactor.login(activity, credential)
+        view.showMessage("check ${credential.instanceName} authorization...")
+        interactor.checkAuthentication(credential)
     }
 
-    override fun onAccessTokenNotFoundOrExpired() {
-        // TODO
+    override fun onUnAuthorizedOrExpired(credential: Credential) {
+        router.openLoginActivity(activity, credential.instanceName)
     }
 
-    override fun onAccessTokenFound(credential: Credential) {
+    override fun onAuthorized(credential: Credential) {
         router.openHomeActivity(activity)
     }
 }
