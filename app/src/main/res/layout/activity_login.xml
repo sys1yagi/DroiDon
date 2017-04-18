@@ -16,12 +16,10 @@
 
             <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
-                    style="@style/AppTheme.PopupOverlay"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/ToolbarTheme"
-                    app:contentInsetStartWithNavigation="0dp"
-                    app:layout_collapseMode="pin"/>
+                    style="@style/ToolbarStyle"
+            />
 
         </android.support.design.widget.AppBarLayout>
         <FrameLayout

@@ -79,6 +79,8 @@ constructor(
     }
 
     override fun checkAuthentication(credential: Credential) {
-
+        database.selectFromAccessToken().instanceNameEq(credential.instanceName).firstOrNull()?.let{
+            out?.onAuthorized(credential)
+        } ?: out?.onUnAuthorizedOrExpired(credential)
     }
 }

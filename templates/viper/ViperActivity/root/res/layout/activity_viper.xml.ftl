@@ -21,7 +21,7 @@
                 android:theme="@style/ToolbarTheme"
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
-                style="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         </android.support.design.widget.AppBarLayout>
         <FrameLayout

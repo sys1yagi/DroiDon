@@ -34,7 +34,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = getString(R.string.app_name)
+            setDisplayHomeAsUpEnabled(true)
+            title = "Login"
         }
         binding.apply {
 
