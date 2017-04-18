@@ -44,17 +44,17 @@ class EntryPointPresenter
     }
 
     override fun onInstanceNameFound(credential: Credential) {
-        view.showMessage("check ${credential.instanceName} credential...")
+        view.showMessage("Check ${credential.instanceName} credential...")
         interactor.checkRegistration(credential)
     }
 
     override fun onRegistrationNotRegistered(credential: Credential) {
-        view.showMessage("register ${credential.instanceName} credential...")
+        view.showMessage("Register ${credential.instanceName} credential...")
         interactor.registerCredential(credential)
     }
 
     override fun onRegistrationFound(credential: Credential) {
-        view.showMessage("check ${credential.instanceName} authorization...")
+        view.showMessage("Check ${credential.instanceName} authorization...")
         interactor.checkAuthentication(credential)
     }
 
@@ -65,7 +65,7 @@ class EntryPointPresenter
 
     override fun onAuthorized(credential: Credential) {
         async {
-            view.showMessage("${credential.instanceName} already authorized!")
+            view.showMessage("The ${credential.instanceName} already authorized!")
             await(Completable.complete().delay(1, TimeUnit.SECONDS))
             router.openHomeActivity(activity)
             view.finish()
