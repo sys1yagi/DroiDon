@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.login
+package com.sys1yagi.mastodon.android.ui.auth.login
 
 import android.app.Activity
 import com.sys1yagi.mastodon.android.R

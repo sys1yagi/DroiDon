@@ -28,7 +28,7 @@
         <activity android:name=".ui.auth.setinstancename.SetInstanceNameActivity"
                   android:exported="false"
         />
-        <activity android:name=".ui.login.LoginActivity"
+        <activity android:name="com.sys1yagi.mastodon.android.ui.auth.login.LoginActivity"
                   android:exported="false"/>
     </application>
 

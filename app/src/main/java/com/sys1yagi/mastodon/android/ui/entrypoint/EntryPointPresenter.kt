@@ -2,7 +2,9 @@ package com.sys1yagi.mastodon.android.ui.entrypoint
 
 import android.app.Activity
 import android.content.Context
+import co.metalab.asyncawait.async
 import com.sys1yagi.mastodon.android.data.database.Credential
+import com.sys1yagi.mastodon.android.extensions.await
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
@@ -34,14 +36,11 @@ class EntryPointPresenter
     }
 
     override fun onInstanceNameNotRegistered() {
-        Completable
-                .complete()
-                .delay(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    router.openSetInstanceNameActivity(activity)
-                    view.finish()
-                }
+        async {
+            await(Completable.complete().delay(1, TimeUnit.SECONDS))
+            router.openSetInstanceNameActivity(activity)
+            view.finish()
+        }
     }
 
     override fun onInstanceNameFound(credential: Credential) {
@@ -65,7 +64,11 @@ class EntryPointPresenter
     }
 
     override fun onAuthorized(credential: Credential) {
-        router.openHomeActivity(activity)
-        view.finish()
+        async {
+            view.showMessage("${credential.instanceName} already authorized!")
+            await(Completable.complete().delay(1, TimeUnit.SECONDS))
+            router.openHomeActivity(activity)
+            view.finish()
+        }
     }
 }

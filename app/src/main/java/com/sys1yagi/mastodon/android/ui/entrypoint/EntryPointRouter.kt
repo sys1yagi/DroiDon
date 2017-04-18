@@ -3,7 +3,7 @@ package com.sys1yagi.mastodon.android.ui.entrypoint
 import android.app.Activity
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivity
-import com.sys1yagi.mastodon.android.ui.login.LoginActivity
+import com.sys1yagi.mastodon.android.ui.auth.login.LoginActivity
 import com.sys1yagi.mastodon.android.ui.home.HomeActivity
 import javax.inject.Inject
 
@@ -18,6 +18,7 @@ constructor()
 
     override fun openHomeActivity(activity: Activity) {
         activity.startActivity(HomeActivity.createIntent(activity))
+        slideInBottomToUp(activity)
     }
 
     override fun openLoginActivity(activity: Activity, instanceName: String) {

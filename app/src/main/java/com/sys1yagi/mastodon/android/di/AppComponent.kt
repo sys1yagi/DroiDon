@@ -3,7 +3,7 @@ package com.sys1yagi.mastodon.android.di
 import com.sys1yagi.mastodon.android.MastodonAndroidApplication
 import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivityModule
 import com.sys1yagi.mastodon.android.ui.entrypoint.EntryPointActivityModule
-import com.sys1yagi.mastodon.android.ui.login.LoginActivityModule
+import com.sys1yagi.mastodon.android.ui.auth.login.LoginActivityModule
 import com.sys1yagi.mastodon.android.ui.home.HomeActivityModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
