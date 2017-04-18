@@ -3,8 +3,10 @@ package com.sys1yagi.mastodon.android.ui.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MenuItem
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
@@ -13,7 +15,7 @@ import com.sys1yagi.mastodon.android.extensions.visible
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity(), HomeContract.View {
+class HomeActivity : AppCompatActivity(), HomeContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
 
     companion object {
         fun createIntent(context: Context) = Intent(context, HomeActivity::class.java)
@@ -38,7 +40,25 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
             it.adapter = adapter
             it.layoutManager = LinearLayoutManager(this)
         }
+        binding.navigation.setOnNavigationItemSelectedListener(this)
     }
+
+    override fun onNavigationItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    true
+                }
+                R.id.navigation_notifications -> {
+                    true
+                }
+                R.id.navigation_settings -> {
+                    true
+                }
+                else -> false
+            }
 
     override fun onResume() {
         super.onResume()
