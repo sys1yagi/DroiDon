@@ -10,4 +10,5 @@
     <string name="status_min">%1$d分前</string>
     <string name="status_hour">%1$d時間前</string>
     <string name="status_day">%1$d日前</string>
+    <string name="login_message">%1$s へログイン\n OAuthログインを実行しアクセストークンをコピー&amp;ペーストしてください</string>
 </resources>

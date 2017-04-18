@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.jakewharton.rxbinding2.view.enabled
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityLoginBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
@@ -38,7 +40,17 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             title = "Login"
         }
         binding.apply {
-
+            startOauth.setOnClickListener {
+                presenter.startOAuth()
+            }
+            saveToken.setOnClickListener {
+                presenter.saveAccessToken(code.text.toString())
+            }
+            RxTextView.afterTextChangeEvents(code)
+                    .map { !it.editable().isNullOrEmpty() }
+                    .subscribe {
+                        saveToken.isEnabled = it
+                    }
         }
     }
 
@@ -50,6 +62,10 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     override fun onPause() {
         super.onPause()
         presenter.onPause()
+    }
+
+    override fun showLoginMessage(message: String) {
+        binding.title.text = message
     }
 
     override fun showError(message: String) {

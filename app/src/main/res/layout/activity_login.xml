@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.CoordinatorLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -16,36 +16,79 @@
 
             <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
+                    style="@style/ToolbarStyle"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    style="@style/ToolbarStyle"
+                    app:title="Login"
             />
 
         </android.support.design.widget.AppBarLayout>
         <FrameLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/app_bar">
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone"
-            />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_launcher_round"
+                />
+                <TextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:padding="16dp"
+                        tools:text="@string/login_message"
+                />
+                <Button
+                        android:id="@+id/start_oauth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_start_oauth"/>
+                <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp">
+                    <android.support.design.widget.TextInputEditText
+                            android:id="@+id/code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Paste the access token here"
+                            android:inputType="text"
+                            android:maxLines="1"
+                    />
+                </android.support.design.widget.TextInputLayout>
+                <Button
+                        android:id="@+id/save_token"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Save Token"/>
+            </LinearLayout>
+
             <TextView
                     android:id="@+id/error_text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
+                    android:gravity="center"
             />
             <ProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:visibility="gone"
             />
         </FrameLayout>
-    </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
 </layout>

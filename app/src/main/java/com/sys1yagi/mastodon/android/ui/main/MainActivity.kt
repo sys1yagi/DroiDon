@@ -1,5 +1,7 @@
 package com.sys1yagi.mastodon.android.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +15,10 @@ import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
+
+    companion object {
+        fun createIntent(context: Context) = Intent(context, MainActivity::class.java)
+    }
 
     @Inject
     lateinit var presenter: MainContract.Presenter

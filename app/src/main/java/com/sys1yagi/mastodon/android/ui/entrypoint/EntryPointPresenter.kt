@@ -61,9 +61,11 @@ class EntryPointPresenter
 
     override fun onUnAuthorizedOrExpired(credential: Credential) {
         router.openLoginActivity(activity, credential.instanceName)
+        view.finish()
     }
 
     override fun onAuthorized(credential: Credential) {
         router.openHomeActivity(activity)
+        view.finish()
     }
 }
