@@ -1,30 +1,32 @@
-package com.sys1yagi.mastodon.android.ui.home
+package com.sys1yagi.mastodon.android.ui.home.localtimeline
 
-import android.view.MenuItem
+import com.sys1yagi.mastodon4j.api.entity.Status
 
-interface HomeContract {
+interface LocalTimelineContract {
+
     interface View {
-        fun showHome()
-        fun showTrip()
-        fun showSettings()
+        fun showTimeline(viewModel: LocalTimelineViewModel)
+        fun showError(message: String)
+        fun finish()
     }
 
     interface Presenter {
         fun onResume() // base
         fun onPause()  // base
-        fun onNavigationItemSelected(item: MenuItem): Boolean
     }
 
     interface Interactor {
         fun startInteraction(out: InteractorOutput) // base
         fun stoplInteraction(out: InteractorOutput) // base
+        fun getPublicTimeline()
     }
 
     interface InteractorOutput {
+        fun onPublicTimeline(statuses: List<Status>)
         fun onError(t: Throwable)
     }
 
     interface Router {
-        // TODO
+
     }
 }

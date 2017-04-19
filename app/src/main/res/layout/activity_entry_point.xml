@@ -15,7 +15,7 @@
                 android:layout_above="@+id/splash"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
-                android:textSize="32sp"
+                android:textSize="48sp"
                 android:textStyle="bold"
                 android:text="@string/app_name"
         />

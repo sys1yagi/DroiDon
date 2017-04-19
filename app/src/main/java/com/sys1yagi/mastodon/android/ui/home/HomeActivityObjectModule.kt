@@ -18,7 +18,4 @@ class HomeActivityObjectModule(val view: HomeContract.View) {
     fun provideMastodonClient(client: OkHttpClient, gson: Gson): MastodonClient {
         return MastodonClient("mstdn.jp", client, gson)
     }
-
-    @Provides
-    fun provideRxTimeline(client: MastodonClient) = RxTimelines(client)
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DroiDon</string>
+
+    <!-- nav -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_trip">Trip</string>
     <string name="title_settings">Settings</string>
+
+    <string name="title_notifications">Notifications</string>
 
     <string name="status_now">たった今</string>
     <string name="status_second">%1$d秒前</string>
