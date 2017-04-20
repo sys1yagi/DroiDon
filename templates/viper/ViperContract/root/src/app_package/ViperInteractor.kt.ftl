@@ -1,8 +1,6 @@
 package ${packageName}
 
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ${className}Interactor
@@ -19,7 +17,7 @@ constructor(
         this.out = out
     }
 
-    override fun stoplInteraction(out: ${className}Contract.InteractorOutput) {
+    override fun stopInteraction(out: ${className}Contract.InteractorOutput) {
         disposable.dispose()
         this.out = null
     }

@@ -13,7 +13,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.sys1yagi.mastodon.android.ui.navigation.NavigationActivity">
+                tools:context="com.sys1yagi.mastodon.android.ui.home.HomeActivity">
 
             <FrameLayout
                     android:id="@+id/content"

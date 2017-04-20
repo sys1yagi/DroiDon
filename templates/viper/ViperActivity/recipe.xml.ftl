@@ -11,7 +11,8 @@
                  to="${escapeXmlAttribute(srcOut)}/${className}ActivityModule.kt"/>
     <instantiate from="src/app_package/ViperActivityObjectModule.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/${className}ActivityObjectModule.kt"/>
-
+    <instantiate from="src/app_package/ViperPresenter.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/${className}Presenter.kt"/>
     <#include "../ViperContract/recipe_contract.xml.ftl" />
 
     <open file="${srcOut}/${className}Activity.kt"/>

@@ -4,8 +4,8 @@ import com.sys1yagi.mastodon.android.MastodonAndroidApplication
 import com.sys1yagi.mastodon.android.ui.auth.login.LoginActivityModule
 import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivityModule
 import com.sys1yagi.mastodon.android.ui.entrypoint.EntryPointActivityModule
-import com.sys1yagi.mastodon.android.ui.home.HomeActivityModule
-import com.sys1yagi.mastodon.android.ui.home.instance.localtimeline.LocalTimelineFragmentModule
+import com.sys1yagi.mastodon.android.ui.navigation.NavigationActivityModule
+import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
@@ -15,7 +15,7 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         EntryPointActivityModule::class,
-        HomeActivityModule::class,
+        NavigationActivityModule::class,
         SetInstanceNameActivityModule::class,
         LoginActivityModule::class
 ))
