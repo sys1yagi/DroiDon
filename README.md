@@ -7,7 +7,7 @@ UNDER DEVELOPMENT
 [![codecov](https://codecov.io/gh/sys1yagi/DroiDon/branch/master/graph/badge.svg)](https://codecov.io/gh/sys1yagi/DroiDon)
 
 
-DroiDon is android app for [Mastadon](https://github.com/tootsuite/mastodon)
+DroiDon is android app for [Mastodon](https://github.com/tootsuite/mastodon)
 
 # Language
 

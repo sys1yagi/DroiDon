@@ -1,7 +1,9 @@
 package com.sys1yagi.mastodon.android.ui.navigation
 
 import com.sys1yagi.mastodon.android.ui.navigation.home.HomeFragmentModule
+import com.sys1yagi.mastodon.android.ui.navigation.home.federatedtimeline.FederatedTimelineFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentModule
+import com.sys1yagi.mastodon.android.ui.navigation.home.notification.NotificationFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragmentModule
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
@@ -10,7 +12,9 @@ import dagger.android.AndroidInjector
         NavigationActivityObjectModule::class,
         HomeFragmentModule::class,
         TimelineFragmentModule::class,
-        LocalTimelineFragmentModule::class
+        NotificationFragmentModule::class,
+        LocalTimelineFragmentModule::class,
+        FederatedTimelineFragmentModule::class
 ))
 interface NavigationActivityComponent : AndroidInjector<NavigationActivity> {
     @Subcomponent.Builder
