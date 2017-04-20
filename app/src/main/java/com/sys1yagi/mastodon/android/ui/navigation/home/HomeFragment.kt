@@ -2,21 +2,19 @@ package com.sys1yagi.mastodon.android.ui.navigation.home
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentHomeBinding
-import com.sys1yagi.mastodon.android.extensions.gone
-import com.sys1yagi.mastodon.android.extensions.visible
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 @FragmentCreator
-class HomeFragment : Fragment(), HomeContract.View {
+class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListener {
 
     @Inject
     lateinit var presenter: HomeContract.Presenter
@@ -35,8 +33,16 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-        binding.recyclerView.also {
-            it.layoutManager = LinearLayoutManager(context)
+        binding.tabs.setupWithViewPager(binding.viewPager)
+        binding.viewPager.adapter = HomeViewPagerAdapter(childFragmentManager)
+        binding.tabs.apply {
+            addOnTabSelectedListener(this@HomeFragment)
+            tabMode = TabLayout.MODE_FIXED
+            tabGravity = TabLayout.GRAVITY_FILL
+            getTabAt(0)?.setIcon(R.drawable.ic_chat_black_24dp)
+            getTabAt(1)?.setIcon(R.drawable.ic_notifications_black_24dp)
+            getTabAt(2)?.setIcon(R.drawable.ic_group_black_24dp)
+            getTabAt(3)?.setIcon(R.drawable.ic_language_black_24dp)
         }
     }
 
@@ -51,6 +57,18 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun showError(message: String) {
+
+    }
+
+    override fun onTabReselected(tab: TabLayout.Tab?) {
+
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+    }
+
+    override fun onTabSelected(tab: TabLayout.Tab?) {
 
     }
 }

@@ -10,6 +10,7 @@ import android.view.MenuItem
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
+import com.sys1yagi.mastodon.android.ui.navigation.home.HomeFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentCreator
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -48,7 +49,7 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
     override fun onNavigationItemSelected(item: MenuItem) = presenter.onNavigationItemSelected(item)
 
     override fun showHome() {
-        val fragment = supportFragmentManager.findFragmentByTag(HOME_TAG) ?: LocalTimelineFragmentCreator.newBuilder().build()
+        val fragment = supportFragmentManager.findFragmentByTag(HOME_TAG) ?: HomeFragmentCreator.newBuilder().build()
         switchFragment(fragment, HOME_TAG)
         binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }
