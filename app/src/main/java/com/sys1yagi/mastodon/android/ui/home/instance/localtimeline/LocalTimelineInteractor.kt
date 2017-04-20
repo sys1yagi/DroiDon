@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.home.localtimeline
+package com.sys1yagi.mastodon.android.ui.home.instance.localtimeline
 
 import com.sys1yagi.mastodon4j.rx.RxTimelines
 import io.reactivex.android.schedulers.AndroidSchedulers

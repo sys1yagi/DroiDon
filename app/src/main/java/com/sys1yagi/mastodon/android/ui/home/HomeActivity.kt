@@ -10,7 +10,7 @@ import android.view.MenuItem
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
-import com.sys1yagi.mastodon.android.ui.home.localtimeline.LocalTimelineFragmentCreator
+import com.sys1yagi.mastodon.android.ui.home.instance.localtimeline.LocalTimelineFragmentCreator
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 import dagger.android.DispatchingAndroidInjector
@@ -54,11 +54,15 @@ class HomeActivity : AppCompatActivity(), HomeContract.View, BottomNavigationVie
     }
 
     override fun showTrip() {
-
+        val fragment = supportFragmentManager.findFragmentByTag(TRIP_TAG) ?: LocalTimelineFragmentCreator.newBuilder().build()
+        switchFragment(fragment, TRIP_TAG)
+        binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }
 
     override fun showSettings() {
-
+        val fragment = supportFragmentManager.findFragmentByTag(SETTINGS_TAG) ?: LocalTimelineFragmentCreator.newBuilder().build()
+        switchFragment(fragment, SETTINGS_TAG)
+        binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }
 
     fun switchFragment(fragment: Fragment, tag: String): Boolean {

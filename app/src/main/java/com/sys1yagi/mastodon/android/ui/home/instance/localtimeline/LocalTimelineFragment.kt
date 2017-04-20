@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.home.localtimeline
+package com.sys1yagi.mastodon.android.ui.home.instance.localtimeline
 
 import android.content.Context
 import android.os.Bundle
@@ -55,12 +55,13 @@ class LocalTimelineFragment : Fragment(), LocalTimelineContract.View {
     }
 
     override fun showError(message: String) {
-
+        
     }
 
     override fun showTimeline(viewModel: LocalTimelineViewModel) {
         binding.progressBar.gone()
         binding.recyclerView.visible()
+        // TODO diff append
         adapter.addAll(viewModel.statuses)
     }
 

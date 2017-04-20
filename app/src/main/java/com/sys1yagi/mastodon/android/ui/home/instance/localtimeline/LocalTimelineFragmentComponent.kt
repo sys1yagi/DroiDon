@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.home.localtimeline
+package com.sys1yagi.mastodon.android.ui.home.instance.localtimeline
 
 import dagger.Subcomponent
 import dagger.android.AndroidInjector

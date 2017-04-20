@@ -24,16 +24,9 @@ VIPER Architecture like.
 ```sh
 git clone git@github.com:sys1yagi/mastodon-android.git
 
-# install VIPER template for Android Studio
-cd mastodon-android/templates
-./install.sh
-cd ../
-
 # build
 ./gradlew app:assembleDebug
 ```
-
-[VIPER templates](https://github.com/sys1yagi/mastodon-android/tree/master/templates) is a template for Android Studio which generates necessary files for VIPER architecture.
 
 # Test
 
@@ -50,7 +43,15 @@ cd ../
 
 # Development
 
-TODO
+Install VIPER template for Android Studio. [VIPER templates](https://github.com/sys1yagi/mastodon-android/tree/master/templates) is a template for Android Studio which generates necessary files for VIPER architecture.
+
+
+```sh
+
+cd mastodon-android/templates
+./install.sh
+```
+
 
 # Release
 

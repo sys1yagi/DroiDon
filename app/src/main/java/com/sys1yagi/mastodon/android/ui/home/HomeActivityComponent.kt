@@ -1,6 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.home
 
-import com.sys1yagi.mastodon.android.ui.home.localtimeline.LocalTimelineFragmentModule
+import com.sys1yagi.mastodon.android.ui.home.instance.localtimeline.LocalTimelineFragmentModule
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 

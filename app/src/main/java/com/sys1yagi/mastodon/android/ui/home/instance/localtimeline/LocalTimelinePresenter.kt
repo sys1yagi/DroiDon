@@ -1,4 +1,4 @@
-package com.sys1yagi.mastodon.android.ui.home.localtimeline
+package com.sys1yagi.mastodon.android.ui.home.instance.localtimeline
 
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.ui.home.HomeViewModel
