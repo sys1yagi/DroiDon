@@ -11,11 +11,12 @@ import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
 import com.sys1yagi.mastodon.android.ui.navigation.home.HomeFragmentCreator
-import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentCreator
+import com.sys1yagi.mastodon.android.ui.navigation.settings.SettingsFragmentCreator
+import com.sys1yagi.mastodon.android.ui.navigation.trip.TripFragmentCreator
 import dagger.android.AndroidInjection
-import javax.inject.Inject
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasDispatchingSupportFragmentInjector
+import javax.inject.Inject
 
 
 class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomNavigationView.OnNavigationItemSelectedListener, HasDispatchingSupportFragmentInjector {
@@ -55,13 +56,13 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
     }
 
     override fun showTrip() {
-        val fragment = supportFragmentManager.findFragmentByTag(TRIP_TAG) ?: LocalTimelineFragmentCreator.newBuilder().build()
+        val fragment = supportFragmentManager.findFragmentByTag(TRIP_TAG) ?: TripFragmentCreator.newBuilder().build()
         switchFragment(fragment, TRIP_TAG)
         binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }
 
     override fun showSettings() {
-        val fragment = supportFragmentManager.findFragmentByTag(SETTINGS_TAG) ?: LocalTimelineFragmentCreator.newBuilder().build()
+        val fragment = supportFragmentManager.findFragmentByTag(SETTINGS_TAG) ?: SettingsFragmentCreator.newBuilder().build()
         switchFragment(fragment, SETTINGS_TAG)
         binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }

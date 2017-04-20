@@ -18,4 +18,12 @@
     <!-- login -->
     <string name="login_message">Login to %1$s\n Please login with OAuth and get access token.</string>
     <string name="login_start_oauth">Start OAuth</string>
+
+    <!-- preference -->
+    <string name="preferences_file_name" translatable="false">com.sys1yagi.mastodon.android.preference</string>
+
+    <string name="preferences_category_profile">Profile</string>
+    <string name="preferences_open_your_profile">Open Your Profile</string>
+    <string name="preferences_open_your_profile_key">open_your_profile</string>
+
 </resources>

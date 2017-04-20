@@ -9,6 +9,7 @@
 
     <string name="title_notifications">Notifications</string>
 
+    <!-- status -->
     <string name="status_now">たった今</string>
     <string name="status_second">%1$d秒前</string>
     <string name="status_min">%1$d分前</string>
@@ -18,4 +19,9 @@
     <!-- login -->
     <string name="login_message">%1$s へログイン\n OAuthログインを実行しアクセストークンをコピー&amp;ペーストしてください</string>
     <string name="login_start_oauth">Start OAuth</string>
+
+    <!-- profile -->
+    <string name="preferences_category_profile">Profile</string>
+    <string name="preferences_open_your_profile">Open Your Profile</string>
+    <string name="preferences_open_your_profile_key">open_your_profile</string>
 </resources>

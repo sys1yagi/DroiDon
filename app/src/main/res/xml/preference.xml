@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:key="@string/preferences_file_name"
+>
+    <PreferenceCategory android:title="@string/preferences_category_profile">
+        <PreferenceScreen
+                android:key="@string/preferences_open_your_profile_key"
+                android:title="@string/preferences_open_your_profile"
+        />
+    </PreferenceCategory>
+</PreferenceScreen>
