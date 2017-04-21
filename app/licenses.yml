@@ -307,12 +307,6 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://github.com/JakeWharton/RxBinding/
-- artifact: co.metalab.asyncawait:asyncawait:+
-  name: A Kotlin coroutine implementation for Android
-  copyrightHolder: metalabdesign
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/metalabdesign/AsyncAwait
 # Libraries not listed in licenses.yml:
 - artifact: com.android.support:preference-v7:+
   name: preference-v7
