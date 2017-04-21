@@ -30,6 +30,9 @@
         />
         <activity android:name="com.sys1yagi.mastodon.android.ui.auth.login.LoginActivity"
                   android:exported="false"/>
+        <activity android:name=".ui.navigation.home.toot.TootActivity"
+                  android:exported="false"/>
+
     </application>
 
 </manifest>

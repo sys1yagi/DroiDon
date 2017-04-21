@@ -8,6 +8,10 @@
 
     <string name="title_notifications">Notifications</string>
 
+    <!-- Toot -->
+    <string name="toot">Toot!</string>
+    <string name="what_s_happening">What\'s happening?</string>
+
     <!-- status -->
     <string name="status_now">Now</string>
     <string name="status_second">%1$ds</string>
@@ -25,4 +29,5 @@
 
     <string name="preferences_category_profile">Profile</string>
     <string name="preferences_open_your_profile">Open Your Profile</string>
+
 </resources>

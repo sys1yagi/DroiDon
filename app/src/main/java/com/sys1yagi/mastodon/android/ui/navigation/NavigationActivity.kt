@@ -17,6 +17,7 @@ import com.sys1yagi.mastodon.android.ui.navigation.trip.TripFragmentCreator
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasDispatchingSupportFragmentInjector
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -58,7 +59,7 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
     override fun onNavigationItemSelected(item: MenuItem) = presenter.onNavigationItemSelected(item)
 
     override fun showHome() {
-        val fragment = supportFragmentManager.findFragmentByTag(HOME_TAG) ?: HomeFragmentCreator.newBuilder().build()
+        val fragment = supportFragmentManager.findFragmentByTag(HOME_TAG) ?: HomeFragmentCreator.newBuilder(primaryInstanceName).build()
         switchFragment(fragment, HOME_TAG)
         binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }

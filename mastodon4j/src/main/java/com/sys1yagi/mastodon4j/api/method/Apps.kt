@@ -75,7 +75,6 @@ class Apps(private val client: MastodonClient) {
 
         if (response.isSuccessful) {
             val json = response.body().string()
-            println(json)
             return client.getSerializer().fromJson(json, AccessToken::class.java)
         } else {
             throw Mastodon4jRequestException(response.message())

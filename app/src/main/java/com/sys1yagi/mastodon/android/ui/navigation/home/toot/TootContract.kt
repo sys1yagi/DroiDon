@@ -1,29 +1,30 @@
-package com.sys1yagi.mastodon.android.ui.navigation.home
+package com.sys1yagi.mastodon.android.ui.navigation.home.toot
 
-import android.content.Context
-
-interface HomeContract {
+interface TootContract {
 
     interface View {
         fun showError(message: String)
+        fun finish()
     }
 
     interface Presenter {
         fun onResume() // base
         fun onPause()  // base
-        fun onFabClick()
+        fun toot(status: String)
     }
 
     interface Interactor {
         fun startInteraction(out: InteractorOutput) // base
         fun stopInteraction(out: InteractorOutput) // base
+        fun toot(status: String)
     }
 
     interface InteractorOutput {
         fun onError(t: Throwable)
+        fun onSuccess()
     }
 
     interface Router {
-        fun openTootActivity(context: Context, instanceName: String)
+
     }
 }

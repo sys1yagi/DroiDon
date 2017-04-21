@@ -5,9 +5,9 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class HomeFragmentObjectModule(val view: HomeContract.View) {
+class HomeFragmentObjectModule(val instanceName:String, val view: HomeContract.View) {
     @Provides
     fun providePresenter(interactor: HomeInteractor, router: HomeRouter): HomeContract.Presenter {
-        return HomePresenter(view as Fragment, view, interactor, router)
+        return HomePresenter(instanceName, view as Fragment, view, interactor, router)
     }
 }

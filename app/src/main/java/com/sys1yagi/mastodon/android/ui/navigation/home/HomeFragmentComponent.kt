@@ -11,7 +11,7 @@ interface HomeFragmentComponent : AndroidInjector<HomeFragment> {
         abstract fun objectModule(objectModule: HomeFragmentObjectModule)
 
         override fun seedInstance(instance: HomeFragment) {
-            objectModule(HomeFragmentObjectModule(instance))
+            objectModule(HomeFragmentObjectModule(instance.instanceName, instance))
         }
     }
 }

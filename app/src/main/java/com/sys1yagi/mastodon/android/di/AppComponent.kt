@@ -6,6 +6,7 @@ import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActi
 import com.sys1yagi.mastodon.android.ui.entrypoint.EntryPointActivityModule
 import com.sys1yagi.mastodon.android.ui.navigation.NavigationActivityModule
 import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentModule
+import com.sys1yagi.mastodon.android.ui.navigation.home.toot.TootActivityModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
@@ -19,7 +20,8 @@ import javax.inject.Singleton
         EntryPointActivityModule::class,
         NavigationActivityModule::class,
         SetInstanceNameActivityModule::class,
-        LoginActivityModule::class
+        LoginActivityModule::class,
+        TootActivityModule::class
 ))
 interface AppComponent {
     fun inject(target: MastodonAndroidApplication)

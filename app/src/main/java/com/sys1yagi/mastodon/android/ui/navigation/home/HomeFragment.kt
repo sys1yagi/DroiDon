@@ -7,14 +7,19 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.sys1yagi.fragmentcreator.annotation.Args
 import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentHomeBinding
 import dagger.android.support.AndroidSupportInjection
+import timber.log.Timber
 import javax.inject.Inject
 
 @FragmentCreator
 class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListener {
+
+    @Args
+    var instanceName: String = ""
 
     @Inject
     lateinit var presenter: HomeContract.Presenter
@@ -22,6 +27,7 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
     lateinit var binding: FragmentHomeBinding
 
     override fun onAttach(context: Context?) {
+        HomeFragmentCreator.read(this)
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
@@ -43,6 +49,9 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
             getTabAt(1)?.setIcon(R.drawable.ic_notifications_black_24dp)
             getTabAt(2)?.setIcon(R.drawable.ic_group_black_24dp)
             getTabAt(3)?.setIcon(R.drawable.ic_language_black_24dp)
+        }
+        binding.fab.setOnClickListener {
+            presenter.onFabClick()
         }
     }
 

@@ -125,8 +125,8 @@ class Statuses(val client: MastodonClient) {
             }
             append("visibility", visibility.value)
         }.build()
-
-        val response = client.postUrl("statuses",
+        
+        val response = client.post("statuses",
                 RequestBody.create(
                         MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
                         parameters
