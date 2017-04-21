@@ -15,12 +15,12 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         OkHttpModule::class,
+        StethoModule::class,
         EntryPointActivityModule::class,
         NavigationActivityModule::class,
         SetInstanceNameActivityModule::class,
         LoginActivityModule::class
 ))
 interface AppComponent {
-
     fun inject(target: MastodonAndroidApplication)
 }
