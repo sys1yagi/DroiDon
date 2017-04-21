@@ -12,7 +12,7 @@ class RxTimelines(client: MastodonClient) {
     fun home(maxId: String? = null, sinceId: String? = null, limit: Int = 20): Single<List<Status>> {
         return Single.create {
             try {
-                val statuses = timelines.home()
+                val statuses = timelines.home(maxId, sinceId, limit)
                 it.onSuccess(statuses)
             } catch(throwable: Throwable) {
                 it.onErrorIfNotDisposed(throwable)

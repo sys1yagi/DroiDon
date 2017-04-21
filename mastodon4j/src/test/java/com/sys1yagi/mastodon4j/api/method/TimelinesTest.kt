@@ -8,6 +8,7 @@ import com.sys1yagi.mastodon4j.testtool.AssetsUtil
 import okhttp3.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyString
 
 class TimelinesTest {
@@ -24,7 +25,7 @@ class TimelinesTest {
                         AssetsUtil.readFromAssets("public_timeline.json")
                 ))
                 .build()
-        client.get(anyString()).invoked.thenReturn(response)
+        client.get(anyString(), any()).invoked.thenReturn(response)
         client.getSerializer().invoked.thenReturn(Gson())
 
         val timelines = Timelines(client)

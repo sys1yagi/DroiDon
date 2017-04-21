@@ -1,6 +1,7 @@
 package com.sys1yagi.mastodon4j.api.method
 
 import com.sys1yagi.mastodon4j.MastodonClient
+import com.sys1yagi.mastodon4j.Parameter
 import com.sys1yagi.mastodon4j.api.entity.Status
 import com.sys1yagi.mastodon4j.api.exception.Mastodon4jRequestException
 import com.sys1yagi.mastodon4j.extension.genericType
@@ -13,7 +14,14 @@ class Timelines(val client: MastodonClient) {
     val url = "https://${client.getInstanceName()}/api/v1"
 
     fun home(maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
-        val response = client.get("$url/timelines/home")
+        val response = client.get(
+                "$url/timelines/home",
+                Parameter().apply {
+                    maxId?.let { append("max_id", it) }
+                    sinceId?.let { append("since_id", it) }
+                    append("limit", limit)
+                }
+        )
         if (response.isSuccessful) {
             val body = response.body().string()
             return client.getSerializer().fromJson<List<Status>>(
@@ -26,7 +34,7 @@ class Timelines(val client: MastodonClient) {
         }
     }
 
-    fun public(): List<Status> {
+    fun public(maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
         val response = client.get("https://${client.getInstanceName()}/api/v1/timelines/public")
         if (response.isSuccessful) {
             val body = response.body().string()

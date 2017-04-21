@@ -17,10 +17,13 @@ open class MastodonClient(
 
     open fun getInstanceName() = instanceName
 
-    open fun get(url: String): Response {
+    open fun get(url: String, parameter: Parameter? = null): Response {
+        val urlWithParams = parameter?.let {
+            "$url?${it.build()}"
+        } ?: url
         val call = client.newCall(
                 authorizationHeader(Request.Builder())
-                        .url(url)
+                        .url(urlWithParams)
                         .get()
                         .build())
         return call.execute()
