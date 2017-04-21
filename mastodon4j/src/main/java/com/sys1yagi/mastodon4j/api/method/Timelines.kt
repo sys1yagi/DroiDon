@@ -27,7 +27,6 @@ class Timelines(val client: MastodonClient) {
                     genericType<List<Status>>()
             )
         } else {
-            // TODO
             throw Mastodon4jRequestException(response.message())
         }
     }
@@ -48,12 +47,27 @@ class Timelines(val client: MastodonClient) {
                     genericType<List<Status>>()
             )
         } else {
-            // TODO
             throw Mastodon4jRequestException(response.message())
         }
     }
 
-    fun tag() {
-
+    fun tag(tag: String, maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
+        val response = client.get(
+                "timelines/tag/$tag",
+                Parameter().apply {
+                    maxId?.let { append("max_id", it) }
+                    sinceId?.let { append("since_id", it) }
+                    append("limit", limit)
+                }
+        )
+        if (response.isSuccessful) {
+            val body = response.body().string()
+            return client.getSerializer().fromJson<List<Status>>(
+                    body,
+                    genericType<List<Status>>()
+            )
+        } else {
+            throw Mastodon4jRequestException(response.message())
+        }
     }
 }

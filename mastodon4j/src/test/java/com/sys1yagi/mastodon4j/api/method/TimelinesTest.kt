@@ -22,15 +22,30 @@ class TimelinesTest {
                 .protocol(Protocol.HTTP_1_1)
                 .body(ResponseBody.create(
                         MediaType.parse("application/json; charset=utf-8"),
-                        AssetsUtil.readFromAssets("public_timeline.json")
+                        AssetsUtil.readFromAssets(jsonName)
                 ))
                 .build()
         client.get(anyString(), any()).invoked.thenReturn(response)
         client.getSerializer().invoked.thenReturn(Gson())
+        return client
+    }
 
+    @Test
+    fun public() {
+        val client = mockClient("public_timeline.json")
         val timelines = Timelines(client)
         val statuses = timelines.public()
         assertThat(statuses.size).isEqualTo(20)
     }
+
+    @Test
+    fun tag() {
+        val client = mockClient("tag.json")
+        val timelines = Timelines(client)
+        val statuses = timelines.tag("mastodon")
+        assertThat(statuses.size).isEqualTo(20)
+    }
+
+    //val client = MastodonClient("friends.nico", OkHttpClient.Builder().connectionSpecs(listOf(ConnectionSpec.MODERN_TLS)).build(), Gson())
 
 }
