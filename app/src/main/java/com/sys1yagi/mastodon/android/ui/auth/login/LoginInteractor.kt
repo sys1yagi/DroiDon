@@ -3,13 +3,16 @@ package com.sys1yagi.mastodon.android.ui.auth.login
 import com.sys1yagi.mastodon.android.data.database.AccessToken
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
 import com.sys1yagi.mastodon.android.extensions.async
+import com.sys1yagi.mastodon4j.MastodonClient
+import com.sys1yagi.mastodon4j.rx.RxApps
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
 
 class LoginInteractor
 @Inject
 constructor(
-        databaseProvider: OrmaDatabaseProvider
+        databaseProvider: OrmaDatabaseProvider,
+        val rxApps: RxApps
 )
     : LoginContract.Interactor {
 
@@ -29,6 +32,25 @@ constructor(
     override fun getCredential(instanceName: String) {
         database.selectFromCredential().instanceNameEq(instanceName).firstOrNull()?.let {
             out?.onTargetCredential(it)
+        } ?: out?.onCredentialNotFound(instanceName)
+    }
+
+    override fun getAccessToken(instanceName: String, code: String) {
+        database.selectFromCredential().instanceNameEq(instanceName).firstOrNull()?.let {
+            async {
+                try {
+                    val accessToken = rxApps.getAccessToken(
+                            it.clientId,
+                            it.clientSecret,
+                            code = code
+                    ).await()
+
+                    out?.onAccessToken(accessToken)
+
+                } catch(e: Throwable) {
+                    out?.onError(e)
+                }
+            }
         } ?: out?.onCredentialNotFound(instanceName)
     }
 

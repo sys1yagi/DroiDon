@@ -16,7 +16,7 @@
     <string name="status_day">%1$dd</string>
 
     <!-- login -->
-    <string name="login_message">Login to %1$s\n Please login with OAuth and get access token.</string>
+    <string name="login_message">Please login to %1$s with OAuth and get auth code.</string>
     <string name="login_start_oauth">Start OAuth</string>
 
     <!-- preference -->

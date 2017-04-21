@@ -29,13 +29,6 @@ class AppModule(val application: Application) {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient() = OkHttpClient
-            .Builder()
-            .connectionSpecs(listOf(ConnectionSpec.MODERN_TLS))
-            .build()
-
-    @Singleton
-    @Provides
     fun provideGson() = GsonBuilder()
             .create()
 

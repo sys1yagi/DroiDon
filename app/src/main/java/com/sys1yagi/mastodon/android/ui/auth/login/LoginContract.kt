@@ -2,6 +2,7 @@ package com.sys1yagi.mastodon.android.ui.auth.login
 
 import android.content.Context
 import com.sys1yagi.mastodon.android.data.database.Credential
+import com.sys1yagi.mastodon4j.api.entity.auth.AccessToken
 
 interface LoginContract {
 
@@ -15,13 +16,14 @@ interface LoginContract {
         fun onResume() // base
         fun onPause()  // base
         fun startOAuth()
-        fun saveAccessToken(accessToken: String)
+        fun getAccessToken(code: String)
     }
 
     interface Interactor {
         fun startInteraction(out: InteractorOutput) // base
         fun stoplInteraction(out: InteractorOutput) // base
-        fun saveAccessToken(instanceName:String, accessToken: String)
+        fun getAccessToken(instanceName: String, code: String)
+        fun saveAccessToken(instanceName: String, accessToken: String)
         fun getCredential(instanceName: String)
     }
 
@@ -29,6 +31,7 @@ interface LoginContract {
         fun onError(t: Throwable)
         fun onTargetCredential(credential: Credential)
         fun onCredentialNotFound(instanceName: String)
+        fun onAccessToken(accessToken: AccessToken)
         fun onAccessTokenSaved()
     }
 

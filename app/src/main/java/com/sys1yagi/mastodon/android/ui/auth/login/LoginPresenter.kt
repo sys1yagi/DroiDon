@@ -3,12 +3,13 @@ package com.sys1yagi.mastodon.android.ui.auth.login
 import android.app.Activity
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.data.database.Credential
-import com.sys1yagi.mastodon.android.extensions.getRequired
+import com.sys1yagi.mastodon4j.api.entity.auth.AccessToken
 import javax.inject.Inject
 
 class LoginPresenter
 @Inject constructor(
         val activity: Activity,
+        val instanceName: String,
         val view: LoginContract.View,
         val interactor: LoginContract.Interactor,
         val router: LoginContract.Router
@@ -18,8 +19,7 @@ class LoginPresenter
 
     override fun onResume() {
         interactor.startInteraction(this)
-        viewModel.instanceName = activity.intent.getRequired(LoginActivity.ARGS_INSTANCE_NAME)
-        view.showLoginMessage(activity.getString(R.string.login_message, viewModel.instanceName))
+        view.showLoginMessage(activity.getString(R.string.login_message, instanceName))
     }
 
     override fun onPause() {
@@ -27,7 +27,7 @@ class LoginPresenter
     }
 
     override fun startOAuth() {
-        interactor.getCredential(viewModel.instanceName)
+        interactor.getCredential(instanceName)
     }
 
     override fun onTargetCredential(credential: Credential) {
@@ -39,12 +39,16 @@ class LoginPresenter
         // TODO
     }
 
-    override fun saveAccessToken(accessToken: String) {
-        interactor.saveAccessToken(viewModel.instanceName, accessToken)
+    override fun getAccessToken(code: String) {
+        interactor.getAccessToken(instanceName, code)
+    }
+
+    override fun onAccessToken(accessToken: AccessToken) {
+        interactor.saveAccessToken(instanceName, accessToken.accessToken)
     }
 
     override fun onAccessTokenSaved() {
-        router.openHome(activity, viewModel.instanceName)
+        router.openHome(activity, instanceName)
         view.finish()
     }
 

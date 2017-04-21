@@ -11,7 +11,7 @@ interface LoginActivityComponent : AndroidInjector<LoginActivity> {
         abstract fun objectModule(objectModule: LoginActivityObjectModule)
 
         override fun seedInstance(instance: LoginActivity) {
-            objectModule(LoginActivityObjectModule(instance))
+            objectModule(LoginActivityObjectModule(instance.instanceName, instance))
         }
     }
 }

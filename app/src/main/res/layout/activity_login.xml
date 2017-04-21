@@ -63,16 +63,16 @@
                             android:id="@+id/code"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Paste the access token here"
+                            android:hint="Paste the auth code here"
                             android:inputType="text"
                             android:maxLines="1"
                     />
                 </android.support.design.widget.TextInputLayout>
                 <Button
-                        android:id="@+id/save_token"
+                        android:id="@+id/get_access_token"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Save Token"/>
+                        android:text="Get Access Token"/>
             </LinearLayout>
 
             <TextView

@@ -17,7 +17,7 @@
     <string name="status_day">%1$d日前</string>
 
     <!-- login -->
-    <string name="login_message">%1$s へログイン\n OAuthログインを実行しアクセストークンをコピー&amp;ペーストしてください</string>
+    <string name="login_message">%1$sへOAuthログインを実行し、認証コードをコピー&amp;ペーストしてください</string>
     <string name="login_start_oauth">Start OAuth</string>
 
     <!-- profile -->

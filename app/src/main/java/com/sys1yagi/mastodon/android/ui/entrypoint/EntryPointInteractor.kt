@@ -58,7 +58,7 @@ constructor(
 
         disposable = async {
             try {
-                val appRegistration = apps.createApp(clientName = "mastodon-android-sys1yagi", scope = Scope(Scope.Name.ALL)).await()
+                val appRegistration = apps.createApp(clientName = "DroiDon", scope = Scope(Scope.Name.ALL)).await()
                 saveCredential(credential, appRegistration).await()
                 out?.onRegistrationFound(credential)
             } catch(e: Throwable) {

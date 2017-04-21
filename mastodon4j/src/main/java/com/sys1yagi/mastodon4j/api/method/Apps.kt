@@ -2,6 +2,7 @@ package com.sys1yagi.mastodon4j.api.method
 
 import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.api.Scope
+import com.sys1yagi.mastodon4j.api.entity.auth.AccessToken
 import com.sys1yagi.mastodon4j.api.entity.auth.AppRegistration
 import com.sys1yagi.mastodon4j.api.exception.Mastodon4jRequestException
 import okhttp3.MediaType
@@ -49,4 +50,36 @@ class Apps(private val client: MastodonClient) {
         ).joinToString(separator = "&")
         return "https://${client.getInstanceName()}$endpoint?${parameters}"
     }
+
+    fun getAccessToken(
+            clientId: String,
+            clientSecret: String,
+            redirectUri: String = "urn:ietf:wg:oauth:2.0:oob",
+            code: String,
+            grantType: String = "authorization_code"): AccessToken {
+
+        val url = "https://${client.getInstanceName()}/oauth/token"
+        val parameters = listOf(
+                "client_id=$clientId",
+                "client_secret=$clientSecret",
+                "redirect_uri=$redirectUri",
+                "code=$code",
+                "grant_type=$grantType"
+        ).joinToString(separator = "&")
+
+        val response = client.post(url,
+                RequestBody.create(
+                        MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
+                        parameters
+                ))
+
+        if (response.isSuccessful) {
+            val json = response.body().string()
+            println(json)
+            return client.getSerializer().fromJson(json, AccessToken::class.java)
+        } else {
+            throw Mastodon4jRequestException(response.message())
+        }
+    }
+
 }

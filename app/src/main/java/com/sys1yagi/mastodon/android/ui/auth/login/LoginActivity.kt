@@ -4,13 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityLoginBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
+import com.sys1yagi.mastodon.android.extensions.getRequired
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
 import dagger.android.AndroidInjection
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
@@ -27,9 +30,12 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     @Inject
     lateinit var presenter: LoginContract.Presenter
 
+    val instanceName by lazy<String> { intent.getRequired(ARGS_INSTANCE_NAME) }
+
     val binding: ActivityLoginBinding by contentViewBinding(R.layout.activity_login)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.tag("moge").d("onCreate")
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
 
@@ -42,13 +48,13 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             startOauth.setOnClickListener {
                 presenter.startOAuth()
             }
-            saveToken.setOnClickListener {
-                presenter.saveAccessToken(code.text.toString())
+            getAccessToken.setOnClickListener {
+                presenter.getAccessToken(code.text.toString())
             }
             RxTextView.afterTextChangeEvents(code)
                     .map { !it.editable().isNullOrEmpty() }
                     .subscribe {
-                        saveToken.isEnabled = it
+                        getAccessToken.isEnabled = it
                     }
         }
     }
@@ -70,6 +76,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     override fun showError(message: String) {
         binding.progressBar.gone()
         binding.errorText.visible()
-        binding.errorText.text = message
+//        binding.errorText.text = message
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
