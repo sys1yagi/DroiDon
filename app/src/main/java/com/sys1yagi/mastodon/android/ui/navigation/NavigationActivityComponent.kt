@@ -27,7 +27,7 @@ interface NavigationActivityComponent : AndroidInjector<NavigationActivity> {
         abstract fun objectModule(objectModule: NavigationActivityObjectModule)
 
         override fun seedInstance(instance: NavigationActivity) {
-            objectModule(NavigationActivityObjectModule(instance))
+            objectModule(NavigationActivityObjectModule(instance.primaryInstanceName, instance))
         }
     }
 }

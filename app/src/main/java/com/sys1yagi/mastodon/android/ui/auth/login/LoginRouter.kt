@@ -31,6 +31,6 @@ constructor(
     }
 
     override fun openHome(context: Context, instanceName: String) {
-        context.startActivity(NavigationActivity.createIntent(context))
+        context.startActivity(NavigationActivity.createIntent(context, instanceName))
     }
 }

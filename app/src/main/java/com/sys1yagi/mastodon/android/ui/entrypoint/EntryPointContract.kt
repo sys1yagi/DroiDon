@@ -37,7 +37,7 @@ interface EntryPointContract {
 
     interface Router {
         fun openSetInstanceNameActivity(activity: Activity)
-        fun openLoginActivity(activity: Activity, instanceName:String)
-        fun openHomeActivity(activity: Activity)
+        fun openLoginActivity(activity: Activity, instanceName: String)
+        fun openHomeActivity(activity: Activity, instanceName: String)
     }
 }

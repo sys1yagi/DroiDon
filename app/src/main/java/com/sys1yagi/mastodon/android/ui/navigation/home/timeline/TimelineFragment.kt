@@ -12,6 +12,7 @@ import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentTimelineBinding
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
+import com.sys1yagi.mastodon.android.ui.navigation.TimelineAdapter
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -22,6 +23,8 @@ class TimelineFragment : Fragment(), TimelineContract.View {
     lateinit var presenter: TimelineContract.Presenter
 
     lateinit var binding: FragmentTimelineBinding
+
+    val adapter: TimelineAdapter = TimelineAdapter()
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)
@@ -36,6 +39,7 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTimelineBinding.bind(view)
         binding.recyclerView.also {
+            it.adapter = adapter
             it.layoutManager = LinearLayoutManager(context)
         }
     }
@@ -48,6 +52,13 @@ class TimelineFragment : Fragment(), TimelineContract.View {
     override fun onPause() {
         super.onPause()
         presenter.onPause()
+    }
+
+    override fun showTimeline(viewModel: TimelineViewModel) {
+        binding.progressBar.gone()
+        binding.recyclerView.visible()
+        // TODO diff append
+        adapter.addAll(viewModel.statuses)
     }
 
     override fun showError(message: String) {

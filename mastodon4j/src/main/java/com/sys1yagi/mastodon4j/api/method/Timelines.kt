@@ -9,8 +9,21 @@ import com.sys1yagi.mastodon4j.extension.genericType
  * see more https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#timelines
  */
 class Timelines(val client: MastodonClient) {
-    fun home() {
 
+    val url = "https://${client.getInstanceName()}/api/v1"
+
+    fun home(maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
+        val response = client.get("$url/timelines/home")
+        if (response.isSuccessful) {
+            val body = response.body().string()
+            return client.getSerializer().fromJson<List<Status>>(
+                    body,
+                    genericType<List<Status>>()
+            )
+        } else {
+            // TODO
+            throw Mastodon4jRequestException(response.message())
+        }
     }
 
     fun public(): List<Status> {

@@ -9,6 +9,17 @@ import io.reactivex.Single
 class RxTimelines(client: MastodonClient) {
     val timelines = Timelines(client)
 
+    fun home(maxId: String? = null, sinceId: String? = null, limit: Int = 20): Single<List<Status>> {
+        return Single.create {
+            try {
+                val statuses = timelines.home()
+                it.onSuccess(statuses)
+            } catch(throwable: Throwable) {
+                it.onErrorIfNotDisposed(throwable)
+            }
+        }
+    }
+
     fun public(): Single<List<Status>> {
         return Single.create {
             try {

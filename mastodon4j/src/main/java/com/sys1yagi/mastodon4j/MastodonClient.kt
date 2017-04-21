@@ -10,18 +10,16 @@ import okhttp3.Response
 open class MastodonClient(
         private val instanceName: String,
         private val client: OkHttpClient,
-        private val gson: Gson
+        private val gson: Gson,
+        private val accessToken: String? = null
 ) {
-
-    var registration: AppRegistration? = null
-
     open fun getSerializer() = gson
 
     open fun getInstanceName() = instanceName
 
     open fun get(url: String): Response {
         val call = client.newCall(
-                Request.Builder()
+                authorizationHeader(Request.Builder())
                         .url(url)
                         .get()
                         .build())
@@ -30,11 +28,17 @@ open class MastodonClient(
 
     open fun post(url: String, body: RequestBody): Response {
         val call = client.newCall(
-                Request.Builder()
+                authorizationHeader(Request.Builder())
                         .url(url)
                         .post(body)
                         .build())
         return call.execute()
+    }
+
+    fun authorizationHeader(builder: Request.Builder) = builder.apply {
+        accessToken?.let {
+            header("Authorization", String.format("Bearer %s", it));
+        }
     }
 
 }

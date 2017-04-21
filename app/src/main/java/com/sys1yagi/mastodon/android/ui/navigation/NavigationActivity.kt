@@ -10,6 +10,7 @@ import android.view.MenuItem
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
+import com.sys1yagi.mastodon.android.extensions.getRequired
 import com.sys1yagi.mastodon.android.ui.navigation.home.HomeFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.settings.SettingsFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.trip.TripFragmentCreator
@@ -25,7 +26,12 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
         const val HOME_TAG = "home"
         const val TRIP_TAG = "trip"
         const val SETTINGS_TAG = "settings"
-        fun createIntent(context: Context) = Intent(context, NavigationActivity::class.java)
+
+        const val ARGS_INSTANCE_NAME = "instance_name"
+
+        fun createIntent(context: Context, instanceName: String) = Intent(context, NavigationActivity::class.java).apply {
+            putExtra(ARGS_INSTANCE_NAME, instanceName)
+        }
     }
 
     @Inject
@@ -33,6 +39,8 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
 
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+
+    val primaryInstanceName by lazy<String> { intent.getRequired(ARGS_INSTANCE_NAME) }
 
     val binding: ActivityHomeBinding by contentViewBinding(R.layout.activity_home)
 

@@ -63,7 +63,7 @@ class EntryPointPresenter
         async {
             view.showMessage("The ${credential.instanceName} already authorized!")
             Completable.complete().delay(1, TimeUnit.SECONDS).await()
-            router.openHomeActivity(activity)
+            router.openHomeActivity(activity, credential.instanceName)
             view.finish()
         }
     }

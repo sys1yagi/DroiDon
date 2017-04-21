@@ -2,6 +2,8 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import javax.inject.Inject
 import android.support.v4.app.Fragment
+import com.sys1yagi.mastodon.android.ui.navigation.TimelineStatus
+import com.sys1yagi.mastodon4j.api.entity.Status
 
 class TimelinePresenter
 @Inject constructor(
@@ -15,6 +17,7 @@ class TimelinePresenter
 
     override fun onResume() {
         interactor.startInteraction(this)
+        interactor.getTimeline()
     }
 
     override fun onPause() {
@@ -23,5 +26,10 @@ class TimelinePresenter
 
     override fun onError(t: Throwable) {
         view.showError(t.message ?: "error")
+    }
+
+    override fun onTimeline(statuses: List<Status>) {
+        viewModel.statuses = statuses.map(::TimelineStatus)
+        view.showTimeline(viewModel)
     }
 }

@@ -21,6 +21,7 @@ constructor(
 
     override fun stoplInteraction(out: LocalTimelineContract.InteractorOutput) {
         this.out = null
+        disposable.dispose()
     }
 
     override fun getPublicTimeline() {
