@@ -6,12 +6,14 @@ import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimel
 import com.sys1yagi.mastodon.android.ui.navigation.home.notification.NotificationFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.settings.SettingsFragmentModule
+import com.sys1yagi.mastodon.android.ui.navigation.trip.TripFragmentModule
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
 @Subcomponent(modules = arrayOf(
         NavigationActivityObjectModule::class,
         HomeFragmentModule::class,
+        TripFragmentModule::class,
         SettingsFragmentModule::class,
         TimelineFragmentModule::class,
         NotificationFragmentModule::class,
