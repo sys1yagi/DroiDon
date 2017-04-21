@@ -11,7 +11,7 @@ import com.sys1yagi.mastodon4j.extension.genericType
  */
 class Timelines(val client: MastodonClient) {
 
-    fun home(maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
+    fun home(maxId: Long? = null, sinceId: Long? = null, limit: Int = 20): List<Status> {
         val response = client.get(
                 "timelines/home",
                 Parameter().apply {
@@ -31,7 +31,7 @@ class Timelines(val client: MastodonClient) {
         }
     }
 
-    fun public(maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
+    fun public(maxId: Long? = null, sinceId: Long? = null, limit: Int = 20): List<Status> {
         val response = client.get(
                 "timelines/public",
                 Parameter().apply {
@@ -51,7 +51,7 @@ class Timelines(val client: MastodonClient) {
         }
     }
 
-    fun tag(tag: String, maxId: String? = null, sinceId: String? = null, limit: Int = 20): List<Status> {
+    fun tag(tag: String, maxId: Long? = null, sinceId: Long? = null, limit: Int = 20): List<Status> {
         val response = client.get(
                 "timelines/tag/$tag",
                 Parameter().apply {

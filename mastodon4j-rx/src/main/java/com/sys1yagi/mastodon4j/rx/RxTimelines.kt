@@ -9,7 +9,7 @@ import io.reactivex.Single
 class RxTimelines(client: MastodonClient) {
     val timelines = Timelines(client)
 
-    fun home(maxId: String? = null, sinceId: String? = null, limit: Int = 20): Single<List<Status>> {
+    fun home(maxId: Long? = null, sinceId: Long? = null, limit: Int = 20): Single<List<Status>> {
         return Single.create {
             try {
                 val statuses = timelines.home(maxId, sinceId, limit)
@@ -20,10 +20,10 @@ class RxTimelines(client: MastodonClient) {
         }
     }
 
-    fun public(): Single<List<Status>> {
+    fun public(maxId: Long? = null, sinceId: Long? = null, limit: Int = 20): Single<List<Status>> {
         return Single.create {
             try {
-                val statuses = timelines.public()
+                val statuses = timelines.public(maxId, sinceId, limit)
                 it.onSuccess(statuses)
             } catch(throwable: Throwable) {
                 it.onErrorIfNotDisposed(throwable)

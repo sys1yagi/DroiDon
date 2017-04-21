@@ -13,8 +13,7 @@ import org.mockito.ArgumentMatchers.anyString
 
 class TimelinesTest {
 
-    @Test
-    fun public() {
+    fun mockClient(jsonName: String): MastodonClient {
         val client: MastodonClient = mock()
         val response: Response = Response.Builder()
                 .code(200)
@@ -45,7 +44,4 @@ class TimelinesTest {
         val statuses = timelines.tag("mastodon")
         assertThat(statuses.size).isEqualTo(20)
     }
-
-    //val client = MastodonClient("friends.nico", OkHttpClient.Builder().connectionSpecs(listOf(ConnectionSpec.MODERN_TLS)).build(), Gson())
-
 }
