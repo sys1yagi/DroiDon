@@ -4,8 +4,8 @@
 >
     <PreferenceCategory android:title="debug">
         <PreferenceScreen
-                android:key="debug"
-                android:title="devbugだよ"
+                android:key="@string/dispose_token_and_instance_name"
+                android:title="dispose token and instance name"
         />
     </PreferenceCategory>
 </PreferenceScreen>

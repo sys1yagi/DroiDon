@@ -7,5 +7,5 @@ import dagger.Provides
 class SettingsFragmentObjectModule {
 
     @Provides
-    fun provideSettingsInitializer(): SettingsInitializer = DebugSettingsInitializerImpl()
+    fun provideSettingsInitializer(initializer: DebugSettingsInitializerImpl): SettingsInitializer = initializer
 }

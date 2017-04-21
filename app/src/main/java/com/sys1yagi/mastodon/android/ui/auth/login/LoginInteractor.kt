@@ -1,9 +1,8 @@
 package com.sys1yagi.mastodon.android.ui.auth.login
 
-import co.metalab.asyncawait.async
 import com.sys1yagi.mastodon.android.data.database.AccessToken
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
-import com.sys1yagi.mastodon.android.extensions.await
+import com.sys1yagi.mastodon.android.extensions.async
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
 
@@ -33,15 +32,15 @@ constructor(
         } ?: out?.onCredentialNotFound(instanceName)
     }
 
-    override fun saveAccessToken(instanceName:String, accessToken: String) {
-        async{
-            await(database.transactionAsCompletable {
+    override fun saveAccessToken(instanceName: String, accessToken: String) {
+        disposable = async {
+            database.transactionAsCompletable {
                 database.insertIntoAccessToken(AccessToken().apply {
                     this.instanceName = instanceName
                     this.accessToken = accessToken
                 })
                 out?.onAccessTokenSaved()
-            })
+            }.await()
         }
     }
 }

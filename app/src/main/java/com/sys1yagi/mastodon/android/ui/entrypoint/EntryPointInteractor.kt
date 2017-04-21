@@ -1,12 +1,11 @@
 package com.sys1yagi.mastodon.android.ui.entrypoint
 
 import android.content.ContentValues
-import co.metalab.asyncawait.async
 import com.google.gson.Gson
 import com.sys1yagi.mastodon.android.data.database.Credential
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabase
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
-import com.sys1yagi.mastodon.android.extensions.await
+import com.sys1yagi.mastodon.android.extensions.async
 import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.api.Scope
 import com.sys1yagi.mastodon4j.api.entity.auth.AppRegistration
@@ -57,10 +56,10 @@ constructor(
         val client = MastodonClient(credential.instanceName, okHttpClient, gson)
         val apps = RxApps(client)
 
-        async {
+        disposable = async {
             try {
-                val appRegistration = await(apps.createApp(clientName = "mastodon-android-sys1yagi", scope = Scope(Scope.Name.ALL)))
-                await(saveCredential(credential, appRegistration))
+                val appRegistration = apps.createApp(clientName = "mastodon-android-sys1yagi", scope = Scope(Scope.Name.ALL)).await()
+                saveCredential(credential, appRegistration).await()
                 out?.onRegistrationFound(credential)
             } catch(e: Throwable) {
                 out?.onError(e)
