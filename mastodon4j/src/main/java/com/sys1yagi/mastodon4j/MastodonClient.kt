@@ -13,11 +13,15 @@ open class MastodonClient(
         private val gson: Gson,
         private val accessToken: String? = null
 ) {
+
+    val baseUrl = "https://${instanceName}/api/v1/"
+
     open fun getSerializer() = gson
 
     open fun getInstanceName() = instanceName
 
-    open fun get(url: String, parameter: Parameter? = null): Response {
+    open fun get(path: String, parameter: Parameter? = null): Response {
+        val url = "$baseUrl/$path"
         val urlWithParams = parameter?.let {
             "$url?${it.build()}"
         } ?: url
@@ -29,7 +33,7 @@ open class MastodonClient(
         return call.execute()
     }
 
-    open fun post(url: String, body: RequestBody): Response {
+    open fun postUrl(url: String, body: RequestBody): Response {
         val call = client.newCall(
                 authorizationHeader(Request.Builder())
                         .url(url)
@@ -37,6 +41,9 @@ open class MastodonClient(
                         .build())
         return call.execute()
     }
+
+    open fun post(path: String, body: RequestBody) =
+            postUrl("$baseUrl/$path", body)
 
     fun authorizationHeader(builder: Request.Builder) = builder.apply {
         accessToken?.let {

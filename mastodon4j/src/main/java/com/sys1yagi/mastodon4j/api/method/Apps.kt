@@ -15,7 +15,7 @@ import java.net.URLEncoder
 class Apps(private val client: MastodonClient) {
     fun createApp(clientName: String, redirectUris: String = "urn:ietf:wg:oauth:2.0:oob", scope: Scope, website: String? = null): AppRegistration {
         scope.validate()
-        val response = client.post("https://${client.getInstanceName()}/api/v1/apps",
+        val response = client.post("apps",
                 RequestBody.create(
                         MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
                         arrayListOf(
@@ -67,7 +67,7 @@ class Apps(private val client: MastodonClient) {
                 "grant_type=$grantType"
         ).joinToString(separator = "&")
 
-        val response = client.post(url,
+        val response = client.postUrl(url,
                 RequestBody.create(
                         MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
                         parameters
