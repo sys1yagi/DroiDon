@@ -64,8 +64,8 @@ configurations {
 
 dependencies {
 
-    compile project(':mastodon4j')
-    compile project(':mastodon4j-rx')
+    // Mastodon
+    compile 'com.github.sys1yagi.mastodon4j:mastodon4j-rx:0.0.1'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -101,8 +101,6 @@ dependencies {
 
     // Network
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    compile project(':mastodon4j-rx')
-
     compile 'com.facebook.fresco:fresco:1.2.0'
 
     // Data

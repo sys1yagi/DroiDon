@@ -1,5 +1,1 @@
 include ':app'
-include ':mastodon4j'
-project(':mastodon4j').projectDir = new File(rootProject.projectDir, '../mastodon4j/mastodon4j')
-include ':mastodon4j-rx'
-project(':mastodon4j-rx').projectDir = new File(rootProject.projectDir, '../mastodon4j/mastodon4j-rx')
