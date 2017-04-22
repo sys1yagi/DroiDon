@@ -27,7 +27,11 @@ constructor(
     override fun getTimeline() {
         // TODO parameters
         disposable = async {
-            out?.onTimeline(timeline.home().await())
+            try {
+                out?.onTimeline(timeline.home().await())
+            } catch(e: Throwable) {
+                out?.onError(e)
+            }
         }
     }
 }
