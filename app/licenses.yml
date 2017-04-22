@@ -313,3 +313,11 @@
   copyrightHolder: #COPYRIGHT_HOLDER#
   license: #LICENSE#
   skip: true
+- artifact: com.github.sys1yagi.mastodon4j:mastodon4j-rx:+
+  name: mastodon4j-rx
+  copyrightHolder: Toshihiro Yagi
+  license: MIT License
+- artifact: com.github.sys1yagi.mastodon4j:mastodon4j:+
+  name: mastodon4j
+  copyrightHolder: Toshihiro Yagi
+  license: MIT License
