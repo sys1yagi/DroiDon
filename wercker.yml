@@ -34,7 +34,7 @@ build:
         code: |
           bash <(curl -s https://codecov.io/bash)
     - script:
-        name: build pull request debug
+        name: build debug
         code: |
           ./gradlew --stacktrace app:assembleDebug -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false
           cp -r ./app/build/outputs/apk/* $WERCKER_REPORT_ARTIFACTS_DIR/

@@ -28,7 +28,7 @@ constructor(
         // TODO parameters
         disposable = async {
             try {
-                out?.onTimeline(timeline.home().await())
+                out?.onTimeline(timeline.getHome().await())
             } catch(e: Throwable) {
                 out?.onError(e)
             }

@@ -25,7 +25,7 @@ constructor(
     }
 
     override fun getPublicTimeline() {
-        disposable = timelines.public()
+        disposable = timelines.getPublic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
