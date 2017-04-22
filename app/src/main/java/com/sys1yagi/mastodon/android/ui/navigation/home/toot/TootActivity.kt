@@ -14,7 +14,6 @@ import com.sys1yagi.mastodon.android.extensions.visible
 import com.sys1yagi.mastodon.android.ui.navigation.NavigationActivity
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposables
-import timber.log.Timber
 import javax.inject.Inject
 
 class TootActivity : AppCompatActivity(), TootContract.View {
@@ -61,6 +60,9 @@ class TootActivity : AppCompatActivity(), TootContract.View {
             toot.setOnClickListener {
                 presenter.toot(status.text.toString())
             }
+            attachment.setOnClickListener {
+                presenter.onClickChooseAttachment()
+            }
         }
     }
 
@@ -76,7 +78,23 @@ class TootActivity : AppCompatActivity(), TootContract.View {
         return true
     }
 
+    override fun showProgress() {
+        binding.progressBar.visible()
+    }
+
     override fun showError(message: String) {
         binding.progressBar.gone()
     }
+
+    override fun showAttachment(viewModel: TootViewModel) {
+        binding.progressBar.gone()
+        binding.attachmentContainer.visible()
+        binding.attachedFile.setImageURI(viewModel.media.first().previewUrl)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        presenter.onActivityResult(requestCode, resultCode, data)
+    }
+
 }

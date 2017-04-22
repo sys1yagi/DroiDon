@@ -31,10 +31,11 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/app_bar"
         >
-            <LinearLayout
+            <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
                 <EditText
                         android:id="@+id/status"
                         android:layout_width="match_parent"
@@ -44,28 +45,72 @@
                         android:lines="10"
                         android:padding="16dp"
                 />
-                <LinearLayout
+                <RelativeLayout
+                        android:id="@+id/form"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end|center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="12dp">
+                        android:layout_below="@+id/status"
+                        android:gravity="center_vertical"
+                >
+
+                    <ImageView
+                            android:id="@+id/attachment"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/ic_insert_photo_black_24dp"
+                    />
                     <TextView
                             android:id="@+id/remain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_centerInParent="true"
                             android:layout_marginEnd="8dp"
+                            android:layout_toLeftOf="@+id/toot"
                             tools:text="500"
                     />
                     <Button
                             android:id="@+id/toot"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
                             android:text="@string/toot"
                     />
+                </RelativeLayout>
+                <LinearLayout
+                        android:id="@+id/attachment_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/form"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                >
+                    <TextView
+                            android:id="@+id/attachment_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="attachment"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                    />
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/attachment_title"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                    >
+                        <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/attached_file"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:placeholderImage="@mipmap/ic_launcher_round"
+                        />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
             <ProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"

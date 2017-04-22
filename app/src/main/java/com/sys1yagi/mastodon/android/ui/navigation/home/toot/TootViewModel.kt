@@ -1,5 +1,7 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.toot
 
+import com.sys1yagi.mastodon4j.api.entity.Attachment
+
 class TootViewModel {
-    // add view models
+    val media = arrayListOf<Attachment>()
 }

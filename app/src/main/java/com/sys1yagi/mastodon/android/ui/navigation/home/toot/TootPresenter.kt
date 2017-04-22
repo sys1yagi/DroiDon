@@ -1,7 +1,10 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.toot
 
-import javax.inject.Inject
 import android.app.Activity
+import android.content.Intent
+import com.sys1yagi.mastodon4j.api.entity.Attachment
+import javax.inject.Inject
+
 
 class TootPresenter
 @Inject constructor(
@@ -22,14 +25,40 @@ class TootPresenter
     }
 
     override fun toot(status: String) {
-        interactor.toot(status)
+        view.showProgress()
+        interactor.toot(status, viewModel.media.map { it.id }.takeIf { it.isNotEmpty() })
     }
 
-    override fun onSuccess() {
+    override fun onSuccessToot() {
         view.finish()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            TootContract.REQUEST_ID_CHOOSE_ATTACHMENT -> {
+                if (resultCode != Activity.RESULT_OK) {
+                    return
+                }
+                data?.let {
+                    view.showProgress()
+                    interactor.uploadAttachment(activity, it.data)
+                }
+            }
+        }
+    }
+
+    override fun onAttachmentUploaded(attachment: Attachment) {
+        viewModel.media.add(attachment)
+        view.showAttachment(viewModel)
+    }
+
     override fun onError(t: Throwable) {
+        // TODO
+        t.printStackTrace()
         view.showError(t.message ?: "error")
+    }
+
+    override fun onClickChooseAttachment() {
+        router.chooseAttachment(activity)
     }
 }

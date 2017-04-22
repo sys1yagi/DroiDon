@@ -4,6 +4,7 @@ import android.app.Activity
 import com.google.gson.Gson
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
 import com.sys1yagi.mastodon4j.MastodonClient
+import com.sys1yagi.mastodon4j.rx.RxMedia
 import com.sys1yagi.mastodon4j.rx.RxStatuses
 import dagger.Module
 import dagger.Provides
@@ -29,4 +30,7 @@ class TootActivityObjectModule(val instanceName: String, val view: TootContract.
 
     @Provides
     fun provideRxStatues(client: MastodonClient) = RxStatuses(client)
+
+    @Provides
+    fun provideRxMedia(client: MastodonClient) = RxMedia(client)
 }
