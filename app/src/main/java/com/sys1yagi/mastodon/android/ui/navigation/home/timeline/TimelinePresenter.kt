@@ -1,11 +1,10 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
-import javax.inject.Inject
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.ui.navigation.TimelineStatus
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
-import timber.log.Timber
+import javax.inject.Inject
 
 class TimelinePresenter
 @Inject constructor(

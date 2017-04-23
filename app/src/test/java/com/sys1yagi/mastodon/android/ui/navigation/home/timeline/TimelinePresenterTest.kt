@@ -24,6 +24,6 @@ class TimelinePresenterTest {
         assertThat(presenter.viewModel.statuses).hasSize(3)
 
         presenter.onTimeline(listOf(status(4), status(5), status(1), status(2)))
-        assertThat(presenter.viewModel.statuses).hasSize(5)
+        assertThat(presenter.viewModel.statuses).hasSize(7)
     }
 }
