@@ -21,6 +21,8 @@ class TimelinePresenter
         if (viewModel.statuses.isEmpty()) {
             view.showProgress()
             interactor.getTimeline()
+        } else {
+            view.showTimeline(viewModel)
         }
     }
 

@@ -8,9 +8,14 @@ import com.sys1yagi.mastodon4j.api.entity.Status
 
 class TimelineStatus(val entity: Status) {
 
-    @SuppressWarnings("deprecation")
-    fun content() =
-            Html.fromHtml(entity.content)
+    fun content(): String {
+        val content = entity.content.replace("<.*?>".toRegex(), "")
+
+        // todo link
+        // todo image
+
+        return content
+    }
 
     fun elapsed(context: Context, now: Long): String {
         // TODO time zone

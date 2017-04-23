@@ -17,10 +17,6 @@ import org.robolectric.annotation.Config
 @Config(sdk = intArrayOf(22), manifest = "./src/main/AndroidManifest.xml", application = TestApplication::class, qualifiers = "en")
 class TimelineStatusTest {
 
-    @Before
-    fun setUp(){
-    }
-
     @Test
     fun elapsed() {
         val context = RuntimeEnvironment.application
@@ -57,5 +53,19 @@ class TimelineStatusTest {
             val now = "2017-04-20T06:13:44.893Z".toIosZonedDateTime().toInstant().toEpochMilli()
             assertThat(timelineStatus.elapsed(context, now)).isEqualTo("6d")
         }
+    }
+
+    @Test
+    fun content() {
+        val status: Status = Gson().fromJson(
+                """
+                    {
+                        "content": "<p>test</p>"
+                    }
+                """,
+                Status::class.java)
+        val timelineStatus = TimelineStatus(status)
+
+        assertThat(timelineStatus.content()).isEqualTo("test")
     }
 }
