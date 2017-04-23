@@ -1,6 +1,7 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import com.sys1yagi.mastodon.android.extensions.async
+import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.rx.RxTimelines
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
@@ -24,11 +25,10 @@ constructor(
         this.out = null
     }
 
-    override fun getTimeline() {
-        // TODO parameters
+    override fun getTimeline(range: Range) {
         disposable = async {
             try {
-                out?.onTimeline(timeline.getHome().await())
+                out?.onTimeline(timeline.getHome(range).await())
             } catch(e: Throwable) {
                 out?.onError(e)
             }

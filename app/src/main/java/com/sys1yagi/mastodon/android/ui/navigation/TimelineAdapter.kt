@@ -24,6 +24,10 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             Holder(ListItemStatusBinding.inflate(parent.layoutInflator(), parent, false))
 
+    fun clear(){
+        this.statues.clear()
+    }
+
     fun addAll(statues: List<TimelineStatus>) {
         this.statues.addAll(0, statues)
         notifyDataSetChanged()

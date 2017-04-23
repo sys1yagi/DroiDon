@@ -42,6 +42,9 @@ class TimelineFragment : Fragment(), TimelineContract.View {
             it.adapter = adapter
             it.layoutManager = LinearLayoutManager(context)
         }
+        binding.refresh.setOnRefreshListener {
+            presenter.refresh()
+        }
     }
 
     override fun onResume() {
@@ -56,12 +59,18 @@ class TimelineFragment : Fragment(), TimelineContract.View {
 
     override fun showTimeline(viewModel: TimelineViewModel) {
         binding.progressBar.gone()
+        binding.refresh.isRefreshing = false
         binding.recyclerView.visible()
-        // TODO diff append
+        adapter.clear()
         adapter.addAll(viewModel.statuses)
     }
 
-    override fun showError(message: String) {
+    override fun showProgress() {
+        binding.progressBar.visible()
+        binding.recyclerView.gone()
+    }
 
+    override fun showError(message: String) {
+        binding.refresh.isRefreshing = false
     }
 }
