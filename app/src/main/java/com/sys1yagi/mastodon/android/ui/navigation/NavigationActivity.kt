@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.sys1yagi.mastodon.android.R
-import com.sys1yagi.mastodon.android.databinding.ActivityHomeBinding
+import com.sys1yagi.mastodon.android.databinding.ActivityNavigationBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
 import com.sys1yagi.mastodon.android.extensions.getRequired
 import com.sys1yagi.mastodon.android.ui.navigation.home.HomeFragmentCreator
@@ -17,7 +17,6 @@ import com.sys1yagi.mastodon.android.ui.navigation.trip.TripFragmentCreator
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasDispatchingSupportFragmentInjector
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -43,7 +42,7 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
 
     val primaryInstanceName by lazy<String> { intent.getRequired(ARGS_INSTANCE_NAME) }
 
-    val binding: ActivityHomeBinding by contentViewBinding(R.layout.activity_home)
+    val binding: ActivityNavigationBinding by contentViewBinding(R.layout.activity_navigation)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
@@ -17,7 +17,7 @@
     </style>
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
         <item name="android:theme">@style/ToolbarTheme</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/primary_dark</item>
         <item name="theme">@style/ToolbarTheme</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="contentInsetStartWithNavigation">0dp</item>

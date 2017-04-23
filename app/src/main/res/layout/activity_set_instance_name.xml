@@ -24,7 +24,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:text="Mastdon Android"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/primary"
                         android:textSize="26sp"
                         android:textStyle="bold"/>
                 <TextView
