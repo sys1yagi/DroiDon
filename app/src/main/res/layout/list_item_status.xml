@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:text="@{status.entity.account.userName}"
+                    android:text="@{status.entity.account.acct}"
                     android:textColor="@color/gray"
                     android:ellipsize="end"
                     app:layout_constraintLeft_toRightOf="@+id/display_name"
