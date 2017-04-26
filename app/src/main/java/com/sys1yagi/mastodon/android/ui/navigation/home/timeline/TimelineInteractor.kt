@@ -28,7 +28,7 @@ constructor(
     override fun getTimeline(range: Range) {
         disposable = async {
             try {
-                out?.onTimeline(timeline.getHome(range).await())
+                out?.onTimeline(timeline.getHome(range).await().part)
             } catch(e: Throwable) {
                 out?.onError(e)
             }

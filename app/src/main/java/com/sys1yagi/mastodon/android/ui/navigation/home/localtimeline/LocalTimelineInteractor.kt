@@ -25,12 +25,12 @@ constructor(
     }
 
     override fun getPublicTimeline() {
-        disposable = timelines.getPublic()
+        disposable = timelines.getLocalPublic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            out?.onPublicTimeline(it)
+                            out?.onPublicTimeline(it.part)
                         },
                         {
                             out?.onError(it)

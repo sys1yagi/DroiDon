@@ -38,6 +38,7 @@ class TimelinePresenter
     }
 
     override fun onError(t: Throwable) {
+        t.printStackTrace()
         view.showError(t.message ?: "error")
     }
 
