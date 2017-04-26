@@ -1,5 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
+import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
 
@@ -25,7 +26,7 @@ interface TimelineContract {
 
     interface InteractorOutput {
         fun onError(t: Throwable)
-        fun onTimeline(statuses: List<Status>)
+        fun onTimeline(statuses: Pageable<Status>)
     }
 
     interface Router {

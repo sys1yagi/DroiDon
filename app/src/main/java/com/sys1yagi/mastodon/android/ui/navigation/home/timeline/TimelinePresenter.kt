@@ -2,6 +2,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.ui.navigation.TimelineStatus
+import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
 import javax.inject.Inject
@@ -32,8 +33,7 @@ class TimelinePresenter
 
     override fun refresh() {
         if (!viewModel.statuses.isEmpty()) {
-            view.showProgress()
-            interactor.getTimeline(Range(sinceId = viewModel.statuses.first().entity.id))
+            interactor.getTimeline(Range(sinceId = viewModel.link?.sinceId))
         }
     }
 
@@ -42,8 +42,11 @@ class TimelinePresenter
         view.showError(t.message ?: "error")
     }
 
-    override fun onTimeline(statuses: List<Status>) {
-        viewModel.statuses.addAll(0, statuses.map(::TimelineStatus))
+    override fun onTimeline(statuses: Pageable<Status>) {
+        viewModel.statuses.addAll(0, statuses.part.map(::TimelineStatus))
+        statuses.link?.let {
+            viewModel.link = it
+        }
         view.showTimeline(viewModel)
     }
 }
