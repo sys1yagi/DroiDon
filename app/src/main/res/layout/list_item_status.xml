@@ -76,24 +76,28 @@
                     app:layout_constraintStart_toStartOf="@id/content"
                     app:layout_constraintTop_toBottomOf="@+id/content">
                 <ImageView
+                        android:id="@+id/replay"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_reply_black_24dp"
                 />
                 <ImageView
+                        android:id="@+id/retweet"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_repeat_black_24dp"
                 />
                 <ImageView
+                        android:id="@+id/fav"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_favorite_black_24dp"
                 />
                 <ImageView
+                        android:id="@+id/other"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
