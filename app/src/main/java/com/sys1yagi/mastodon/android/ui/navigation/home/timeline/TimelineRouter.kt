@@ -1,7 +1,8 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
-import android.content.Context
+import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.ui.navigation.home.toot.TootActivity
+import com.sys1yagi.mastodon.android.ui.navigation.home.toot.TootContract
 import com.sys1yagi.mastodon4j.api.entity.Status
 import javax.inject.Inject
 
@@ -9,7 +10,7 @@ class TimelineRouter
 @Inject
 constructor()
     : TimelineContract.Router {
-    override fun openTootActivity(context: Context, instanceName: String, replyToStatus: Status?) {
-        context.startActivity(TootActivity.createIntent(context, instanceName, replyToStatus))
+    override fun openTootActivity(fragment: Fragment, instanceName: String, replyToStatus: Status?) {
+        fragment.startActivityForResult(TootActivity.createIntent(fragment.context, instanceName, replyToStatus), TimelineContract.REQUEST_CODE_TOOT)
     }
 }

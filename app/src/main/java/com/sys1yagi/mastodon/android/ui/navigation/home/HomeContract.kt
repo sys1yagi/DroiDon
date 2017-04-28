@@ -1,8 +1,13 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home
 
 import android.content.Context
+import android.support.v4.app.Fragment
 
 interface HomeContract {
+
+    companion object {
+        const val REQUEST_CODE_TOOT = 0x2516
+    }
 
     interface View {
         fun showError(message: String)
@@ -24,6 +29,6 @@ interface HomeContract {
     }
 
     interface Router {
-        fun openTootActivity(context: Context, instanceName: String)
+        fun openTootActivity(fragment: Fragment, instanceName: String)
     }
 }

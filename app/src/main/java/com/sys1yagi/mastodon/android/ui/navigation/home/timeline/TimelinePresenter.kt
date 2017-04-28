@@ -38,7 +38,7 @@ constructor(
     }
 
     override fun onReplyClick(status: Status) {
-        router.openTootActivity(fragment.context, instanceName, status)
+        router.openTootActivity(fragment, instanceName, status)
     }
 
     override fun onError(t: Throwable) {

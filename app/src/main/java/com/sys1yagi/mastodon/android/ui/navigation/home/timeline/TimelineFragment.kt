@@ -1,6 +1,8 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -14,6 +16,9 @@ import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
 import com.sys1yagi.mastodon.android.ui.navigation.TimelineAdapter
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @FragmentCreator
@@ -75,5 +80,26 @@ class TimelineFragment : Fragment(), TimelineContract.View {
 
     override fun showError(message: String) {
         binding.refresh.isRefreshing = false
+    }
+
+    override fun refresh() {
+        if (isResumed) {
+            binding.refresh.isRefreshing = true
+            presenter.refresh()
+        } else {
+            Completable.complete().delay(1, TimeUnit.MILLISECONDS)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        binding.refresh.isRefreshing = true
+                        presenter.refresh()
+                    }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == TimelineContract.REQUEST_CODE_TOOT && resultCode == Activity.RESULT_OK) {
+            refresh()
+        }
     }
 }

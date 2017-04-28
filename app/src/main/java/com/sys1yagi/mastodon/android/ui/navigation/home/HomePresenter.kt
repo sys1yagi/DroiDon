@@ -23,7 +23,7 @@ class HomePresenter
     }
 
     override fun onFabClick() {
-        router.openTootActivity(fragment.context, instanceName)
+        router.openTootActivity(fragment, instanceName)
     }
 
     override fun onError(t: Throwable) {

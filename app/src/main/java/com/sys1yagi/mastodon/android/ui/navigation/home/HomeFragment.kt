@@ -1,6 +1,8 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -11,8 +13,14 @@ import com.sys1yagi.fragmentcreator.annotation.Args
 import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentHomeBinding
+import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineContract
+import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragment
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @FragmentCreator
@@ -25,6 +33,8 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
     lateinit var presenter: HomeContract.Presenter
 
     lateinit var binding: FragmentHomeBinding
+
+    lateinit var adapter: HomeViewPagerAdapter
 
     override fun onAttach(context: Context?) {
         HomeFragmentCreator.read(this)
@@ -40,7 +50,8 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         binding.tabs.setupWithViewPager(binding.viewPager)
-        binding.viewPager.adapter = HomeViewPagerAdapter(childFragmentManager)
+        adapter = HomeViewPagerAdapter(childFragmentManager)
+        binding.viewPager.adapter = adapter
         binding.tabs.apply {
             addOnTabSelectedListener(this@HomeFragment)
             tabMode = TabLayout.MODE_FIXED
@@ -79,5 +90,17 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == HomeContract.REQUEST_CODE_TOOT && resultCode == Activity.RESULT_OK) {
+            adapter.forEach {
+                if (it is TimelineContract.View) {
+                    it.refresh()
+                    return@forEach
+                }
+            }
+        }
     }
 }

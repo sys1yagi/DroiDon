@@ -31,7 +31,8 @@ class TootPresenter
     }
 
     override fun onSuccessToot() {
-        view.finish()
+        activity.setResult(Activity.RESULT_OK)
+        activity.finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

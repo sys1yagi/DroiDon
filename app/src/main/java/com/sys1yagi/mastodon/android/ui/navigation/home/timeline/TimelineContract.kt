@@ -1,16 +1,21 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
-import android.content.Context
+import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
 
 interface TimelineContract {
 
+    companion object {
+        const val REQUEST_CODE_TOOT = 0x2516
+    }
+
     interface View {
         fun showTimeline(viewModel: TimelineViewModel)
         fun showProgress()
         fun showError(message: String)
+        fun refresh()
     }
 
     interface Presenter {
@@ -32,6 +37,6 @@ interface TimelineContract {
     }
 
     interface Router {
-        fun openTootActivity(context: Context, instanceName: String, replyToStatus: Status?)
+        fun openTootActivity(fragment: Fragment, instanceName: String, replyToStatus: Status?)
     }
 }

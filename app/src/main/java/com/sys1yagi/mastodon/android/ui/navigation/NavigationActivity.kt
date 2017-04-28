@@ -107,4 +107,8 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
         presenter.onPause()
         super.onPause()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }
