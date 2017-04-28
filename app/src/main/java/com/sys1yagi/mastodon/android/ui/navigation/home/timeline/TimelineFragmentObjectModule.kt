@@ -5,14 +5,19 @@ import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.rx.RxTimelines
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 @Module
 class TimelineFragmentObjectModule(val view: TimelineContract.View) {
     @Provides
-    fun providePresenter(interactor: TimelineInteractor, router: TimelineRouter): TimelineContract.Presenter {
-        return TimelinePresenter(view as Fragment, view, interactor, router)
+    fun providePresenter(@Named("instanceName") instanceName: String, interactor: TimelineInteractor, router: TimelineRouter): TimelineContract.Presenter {
+        return TimelinePresenter(view as Fragment, view, instanceName, interactor, router)
     }
 
     @Provides
     fun provideRxTimeline(client: MastodonClient) = RxTimelines(client)
+
+    @Named("instanceName")
+    @Provides
+    fun provideInstanceName(client: MastodonClient) = client.getInstanceName()
 }

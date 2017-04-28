@@ -1,5 +1,6 @@
 package com.sys1yagi.mastodon.android.di
 
+import com.google.gson.Gson
 import com.sys1yagi.mastodon.android.MastodonAndroidApplication
 import com.sys1yagi.mastodon.android.ui.auth.login.LoginActivityModule
 import com.sys1yagi.mastodon.android.ui.auth.setinstancename.SetInstanceNameActivityModule
@@ -25,4 +26,6 @@ import javax.inject.Singleton
 ))
 interface AppComponent {
     fun inject(target: MastodonAndroidApplication)
+
+    fun provideGson(): Gson
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
 import com.sys1yagi.mastodon.android.extensions.async
+import com.sys1yagi.mastodon4j.api.entity.Status
 import com.sys1yagi.mastodon4j.rx.RxMedia
 import com.sys1yagi.mastodon4j.rx.RxStatuses
 import io.reactivex.disposables.Disposables
@@ -33,9 +34,13 @@ constructor(
         this.out = null
     }
 
-    override fun toot(status: String, mediaIds: List<Long>?) {
+    override fun toot(status: String, mediaIds: List<Long>?, replyToStatus: Status?) {
         disposable = async {
-            statuses.postStatus(status, mediaIds = mediaIds).await()
+            statuses.postStatus(
+                    status,
+                    inReplyToId = replyToStatus?.id,
+                    mediaIds = mediaIds
+            ).await()
             out?.onSuccessToot()
         }
     }

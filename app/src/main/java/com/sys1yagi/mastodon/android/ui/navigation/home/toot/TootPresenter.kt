@@ -3,6 +3,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.toot
 import android.app.Activity
 import android.content.Intent
 import com.sys1yagi.mastodon4j.api.entity.Attachment
+import com.sys1yagi.mastodon4j.api.entity.Status
 import javax.inject.Inject
 
 
@@ -24,9 +25,9 @@ class TootPresenter
         interactor.stopInteraction(this)
     }
 
-    override fun toot(status: String) {
+    override fun toot(status: String, replyToStatus: Status?) {
         view.showProgress()
-        interactor.toot(status, viewModel.media.map { it.id }.takeIf { it.isNotEmpty() })
+        interactor.toot(status, viewModel.media.map { it.id }.takeIf { it.isNotEmpty() }, replyToStatus)
     }
 
     override fun onSuccessToot() {

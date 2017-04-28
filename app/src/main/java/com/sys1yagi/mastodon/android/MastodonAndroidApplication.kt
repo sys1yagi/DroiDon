@@ -4,10 +4,7 @@ import android.app.Activity
 import android.support.multidex.MultiDexApplication
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.sys1yagi.mastodon.android.di.AppModule
-import com.sys1yagi.mastodon.android.di.DaggerAppComponent
-import com.sys1yagi.mastodon.android.di.OkHttpModule
-import com.sys1yagi.mastodon.android.di.StethoModule
+import com.sys1yagi.mastodon.android.di.*
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasDispatchingActivityInjector
 import timber.log.Timber
@@ -19,15 +16,17 @@ class MastodonAndroidApplication : MultiDexApplication(), HasDispatchingActivity
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
+    lateinit var appComponent: AppComponent;
+
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent
+        appComponent = DaggerAppComponent
                 .builder()
                 .appModule(AppModule(this))
                 .okHttpModule(OkHttpModule())
                 .stethoModule(StethoModule(this))
                 .build()
-                .inject(this)
+        appComponent.inject(this)
 
         Timber.plant(DebugTree())
         AndroidThreeTen.init(this)

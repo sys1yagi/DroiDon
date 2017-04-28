@@ -45,6 +45,9 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         binding.refresh.setOnRefreshListener {
             presenter.refresh()
         }
+        adapter.onReplayClick = {
+            presenter.onReplyClick(it.entity)
+        }
     }
 
     override fun onResume() {

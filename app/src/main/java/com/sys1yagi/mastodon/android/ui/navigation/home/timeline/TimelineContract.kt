@@ -1,5 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
+import android.content.Context
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
@@ -16,6 +17,7 @@ interface TimelineContract {
         fun onResume() // base
         fun onPause()  // base
         fun refresh()
+        fun onReplyClick(status: Status)
     }
 
     interface Interactor {
@@ -30,6 +32,6 @@ interface TimelineContract {
     }
 
     interface Router {
-
+        fun openTootActivity(context: Context, instanceName: String, replyToStatus: Status?)
     }
 }

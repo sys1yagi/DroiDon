@@ -5,12 +5,12 @@ import com.sys1yagi.mastodon.android.ui.navigation.TimelineStatus
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
-import javax.inject.Inject
 
 class TimelinePresenter
-@Inject constructor(
+constructor(
         val fragment: Fragment,
         val view: TimelineContract.View,
+        val instanceName: String,
         val interactor: TimelineContract.Interactor,
         val router: TimelineContract.Router
 ) : TimelineContract.Presenter, TimelineContract.InteractorOutput {
@@ -35,6 +35,10 @@ class TimelinePresenter
         if (!viewModel.statuses.isEmpty()) {
             interactor.getTimeline(Range(sinceId = viewModel.link?.sinceId))
         }
+    }
+
+    override fun onReplyClick(status: Status) {
+        router.openTootActivity(fragment.context, instanceName, status)
     }
 
     override fun onError(t: Throwable) {
