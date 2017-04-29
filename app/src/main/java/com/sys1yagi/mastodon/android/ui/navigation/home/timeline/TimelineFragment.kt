@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.sys1yagi.fragmentcreator.annotation.Args
 import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentTimelineBinding
@@ -24,6 +25,9 @@ import javax.inject.Inject
 @FragmentCreator
 class TimelineFragment : Fragment(), TimelineContract.View {
 
+    @Args
+    lateinit var type: StatusFetcher.Type
+
     @Inject
     lateinit var presenter: TimelineContract.Presenter
 
@@ -32,6 +36,7 @@ class TimelineFragment : Fragment(), TimelineContract.View {
     val adapter: TimelineAdapter = TimelineAdapter()
 
     override fun onAttach(context: Context?) {
+        TimelineFragmentCreator.read(this)
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }

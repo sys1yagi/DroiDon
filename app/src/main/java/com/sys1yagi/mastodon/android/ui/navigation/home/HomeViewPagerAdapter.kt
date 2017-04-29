@@ -6,13 +6,14 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import com.sys1yagi.mastodon.android.ui.navigation.home.federatedtimeline.FederatedTimelineFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.home.notification.NotificationFragmentCreator
+import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.StatusFetcher
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragmentCreator
 
 class HomeViewPagerAdapter(
         fragmentManager: FragmentManager
 ) : FragmentStatePagerAdapter(fragmentManager) {
 
-    val timelineFragment by lazy { TimelineFragmentCreator.newBuilder().build() }
+    val timelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.Home).build() }
     val notificationFragment by lazy { NotificationFragmentCreator.newBuilder().build() }
     val localTimelineFragment by lazy { LocalTimelineFragmentCreator.newBuilder().build() }
     val federatedTimelineFragment by lazy { FederatedTimelineFragmentCreator.newBuilder().build() }

@@ -9,7 +9,7 @@ import javax.inject.Inject
 class TimelineInteractor
 @Inject
 constructor(
-        val timeline: RxTimelines
+        val timeline: StatusFetcher
 )
     : TimelineContract.Interactor {
 
@@ -28,7 +28,7 @@ constructor(
     override fun getTimeline(range: Range) {
         disposable = async {
             try {
-                out?.onTimeline(timeline.getHome(range).await())
+                out?.onTimeline(timeline.fetch(range).await())
             } catch(e: Throwable) {
                 out?.onError(e)
             }

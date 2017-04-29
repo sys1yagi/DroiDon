@@ -15,7 +15,9 @@ class TimelineFragmentObjectModule(val view: TimelineContract.View) {
     }
 
     @Provides
-    fun provideRxTimeline(client: MastodonClient) = RxTimelines(client)
+    fun provideStatusFetcher(client: MastodonClient): StatusFetcher {
+        return HomeStatusFetcher(RxTimelines(client))
+    }
 
     @Named("instanceName")
     @Provides
