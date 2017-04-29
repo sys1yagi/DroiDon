@@ -14,7 +14,7 @@ import timber.log.Timber.DebugTree
 import javax.inject.Inject
 
 
-class MastodonAndroidApplication : MultiDexApplication(), HasDispatchingActivityInjector {
+class DroiDonApplication : MultiDexApplication(), HasDispatchingActivityInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>

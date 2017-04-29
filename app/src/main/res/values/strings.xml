@@ -29,5 +29,8 @@
 
     <string name="preferences_category_profile">Profile</string>
     <string name="preferences_open_your_profile">Open Your Profile</string>
+    <string name="which_instance_name">which instance name?</string>
+    <string name="instance_name">instance name</string>
+    <string name="add_instance_name">Add Instance Name</string>
 
 </resources>
