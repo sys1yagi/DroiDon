@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.1'
+    ext.kotlin_version = '1.1.2-2'
     ext.gmsPlayServicesVersion = '10.2.1'
     ext.supportLibraryVersion = '25.3.1'
     ext.assertjAndroidVersion = '1.1.1'
