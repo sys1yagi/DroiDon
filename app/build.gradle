@@ -6,6 +6,7 @@ apply plugin: 'com.cookpad.android.licensetools'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'com.github.gfx.ribbonizer'
 apply plugin: 'jacoco-android'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 25
@@ -119,6 +120,10 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.android.support:multidex:1.0.1'
 
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+        transitive = true;
+    }
+
     debugCompile "com.facebook.stetho:stetho:$stethoVerion"
     debugCompile "com.facebook.stetho:stetho-okhttp3:$stethoVerion"
 
@@ -152,6 +157,7 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 jacocoAndroidUnitTestReport {

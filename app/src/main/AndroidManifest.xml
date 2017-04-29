@@ -32,7 +32,9 @@
                   android:exported="false"/>
         <activity android:name=".ui.navigation.home.toot.TootActivity"
                   android:exported="false"/>
-
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="fd6f566404be2a975e65c6e86f5e7f03e2e1d322" />
     </application>
 
 </manifest>
