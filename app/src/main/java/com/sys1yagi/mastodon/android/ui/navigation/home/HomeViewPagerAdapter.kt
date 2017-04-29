@@ -3,8 +3,6 @@ package com.sys1yagi.mastodon.android.ui.navigation.home
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.sys1yagi.mastodon.android.ui.navigation.home.federatedtimeline.FederatedTimelineFragmentCreator
-import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.home.notification.NotificationFragmentCreator
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.StatusFetcher
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragmentCreator

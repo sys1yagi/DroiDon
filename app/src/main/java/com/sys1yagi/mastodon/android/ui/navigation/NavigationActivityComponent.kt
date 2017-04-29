@@ -1,8 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation
 
 import com.sys1yagi.mastodon.android.ui.navigation.home.HomeFragmentModule
-import com.sys1yagi.mastodon.android.ui.navigation.home.federatedtimeline.FederatedTimelineFragmentModule
-import com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline.LocalTimelineFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.home.notification.NotificationFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragmentModule
 import com.sys1yagi.mastodon.android.ui.navigation.settings.SettingsFragmentModule
@@ -16,9 +14,7 @@ import dagger.android.AndroidInjector
         TripFragmentModule::class,
         SettingsFragmentModule::class,
         TimelineFragmentModule::class,
-        NotificationFragmentModule::class,
-        LocalTimelineFragmentModule::class,
-        FederatedTimelineFragmentModule::class
+        NotificationFragmentModule::class
 ))
 interface NavigationActivityComponent : AndroidInjector<NavigationActivity> {
     @Subcomponent.Builder
