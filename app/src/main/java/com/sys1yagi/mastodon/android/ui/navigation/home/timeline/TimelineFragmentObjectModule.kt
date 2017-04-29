@@ -8,7 +8,7 @@ import dagger.Provides
 import javax.inject.Named
 
 @Module
-class TimelineFragmentObjectModule(val view: TimelineContract.View) {
+class TimelineFragmentObjectModule(val view: TimelineContract.View, val type: StatusFetcher.Type) {
     @Provides
     fun providePresenter(@Named("instanceName") instanceName: String, interactor: TimelineInteractor, router: TimelineRouter): TimelineContract.Presenter {
         return TimelinePresenter(view as Fragment, view, instanceName, interactor, router)
@@ -16,7 +16,12 @@ class TimelineFragmentObjectModule(val view: TimelineContract.View) {
 
     @Provides
     fun provideStatusFetcher(client: MastodonClient): StatusFetcher {
-        return HomeStatusFetcher(RxTimelines(client))
+        return when (type) {
+            StatusFetcher.Type.Home -> HomeStatusFetcher(RxTimelines(client))
+            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(RxTimelines(client))
+            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(RxTimelines(client))
+            else -> HomeStatusFetcher(RxTimelines(client))
+        }
     }
 
     @Named("instanceName")

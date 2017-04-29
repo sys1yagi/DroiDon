@@ -11,7 +11,7 @@ interface TimelineFragmentComponent : AndroidInjector<TimelineFragment> {
         abstract fun objectModule(objectModule: TimelineFragmentObjectModule)
 
         override fun seedInstance(instance: TimelineFragment) {
-            objectModule(TimelineFragmentObjectModule(instance))
+            objectModule(TimelineFragmentObjectModule(instance, instance.type))
         }
     }
 }
