@@ -3,8 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <!-- TODO -->
-        <variable name="status" type="com.sys1yagi.mastodon.android.ui.navigation.TimelineStatus"/>
+        <variable name="status" type="com.sys1yagi.mastodon.android.data.model.TimelineStatus"/>
     </data>
 
     <android.support.v7.widget.CardView

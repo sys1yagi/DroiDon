@@ -1,6 +1,7 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
+import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
@@ -46,7 +47,7 @@ constructor(
     }
 
     override fun onTimeline(statuses: Pageable<Status>) {
-        viewModel.statuses.addAll(0, statuses.part.map(com.sys1yagi.mastodon.android.data.model::TimelineStatus))
+        viewModel.statuses.addAll(0, statuses.part.map(::TimelineStatus))
         statuses.link?.let {
             viewModel.link = it
         }
