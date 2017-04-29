@@ -38,3 +38,11 @@ build:
         code: |
           ./gradlew --stacktrace app:assembleDebug -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false
           cp -r ./app/build/outputs/apk/* $WERCKER_REPORT_ARTIFACTS_DIR/
+    - script:
+        name: bundle install
+        code: |
+          bundle install --path .bundle
+    - script:
+        name: upload to fabric beta
+        code: |
+          bundle exec fastlane betaMaster
