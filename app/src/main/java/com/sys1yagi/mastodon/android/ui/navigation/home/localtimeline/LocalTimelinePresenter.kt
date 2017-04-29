@@ -1,8 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.localtimeline
 
 import android.support.v4.app.Fragment
-import com.sys1yagi.mastodon.android.ui.navigation.NavigationViewModel
-import com.sys1yagi.mastodon.android.ui.navigation.TimelineStatus
 import com.sys1yagi.mastodon4j.api.entity.Status
 import javax.inject.Inject
 
@@ -33,7 +31,7 @@ constructor(
 
     override fun onPublicTimeline(statuses: List<Status>) {
         // transform for view
-        viewModel.statuses = statuses.map(::TimelineStatus)
+        viewModel.statuses = statuses.map(com.sys1yagi.mastodon.android.data.model::TimelineStatus)
         view.showTimeline(viewModel)
     }
 }

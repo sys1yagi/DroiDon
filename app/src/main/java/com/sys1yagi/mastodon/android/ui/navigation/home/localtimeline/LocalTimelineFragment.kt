@@ -12,7 +12,7 @@ import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentLocaltimelineBinding
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
-import com.sys1yagi.mastodon.android.ui.navigation.TimelineAdapter
+import com.sys1yagi.mastodon.android.view.TimelineAdapter
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

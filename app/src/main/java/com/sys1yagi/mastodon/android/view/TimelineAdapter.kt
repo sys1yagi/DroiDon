@@ -1,9 +1,10 @@
-package com.sys1yagi.mastodon.android.ui.navigation
+package com.sys1yagi.mastodon.android.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.sys1yagi.mastodon.android.databinding.ListItemStatusBinding
 import com.sys1yagi.mastodon.android.extensions.layoutInflator
+import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 
 typealias OnReplayClick = (TimelineStatus) -> Unit
 typealias OnReTweetClick = (TimelineStatus) -> Unit

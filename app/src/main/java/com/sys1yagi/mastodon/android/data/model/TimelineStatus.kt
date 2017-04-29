@@ -1,7 +1,6 @@
-package com.sys1yagi.mastodon.android.ui.navigation
+package com.sys1yagi.mastodon.android.data.model
 
 import android.content.Context
-import android.text.Html
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.extensions.toIosZonedDateTime
 import com.sys1yagi.mastodon4j.api.entity.Status

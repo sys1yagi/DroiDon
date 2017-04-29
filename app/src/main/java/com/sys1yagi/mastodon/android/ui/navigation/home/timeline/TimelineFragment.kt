@@ -14,7 +14,7 @@ import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentTimelineBinding
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
-import com.sys1yagi.mastodon.android.ui.navigation.TimelineAdapter
+import com.sys1yagi.mastodon.android.view.TimelineAdapter
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers

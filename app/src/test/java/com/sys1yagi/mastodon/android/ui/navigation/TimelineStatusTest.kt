@@ -2,11 +2,11 @@ package com.sys1yagi.mastodon.android.ui.navigation
 
 import com.google.gson.Gson
 import com.sys1yagi.mastodon.android.TestApplication
+import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon.android.extensions.toIosZonedDateTime
 import com.sys1yagi.mastodon.android.testtool.AssetsUtil
 import com.sys1yagi.mastodon4j.api.entity.Status
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
