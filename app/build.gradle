@@ -27,6 +27,13 @@ android {
         multiDexEnabled = true
     }
 
+    signingConfigs {
+        debugConfig.storeFile = file('./debug.keystore')
+        debugConfig.storePassword = 'droidon'
+        debugConfig.keyAlias = 'droidon'
+        debugConfig.keyPassword = 'droidon'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
