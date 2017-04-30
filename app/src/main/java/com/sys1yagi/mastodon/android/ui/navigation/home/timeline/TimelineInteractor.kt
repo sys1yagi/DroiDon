@@ -1,5 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
+import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon.android.extensions.async
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.rx.RxTimelines
@@ -33,5 +34,9 @@ constructor(
                 out?.onError(e)
             }
         }
+    }
+
+    override fun fav(status: TimelineStatus) {
+
     }
 }

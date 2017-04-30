@@ -14,13 +14,7 @@ import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentHomeBinding
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineContract
-import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineFragment
 import dagger.android.support.AndroidSupportInjection
-import io.reactivex.Completable
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @FragmentCreator
@@ -97,7 +91,7 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
         if (requestCode == HomeContract.REQUEST_CODE_TOOT && resultCode == Activity.RESULT_OK) {
             adapter.forEach {
                 if (it is TimelineContract.View) {
-                    it.refresh()
+                    it.refreshTimeline()
                     return@forEach
                 }
             }

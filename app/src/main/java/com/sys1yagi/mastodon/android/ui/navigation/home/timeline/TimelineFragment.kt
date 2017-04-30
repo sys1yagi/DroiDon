@@ -73,7 +73,11 @@ class TimelineFragment : Fragment(), TimelineContract.View {
             presenter.refresh()
         }
         adapter.onReplayClick = {
-            presenter.onReplyClick(it.entity)
+            presenter.onReplyClick(it)
+        }
+        adapter.onFavClick = {
+            Timber.tag("moge").d("click: ${it.isFavourited}")
+            presenter.onFavClick(it)
         }
         subject = RecyclerViewScrolledToTheEndSubject(binding.recyclerView)
     }
@@ -114,7 +118,7 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         binding.refresh.isRefreshing = false
     }
 
-    override fun refresh() {
+    override fun refreshTimeline() {
         if (isResumed) {
             binding.refresh.isRefreshing = true
             presenter.refresh()
@@ -131,7 +135,7 @@ class TimelineFragment : Fragment(), TimelineContract.View {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == TimelineContract.REQUEST_CODE_TOOT && resultCode == Activity.RESULT_OK) {
-            refresh()
+            refreshTimeline()
         }
     }
 

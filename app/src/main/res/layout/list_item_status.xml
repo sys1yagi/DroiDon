@@ -37,9 +37,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
+                    android:ellipsize="end"
                     android:text="@{status.entity.account.acct}"
                     android:textColor="@color/gray"
-                    android:ellipsize="end"
                     app:layout_constraintLeft_toRightOf="@+id/display_name"
                     tools:text="user name"/>
             <TextView
@@ -49,8 +49,8 @@
                     android:gravity="end"
                     android:text="@{status.elapsed(context, System.currentTimeMillis())}"
                     android:textColor="@color/gray"
-                    app:layout_constraintLeft_toRightOf="@+id/user_id"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/user_id"
                     tools:text="3分前"/>
             <TextView
                     android:id="@+id/content"
@@ -74,27 +74,68 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintStart_toStartOf="@id/content"
                     app:layout_constraintTop_toBottomOf="@+id/content">
-                <ImageView
-                        android:id="@+id/replay"
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_reply_black_24dp"
-                />
-                <ImageView
-                        android:id="@+id/retweet"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                >
+                    <ImageView
+                            android:id="@+id/replay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_reply_black_24dp"
+                    />
+                </LinearLayout>
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_repeat_black_24dp"
-                />
-                <ImageView
-                        android:id="@+id/fav"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                >
+                    <CheckBox
+                            android:id="@+id/retweet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:button="@drawable/ic_reblog"
+                            android:checked="@={status.reblogged}"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{status.reblogsCount}"
+                            android:textSize="@dimen/toot_status_text_size"
+                            tools:text="2333"
+                    />
+                </LinearLayout>
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_favorite_black_24dp"
-                />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                >
+                    <CheckBox
+                            android:id="@+id/fav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:button="@drawable/ic_favorite_black_24dp"
+                            android:checked="@={status.favourited}"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{status.favouritesCount}"
+                            android:textSize="@dimen/toot_status_text_size"
+                            tools:text="2333"
+                    />
+                </LinearLayout>
                 <ImageView
                         android:id="@+id/other"
                         android:layout_width="0dp"

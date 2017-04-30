@@ -52,8 +52,20 @@ constructor(
         }
     }
 
-    override fun onReplyClick(status: Status) {
-        router.openTootActivity(fragment, instanceName, status)
+    override fun onReplyClick(status: TimelineStatus) {
+        router.openTootActivity(fragment, instanceName, status.entity)
+    }
+
+    override fun onBoostClick(status: TimelineStatus) {
+
+    }
+
+    override fun onFavClick(status: TimelineStatus) {
+        interactor.fav(status)
+    }
+
+    override fun onFavResult(isSuccess: Boolean, status: TimelineStatus) {
+
     }
 
     override fun onError(t: Throwable) {
