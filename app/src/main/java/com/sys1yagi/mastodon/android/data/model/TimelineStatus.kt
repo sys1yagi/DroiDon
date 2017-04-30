@@ -7,13 +7,20 @@ import com.sys1yagi.mastodon4j.api.entity.Status
 
 class TimelineStatus(val entity: Status) {
 
+    var offsetMap = mapOf(
+            false to 0,
+            true to 1
+    )
+
     var isFavourited: Boolean = entity.isFavourited
 
-    var favouritesCount: String = entity.favouritesCount.takeIf { it > 0 }?.toString() ?: ""
+    fun favouritesCount() = (entity.favouritesCount + offsetMap.getValue(isFavourited))
+            .takeIf { it > 0 }?.toString() ?: ""
 
     var isReblogged: Boolean = entity.isReblogged
 
-    var reblogsCount: String = entity.reblogsCount.takeIf { it > 0 }?.toString() ?: ""
+    fun reblogsCount() = (entity.reblogsCount + offsetMap.getValue(isReblogged))
+            .takeIf { it > 0 }?.toString() ?: ""
 
     fun content(): String {
         val content = entity.content.replace("<.*?>".toRegex(), "")

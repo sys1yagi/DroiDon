@@ -1,8 +1,10 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
+import com.sys1yagi.mastodon.android.di.FragmentScope
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
+@FragmentScope
 @Subcomponent(modules = arrayOf(TimelineFragmentObjectModule::class))
 interface TimelineFragmentComponent : AndroidInjector<TimelineFragment> {
     @Subcomponent.Builder

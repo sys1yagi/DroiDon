@@ -22,6 +22,8 @@ constructor(
 
     val viewModel = TimelineViewModel()
 
+    val statusMap = hashMapOf<Long, TimelineStatus>()
+
     override fun onResume() {
         interactor.startInteraction(this)
         if (viewModel.statuses.isEmpty()) {
@@ -56,15 +58,42 @@ constructor(
         router.openTootActivity(fragment, instanceName, status.entity)
     }
 
-    override fun onBoostClick(status: TimelineStatus) {
+    override fun onReblogClick(status: TimelineStatus) {
 
     }
 
     override fun onFavClick(status: TimelineStatus) {
-        interactor.fav(status)
+        if (status.isFavourited) {
+            interactor.fav(status.entity.id)
+        } else {
+            interactor.unfav(status.entity.id)
+        }
+        view.showTimeline(viewModel)
     }
 
-    override fun onFavResult(isSuccess: Boolean, status: TimelineStatus) {
+    override fun onFavResult(isSuccess: Boolean, statusId: Long) {
+        if (!isSuccess) {
+            statusMap[statusId]?.let {
+                it.isFavourited = false
+                view.showTimeline(viewModel)
+            }
+        }
+    }
+
+    override fun onUnfavResult(isSuccess: Boolean, statusId: Long) {
+        if (!isSuccess) {
+            statusMap[statusId]?.let {
+                it.isFavourited = true
+                view.showTimeline(viewModel)
+            }
+        }
+    }
+
+    override fun onReblogResult(isSuccess: Boolean, statusId: Long) {
+
+    }
+
+    override fun onUnreblogResult(isSuccess: Boolean, statusId: Long) {
 
     }
 
@@ -75,10 +104,14 @@ constructor(
     }
 
     override fun onTimeline(statuses: Pageable<Status>, range: Range) {
+        val timeline = statuses.part.map(::TimelineStatus)
         if (range.isNextPage()) {
-            viewModel.statuses.addAll(statuses.part.map(::TimelineStatus))
+            viewModel.statuses.addAll(timeline)
         } else {
-            viewModel.statuses.addAll(0, statuses.part.map(::TimelineStatus))
+            viewModel.statuses.addAll(0, timeline)
+        }
+        timeline.forEach {
+            statusMap.put(it.entity.id, it)
         }
         statuses.link?.let {
             viewModel.mergeLink(it, range.isNextPage())

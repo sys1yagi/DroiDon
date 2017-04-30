@@ -16,7 +16,7 @@ interface TimelineContract {
         fun showTimeline(viewModel: TimelineViewModel)
         fun showProgress()
         fun showError(message: String)
-        fun refreshTimeline()
+        fun refreshTimelineAfterPost()
     }
 
     interface Presenter {
@@ -25,7 +25,7 @@ interface TimelineContract {
         fun refresh()
         fun nextPage()
         fun onReplyClick(status: TimelineStatus)
-        fun onBoostClick(status: TimelineStatus)
+        fun onReblogClick(status: TimelineStatus)
         fun onFavClick(status: TimelineStatus)
     }
 
@@ -33,13 +33,19 @@ interface TimelineContract {
         fun startInteraction(out: InteractorOutput) // base
         fun stopInteraction(out: InteractorOutput) // base
         fun getTimeline(range: Range = Range())
-        fun fav(status: TimelineStatus)
+        fun fav(statusId: Long)
+        fun unfav(statusId: Long)
+        fun reblog(statusId: Long)
+        fun unReblog(statusId: Long)
     }
 
     interface InteractorOutput {
         fun onError(t: Throwable)
         fun onTimeline(statuses: Pageable<Status>, range: Range)
-        fun onFavResult(isSuccess: Boolean, status: TimelineStatus)
+        fun onFavResult(isSuccess: Boolean, statusId: Long)
+        fun onUnfavResult(isSuccess: Boolean, statusId: Long)
+        fun onReblogResult(isSuccess: Boolean, statusId: Long)
+        fun onUnreblogResult(isSuccess: Boolean, statusId: Long)
     }
 
     interface Router {

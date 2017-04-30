@@ -107,7 +107,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:text="@{status.reblogsCount}"
+                            android:text="@{status.reblogsCount()}"
                             android:textSize="@dimen/toot_status_text_size"
                             tools:text="2333"
                     />
@@ -131,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:text="@{status.favouritesCount}"
+                            android:text="@{status.favouritesCount()}"
                             android:textSize="@dimen/toot_status_text_size"
                             tools:text="2333"
                     />

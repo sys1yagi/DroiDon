@@ -1,12 +1,16 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
+import com.sys1yagi.mastodon.android.di.FragmentScope
 import com.sys1yagi.mastodon4j.MastodonClient
+import com.sys1yagi.mastodon4j.rx.RxStatuses
 import com.sys1yagi.mastodon4j.rx.RxTimelines
 import dagger.Module
 import dagger.Provides
+import timber.log.Timber
 import javax.inject.Named
 
+@FragmentScope
 @Module
 class TimelineFragmentObjectModule(val view: TimelineContract.View, val type: StatusFetcher.Type) {
     @Provides
@@ -15,14 +19,23 @@ class TimelineFragmentObjectModule(val view: TimelineContract.View, val type: St
     }
 
     @Provides
-    fun provideStatusFetcher(client: MastodonClient): StatusFetcher {
+    fun provideStatusFetcher(rxTimelines: RxTimelines): StatusFetcher {
         return when (type) {
-            StatusFetcher.Type.Home -> HomeStatusFetcher(RxTimelines(client))
-            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(RxTimelines(client))
-            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(RxTimelines(client))
-            else -> HomeStatusFetcher(RxTimelines(client))
+            StatusFetcher.Type.Home -> HomeStatusFetcher(rxTimelines)
+            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(rxTimelines)
+            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(rxTimelines)
+            else -> HomeStatusFetcher(rxTimelines)
         }
     }
+
+    // TODO move to the same scope as MastodonClient
+    @FragmentScope
+    @Provides
+    fun provideRxTimelins(client: MastodonClient) = RxTimelines(client)
+
+    @FragmentScope
+    @Provides
+    fun provideRxStatuses(client: MastodonClient) = RxStatuses(client)
 
     @Named("instanceName")
     @Provides

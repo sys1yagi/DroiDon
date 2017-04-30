@@ -91,7 +91,7 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
         if (requestCode == HomeContract.REQUEST_CODE_TOOT && resultCode == Activity.RESULT_OK) {
             adapter.forEach {
                 if (it is TimelineContract.View) {
-                    it.refreshTimeline()
+                    it.refreshTimelineAfterPost()
                     return@forEach
                 }
             }
