@@ -32,8 +32,9 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
     var onOtherClick: OnOtherClick = {}
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val status = statues[position]
-
+        val timelineStatus = statues[position]
+        val status = timelineStatus.reblog?.let { it } ?: timelineStatus
+        val rebloggedBy = timelineStatus.reblog?.let { timelineStatus.entity.account }
         status.entity.account?.let {
             holder.binding.icon.setImageURI(it.avatar)
         } ?: holder.binding.icon.setImageURI(null as String?)
@@ -42,6 +43,7 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
 
         holder.apply {
             binding.status = status
+            binding.rebloggedBy = rebloggedBy
             binding.replay.setOnClickListener {
                 onReplayClick(status)
             }

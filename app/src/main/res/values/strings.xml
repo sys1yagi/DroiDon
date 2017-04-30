@@ -18,6 +18,7 @@
     <string name="status_min">%1$dm</string>
     <string name="status_hour">%1$dh</string>
     <string name="status_day">%1$dd</string>
+    <string name="status_reblogged_by">reblogged by %1$s</string>
 
     <!-- login -->
     <string name="login_message">Please login to %1$s with OAuth and get auth code.</string>

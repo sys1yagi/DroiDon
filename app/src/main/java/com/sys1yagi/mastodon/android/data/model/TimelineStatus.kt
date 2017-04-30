@@ -22,6 +22,10 @@ class TimelineStatus(val entity: Status) {
     fun reblogsCount() = (entity.reblogsCount + offsetMap.getValue(isReblogged))
             .takeIf { it > 0 }?.toString() ?: ""
 
+    val reblog: TimelineStatus? = entity.reblog?.let {
+        TimelineStatus(it)
+    }
+
     fun content(): String {
         val content = entity.content.replace("<.*?>".toRegex(), "")
 

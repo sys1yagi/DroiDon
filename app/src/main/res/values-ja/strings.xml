@@ -19,6 +19,7 @@
     <string name="status_min">%1$d分前</string>
     <string name="status_hour">%1$d時間前</string>
     <string name="status_day">%1$d日前</string>
+    <string name="status_reblogged_by">%1$sさんにブーストされました</string>
 
     <!-- login -->
     <string name="login_message">%1$sへOAuthログインを実行し、認証コードをコピー&amp;ペーストしてください</string>
