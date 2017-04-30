@@ -11,6 +11,8 @@ import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon.android.extensions.getDimensionPixelSize
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
+import com.facebook.drawee.generic.RoundingParams
+
 
 typealias OnReplayClick = (TimelineStatus) -> Unit
 typealias OnReTweetClick = (TimelineStatus) -> Unit
@@ -68,6 +70,8 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
             mediaContainer.visible()
             status.entity.mediaAttachments.forEach {
                 val image = SimpleDraweeView(context)
+                val roundingParams = RoundingParams.fromCornersRadius(8f)
+                image.hierarchy.roundingParams = roundingParams
                 image.setImageURI(it.previewUrl)
                 val params = LinearLayout.LayoutParams(0, context.getDimensionPixelSize(R.dimen.toot_media_preview_height))
                 params.weight = 1f
