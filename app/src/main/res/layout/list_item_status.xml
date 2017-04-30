@@ -62,8 +62,21 @@
                     app:layout_constraintLeft_toLeftOf="@+id/display_name"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/display_name"
-                    tools:text="content content content content content content content content content content content content content content content content"
+                    tools:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu"
             />
+            <LinearLayout
+                    android:id="@+id/media_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="12dp"
+                    app:layout_constraintLeft_toLeftOf="@+id/content"
+                    app:layout_constraintRight_toRightOf="@+id/content"
+                    app:layout_constraintStart_toStartOf="@id/content"
+                    app:layout_constraintTop_toBottomOf="@+id/content"
+                    tools:visibility="gone"
+            >
+            </LinearLayout>
             <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -73,7 +86,7 @@
                     app:layout_constraintLeft_toLeftOf="@+id/content"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintStart_toStartOf="@id/content"
-                    app:layout_constraintTop_toBottomOf="@+id/content">
+                    app:layout_constraintTop_toBottomOf="@+id/media_container">
                 <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
