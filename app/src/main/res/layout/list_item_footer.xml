@@ -1,0 +1,25 @@
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:padding="8dp">
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+        />
+        <TextView
+                android:id="@+id/error_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_retry"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="Network Error..."
+        />
+    </FrameLayout>
+</layout>

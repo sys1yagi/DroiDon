@@ -3,6 +3,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 import com.google.gson.Gson
 import com.sys1yagi.kmockito.mock
 import com.sys1yagi.mastodon4j.api.Pageable
+import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,10 +24,10 @@ class TimelinePresenterTest {
         assertThat(presenter.viewModel.statuses).isEmpty()
 
 
-        presenter.onTimeline(Pageable<Status>(listOf(status(1), status(2), status(3)), null))
+        presenter.onTimeline(Pageable<Status>(listOf(status(1), status(2), status(3)), null), Range())
         assertThat(presenter.viewModel.statuses).hasSize(3)
 
-        presenter.onTimeline(Pageable<Status>(listOf(status(4), status(5), status(1), status(2)), null))
+        presenter.onTimeline(Pageable<Status>(listOf(status(4), status(5), status(1), status(2)), null), Range())
         assertThat(presenter.viewModel.statuses).hasSize(7)
     }
 }

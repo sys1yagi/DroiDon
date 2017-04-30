@@ -42,3 +42,4 @@ captures/
 .idea
 
 mastodon.gradle
+fabric.properties

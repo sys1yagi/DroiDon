@@ -2,6 +2,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.data.model.TimelineStatus
+import com.sys1yagi.mastodon.android.extensions.isNextPage
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
@@ -15,13 +16,17 @@ constructor(
         val router: TimelineContract.Router
 ) : TimelineContract.Presenter, TimelineContract.InteractorOutput {
 
+    companion object {
+        const val PER_PAGE = 20
+    }
+
     val viewModel = TimelineViewModel()
 
     override fun onResume() {
         interactor.startInteraction(this)
         if (viewModel.statuses.isEmpty()) {
             view.showProgress()
-            interactor.getTimeline()
+            interactor.getTimeline(Range(limit = PER_PAGE))
         } else {
             view.showTimeline(viewModel)
         }
@@ -33,7 +38,17 @@ constructor(
 
     override fun refresh() {
         if (!viewModel.statuses.isEmpty()) {
-            interactor.getTimeline(Range(sinceId = viewModel.link?.sinceId))
+            viewModel.refresh()
+            interactor.getTimeline(Range(sinceId = viewModel.link?.sinceId, limit = PER_PAGE))
+        }
+    }
+
+    override fun nextPage() {
+        viewModel.link?.maxId?.let {
+            interactor.getTimeline(Range(maxId = it, limit = PER_PAGE))
+        } ?: run {
+            viewModel.isCompleted = true
+            view.showTimeline(viewModel)
         }
     }
 
@@ -42,14 +57,19 @@ constructor(
     }
 
     override fun onError(t: Throwable) {
+        // TODO remove print stack trace
         t.printStackTrace()
         view.showError(t.message ?: "error")
     }
 
-    override fun onTimeline(statuses: Pageable<Status>) {
-        viewModel.statuses.addAll(0, statuses.part.map(::TimelineStatus))
+    override fun onTimeline(statuses: Pageable<Status>, range: Range) {
+        if (range.isNextPage()) {
+            viewModel.statuses.addAll(statuses.part.map(::TimelineStatus))
+        } else {
+            viewModel.statuses.addAll(0, statuses.part.map(::TimelineStatus))
+        }
         statuses.link?.let {
-            viewModel.link = it
+            viewModel.mergeLink(it, range.isNextPage())
         }
         view.showTimeline(viewModel)
     }

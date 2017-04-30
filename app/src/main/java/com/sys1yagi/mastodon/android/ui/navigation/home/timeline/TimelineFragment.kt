@@ -13,12 +13,19 @@ import com.sys1yagi.fragmentcreator.annotation.Args
 import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentTimelineBinding
+import com.sys1yagi.mastodon.android.extensions.addAdapterForKotlin
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
+import com.sys1yagi.mastodon.android.util.RecyclerViewScrolledToTheEndSubject
+import com.sys1yagi.mastodon.android.view.FooterAdapter
 import com.sys1yagi.mastodon.android.view.TimelineAdapter
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.Disposables
+import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -33,7 +40,13 @@ class TimelineFragment : Fragment(), TimelineContract.View {
 
     lateinit var binding: FragmentTimelineBinding
 
+    lateinit var subject: RecyclerViewScrolledToTheEndSubject
+
     val adapter: TimelineAdapter = TimelineAdapter()
+
+    val footerAdapter: FooterAdapter = FooterAdapter()
+
+    var recyclerViewScrollEventDisposable: Disposable = Disposables.empty()
 
     override fun onAttach(context: Context?) {
         TimelineFragmentCreator.read(this)
@@ -48,8 +61,12 @@ class TimelineFragment : Fragment(), TimelineContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTimelineBinding.bind(view)
+
+        val mergeAdapter = RecyclerViewMergeAdapter()
+        mergeAdapter.addAdapterForKotlin(adapter)
+        mergeAdapter.addAdapterForKotlin(footerAdapter)
         binding.recyclerView.also {
-            it.adapter = adapter
+            it.adapter = mergeAdapter
             it.layoutManager = LinearLayoutManager(context)
         }
         binding.refresh.setOnRefreshListener {
@@ -58,16 +75,24 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         adapter.onReplayClick = {
             presenter.onReplyClick(it.entity)
         }
+        subject = RecyclerViewScrolledToTheEndSubject(binding.recyclerView)
     }
 
     override fun onResume() {
         super.onResume()
         presenter.onResume()
+        startListenScrollEvent()
     }
 
     override fun onPause() {
-        super.onPause()
+        stopListenScrollEvent()
         presenter.onPause()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        subject.shutDown()
+        super.onDestroy()
     }
 
     override fun showTimeline(viewModel: TimelineViewModel) {
@@ -76,6 +101,8 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         binding.recyclerView.visible()
         adapter.clear()
         adapter.addAll(viewModel.statuses)
+        binding.recyclerView.adapter.notifyDataSetChanged()
+        startListenScrollEvent()
     }
 
     override fun showProgress() {
@@ -106,5 +133,17 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         if (requestCode == TimelineContract.REQUEST_CODE_TOOT && resultCode == Activity.RESULT_OK) {
             refresh()
         }
+    }
+
+    fun startListenScrollEvent() {
+        recyclerViewScrollEventDisposable.dispose()
+        recyclerViewScrollEventDisposable = subject.connect().subscribe {
+            stopListenScrollEvent()
+            presenter.nextPage()
+        }
+    }
+
+    fun stopListenScrollEvent() {
+        recyclerViewScrollEventDisposable.dispose()
     }
 }

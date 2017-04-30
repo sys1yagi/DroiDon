@@ -22,6 +22,7 @@ interface TimelineContract {
         fun onResume() // base
         fun onPause()  // base
         fun refresh()
+        fun nextPage()
         fun onReplyClick(status: Status)
     }
 
@@ -33,7 +34,7 @@ interface TimelineContract {
 
     interface InteractorOutput {
         fun onError(t: Throwable)
-        fun onTimeline(statuses: Pageable<Status>)
+        fun onTimeline(statuses: Pageable<Status>, range: Range)
     }
 
     interface Router {
