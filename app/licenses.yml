@@ -351,3 +351,13 @@
   license: Fabric Software and Services Agreement
   licenseUrl: https://fabric.io/terms
   skip: true
+- artifact: com.github.stfalcon:frescoimageviewer:+
+  name: frescoimageviewer
+  copyrightHolder: stfalcon.com
+  license: The Apache Software License, Version 2.0
+- artifact: me.relex:photodraweeview:+
+  name: PhotoDraweeView
+  copyrightHolder: Relex
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ongakuer/PhotoDraweeView
