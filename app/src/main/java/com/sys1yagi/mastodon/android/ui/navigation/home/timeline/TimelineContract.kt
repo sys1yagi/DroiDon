@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
+import com.sys1yagi.mastodon4j.api.entity.Attachment
 import com.sys1yagi.mastodon4j.api.entity.Status
 
 interface TimelineContract {
@@ -27,6 +28,7 @@ interface TimelineContract {
         fun onReplyClick(status: TimelineStatus)
         fun onReblogClick(status: TimelineStatus)
         fun onFavClick(status: TimelineStatus)
+        fun onAttachmentClick(position: Int, attachments: List<Attachment>)
     }
 
     interface Interactor {

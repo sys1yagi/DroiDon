@@ -2,7 +2,6 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.ui.navigation.home.toot.TootActivity
-import com.sys1yagi.mastodon.android.ui.navigation.home.toot.TootContract
 import com.sys1yagi.mastodon4j.api.entity.Status
 import javax.inject.Inject
 

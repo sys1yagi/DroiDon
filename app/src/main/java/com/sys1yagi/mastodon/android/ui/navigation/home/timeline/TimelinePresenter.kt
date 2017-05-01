@@ -1,10 +1,12 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
+import com.stfalcon.frescoimageviewer.ImageViewer
 import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon.android.extensions.isNextPage
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
+import com.sys1yagi.mastodon4j.api.entity.Attachment
 import com.sys1yagi.mastodon4j.api.entity.Status
 
 class TimelinePresenter
@@ -69,6 +71,12 @@ constructor(
             interactor.unfav(status.entity.id)
         }
         view.showTimeline(viewModel)
+    }
+
+    override fun onAttachmentClick(position: Int, attachments: List<Attachment>) {
+        ImageViewer.Builder(fragment.context, attachments.map { it.url })
+                .setStartPosition(position)
+                .show()
     }
 
     override fun onFavResult(isSuccess: Boolean, statusId: Long) {

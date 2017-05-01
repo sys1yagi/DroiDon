@@ -3,21 +3,23 @@ package com.sys1yagi.mastodon.android.view
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.facebook.drawee.generic.RoundingParams
 import com.facebook.drawee.view.SimpleDraweeView
 import com.sys1yagi.mastodon.android.R
-import com.sys1yagi.mastodon.android.databinding.ListItemStatusBinding
-import com.sys1yagi.mastodon.android.extensions.layoutInflator
 import com.sys1yagi.mastodon.android.data.model.TimelineStatus
+import com.sys1yagi.mastodon.android.databinding.ListItemStatusBinding
 import com.sys1yagi.mastodon.android.extensions.getDimensionPixelSize
 import com.sys1yagi.mastodon.android.extensions.gone
+import com.sys1yagi.mastodon.android.extensions.layoutInflator
 import com.sys1yagi.mastodon.android.extensions.visible
-import com.facebook.drawee.generic.RoundingParams
+import com.sys1yagi.mastodon4j.api.entity.Attachment
 
 
 typealias OnReplayClick = (TimelineStatus) -> Unit
 typealias OnReTweetClick = (TimelineStatus) -> Unit
 typealias OnFavClick = (TimelineStatus) -> Unit
 typealias OnOtherClick = (TimelineStatus) -> Unit
+typealias OnAttachmentClick = (Int, List<Attachment>) -> Unit
 
 class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
 
@@ -27,11 +29,13 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
 
     var onReplayClick: OnReplayClick = {}
 
-    var onReTweetClick: OnReTweetClick = {}
+    var onBoostClick: OnReTweetClick = {}
 
     var onFavClick: OnFavClick = {}
 
     var onOtherClick: OnOtherClick = {}
+
+    var onAttachmentClick: OnAttachmentClick = { _, _ -> }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val timelineStatus = statues[position]
@@ -50,7 +54,7 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
                 onReplayClick(status)
             }
             binding.retweet.setOnClickListener {
-                onReTweetClick(status)
+                onBoostClick(status)
             }
             binding.fav.setOnClickListener {
                 onFavClick(status)
@@ -68,14 +72,19 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
             mediaContainer.gone()
         } else {
             mediaContainer.visible()
-            status.entity.mediaAttachments.forEach {
+            val attachments = status.entity.mediaAttachments
+            attachments.forEachIndexed { i, attachment ->
                 val image = SimpleDraweeView(context)
                 val roundingParams = RoundingParams.fromCornersRadius(8f)
                 image.hierarchy.roundingParams = roundingParams
-                image.setImageURI(it.previewUrl)
+                image.setImageURI(attachment.previewUrl)
                 val params = LinearLayout.LayoutParams(0, context.getDimensionPixelSize(R.dimen.toot_media_preview_height))
                 params.weight = 1f
+                params.leftMargin = 2
                 mediaContainer.addView(image, params)
+                image.setOnClickListener {
+                    onAttachmentClick(i, attachments)
+                }
             }
         }
     }
@@ -84,7 +93,6 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             Holder(ListItemStatusBinding.inflate(parent.layoutInflator(), parent, false))
-
 
     fun clear() {
         this.statues.clear()
