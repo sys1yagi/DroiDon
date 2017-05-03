@@ -3,6 +3,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.di.FragmentScope
 import com.sys1yagi.mastodon4j.MastodonClient
+import com.sys1yagi.mastodon4j.rx.RxPublic
 import com.sys1yagi.mastodon4j.rx.RxStatuses
 import com.sys1yagi.mastodon4j.rx.RxTimelines
 import dagger.Module
@@ -19,11 +20,11 @@ class TimelineFragmentObjectModule(val view: TimelineContract.View, val type: St
     }
 
     @Provides
-    fun provideStatusFetcher(rxTimelines: RxTimelines): StatusFetcher {
+    fun provideStatusFetcher(rxTimelines: RxTimelines, rxPublic: RxPublic): StatusFetcher {
         return when (type) {
             StatusFetcher.Type.Home -> HomeStatusFetcher(rxTimelines)
-            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(rxTimelines)
-            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(rxTimelines)
+            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(rxPublic)
+            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(rxPublic)
             else -> HomeStatusFetcher(rxTimelines)
         }
     }
@@ -32,6 +33,10 @@ class TimelineFragmentObjectModule(val view: TimelineContract.View, val type: St
     @FragmentScope
     @Provides
     fun provideRxTimelins(client: MastodonClient) = RxTimelines(client)
+
+    @FragmentScope
+    @Provides
+    fun provideRxPublic(client: MastodonClient) = RxPublic(client)
 
     @FragmentScope
     @Provides

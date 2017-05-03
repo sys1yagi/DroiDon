@@ -79,10 +79,13 @@ configurations {
 dependencies {
 
     // Mastodon
-    compile 'com.github.sys1yagi.mastodon4j:mastodon4j-rx:0.0.6'
+    compile 'com.github.sys1yagi.mastodon4j:mastodon4j:0.0.7'
+    compile 'com.github.sys1yagi.mastodon4j:mastodon4j-rx:0.0.7'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.14'
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-rx2:0.14'
 
     // UI
     compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'

@@ -8,6 +8,9 @@ import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Attachment
 import com.sys1yagi.mastodon4j.api.entity.Status
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.experimental.yield
 
 class TimelinePresenter
 constructor(
@@ -89,6 +92,14 @@ constructor(
     }
 
     override fun onUnfavResult(isSuccess: Boolean, statusId: Long) {
+        runBlocking {
+            val job = launch(context) {
+
+                yield()
+            }
+        }
+
+
         if (!isSuccess) {
             statusMap[statusId]?.let {
                 it.isFavourited = true
