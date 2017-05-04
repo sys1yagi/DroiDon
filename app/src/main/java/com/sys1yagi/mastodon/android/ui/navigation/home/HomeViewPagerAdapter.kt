@@ -11,10 +11,10 @@ class HomeViewPagerAdapter(
         fragmentManager: FragmentManager
 ) : FragmentStatePagerAdapter(fragmentManager) {
 
-    val timelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.Home).build() }
-    val notificationFragment by lazy { NotificationFragmentCreator.newBuilder().build() }
-    val localTimelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.LocalPublic).build() }
-    val federatedTimelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.FederatedPublic).build() }
+    private val timelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.Home, 0).build() }
+    private val notificationFragment by lazy { NotificationFragmentCreator.newBuilder().build() }
+    private val localTimelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.LocalPublic, 2).build() }
+    private val federatedTimelineFragment by lazy { TimelineFragmentCreator.newBuilder(StatusFetcher.Type.FederatedPublic, 3).build() }
 
     override fun getItem(position: Int) = when (position) {
         0 -> timelineFragment

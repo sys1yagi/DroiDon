@@ -14,17 +14,21 @@ import com.sys1yagi.fragmentcreator.annotation.FragmentCreator
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.FragmentHomeBinding
 import com.sys1yagi.mastodon.android.ui.navigation.home.timeline.TimelineContract
+import com.sys1yagi.mastodon.android.util.TabLayoutEventSubject
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 @FragmentCreator
-class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListener {
+class HomeFragment : Fragment(), HomeContract.View {
 
     @Args
     var instanceName: String = ""
 
     @Inject
     lateinit var presenter: HomeContract.Presenter
+
+    @Inject
+    lateinit var tabLayoutEventSubject: TabLayoutEventSubject
 
     lateinit var binding: FragmentHomeBinding
 
@@ -47,7 +51,6 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
         adapter = HomeViewPagerAdapter(childFragmentManager)
         binding.viewPager.adapter = adapter
         binding.tabs.apply {
-            addOnTabSelectedListener(this@HomeFragment)
             tabMode = TabLayout.MODE_FIXED
             tabGravity = TabLayout.GRAVITY_FILL
             getTabAt(0)?.setIcon(R.drawable.ic_timeline)
@@ -63,26 +66,16 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
     override fun onResume() {
         super.onResume()
         presenter.onResume()
+        tabLayoutEventSubject.start(binding.tabs)
     }
 
     override fun onPause() {
         super.onPause()
         presenter.onPause()
+        tabLayoutEventSubject.shutdown(binding.tabs)
     }
 
     override fun showError(message: String) {
-
-    }
-
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-        //
-    }
-
-    override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-    }
-
-    override fun onTabSelected(tab: TabLayout.Tab?) {
 
     }
 

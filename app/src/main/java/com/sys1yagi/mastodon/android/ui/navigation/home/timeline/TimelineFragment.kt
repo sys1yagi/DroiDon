@@ -17,6 +17,7 @@ import com.sys1yagi.mastodon.android.extensions.addAdapterForKotlin
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
 import com.sys1yagi.mastodon.android.util.RecyclerViewScrolledToTheEndSubject
+import com.sys1yagi.mastodon.android.util.TabLayoutEventSubject
 import com.sys1yagi.mastodon.android.view.FooterAdapter
 import com.sys1yagi.mastodon.android.view.TimelineAdapter
 import dagger.android.support.AndroidSupportInjection
@@ -25,6 +26,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -34,18 +36,26 @@ class TimelineFragment : Fragment(), TimelineContract.View {
     @Args
     lateinit var type: StatusFetcher.Type
 
+    @Args
+    var position: Int = -1
+
     @Inject
     lateinit var presenter: TimelineContract.Presenter
 
+    @Inject
+    lateinit var tabLayoutEventSubject: TabLayoutEventSubject
+
     lateinit var binding: FragmentTimelineBinding
 
-    lateinit var subject: RecyclerViewScrolledToTheEndSubject
+    lateinit var recyclerViewScrolledToTheEndSubject: RecyclerViewScrolledToTheEndSubject
 
     val adapter: TimelineAdapter = TimelineAdapter()
 
     val footerAdapter: FooterAdapter = FooterAdapter()
 
     var recyclerViewScrollEventDisposable: Disposable = Disposables.empty()
+
+    var tabSelectEventDisposable: Disposable = Disposables.empty()
 
     override fun onAttach(context: Context?) {
         TimelineFragmentCreator.read(this)
@@ -83,23 +93,25 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         adapter.onAttachmentClick = { position, attachments ->
             presenter.onAttachmentClick(position, attachments)
         }
-        subject = RecyclerViewScrolledToTheEndSubject(binding.recyclerView)
+        recyclerViewScrolledToTheEndSubject = RecyclerViewScrolledToTheEndSubject(binding.recyclerView)
     }
 
     override fun onResume() {
         super.onResume()
         presenter.onResume()
         startListenScrollEvent()
+        startListenTabSelectEvent()
     }
 
     override fun onPause() {
+        stopListenTabSelectEvent()
         stopListenScrollEvent()
         presenter.onPause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        subject.shutDown()
+        recyclerViewScrolledToTheEndSubject.shutDown()
         super.onDestroy()
     }
 
@@ -148,7 +160,7 @@ class TimelineFragment : Fragment(), TimelineContract.View {
 
     fun startListenScrollEvent() {
         recyclerViewScrollEventDisposable.dispose()
-        recyclerViewScrollEventDisposable = subject.connect().subscribe {
+        recyclerViewScrollEventDisposable = recyclerViewScrolledToTheEndSubject.connect().subscribe {
             stopListenScrollEvent()
             presenter.nextPage()
         }
@@ -156,5 +168,23 @@ class TimelineFragment : Fragment(), TimelineContract.View {
 
     fun stopListenScrollEvent() {
         recyclerViewScrollEventDisposable.dispose()
+    }
+
+    fun startListenTabSelectEvent() {
+        tabSelectEventDisposable.dispose()
+        tabSelectEventDisposable = tabLayoutEventSubject.connect().subscribe {
+            if (it.tab.position == position && it.type == TabLayoutEventSubject.EventType.RESELECTED) {
+                val pos = (binding.recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                if (pos < 40) {
+                    binding.recyclerView.smoothScrollToPosition(0)
+                } else {
+                    binding.recyclerView.scrollToPosition(0)
+                }
+            }
+        }
+    }
+
+    fun stopListenTabSelectEvent() {
+        tabSelectEventDisposable.dispose()
     }
 }
