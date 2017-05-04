@@ -50,10 +50,10 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
             addOnTabSelectedListener(this@HomeFragment)
             tabMode = TabLayout.MODE_FIXED
             tabGravity = TabLayout.GRAVITY_FILL
-            getTabAt(0)?.setIcon(R.drawable.ic_chat_black_24dp)
-            getTabAt(1)?.setIcon(R.drawable.ic_notifications_black_24dp)
-            getTabAt(2)?.setIcon(R.drawable.ic_group_black_24dp)
-            getTabAt(3)?.setIcon(R.drawable.ic_language_black_24dp)
+            getTabAt(0)?.setIcon(R.drawable.ic_timeline)
+            getTabAt(1)?.setIcon(R.drawable.ic_notifications)
+            getTabAt(2)?.setIcon(R.drawable.ic_local)
+            getTabAt(3)?.setIcon(R.drawable.ic_federated)
         }
         binding.fab.setOnClickListener {
             presenter.onFabClick()
@@ -75,7 +75,7 @@ class HomeFragment : Fragment(), HomeContract.View, TabLayout.OnTabSelectedListe
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
-
+        //
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab?) {
