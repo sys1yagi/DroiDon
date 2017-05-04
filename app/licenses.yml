@@ -361,3 +361,15 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://github.com/ongakuer/PhotoDraweeView
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-core:+
+  name: kotlinx-coroutines-core
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-reactive:+
+  name: kotlinx-coroutines-reactive
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-rx2:+
+  name: kotlinx-coroutines-rx2
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
