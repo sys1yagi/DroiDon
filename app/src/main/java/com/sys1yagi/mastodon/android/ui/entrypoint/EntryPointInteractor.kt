@@ -17,7 +17,7 @@ import javax.inject.Inject
 class EntryPointInteractor
 @Inject
 constructor(
-        val okHttpClient: OkHttpClient,
+        val okHttpClientBuilder: OkHttpClient.Builder,
         val gson: Gson,
         databaseProvider: OrmaDatabaseProvider
 )
@@ -53,7 +53,7 @@ constructor(
     }
 
     override fun registerCredential(credential: Credential) {
-        val client = MastodonClient(credential.instanceName, okHttpClient, gson)
+        val client = MastodonClient.Builder(credential.instanceName, okHttpClientBuilder, gson).build()
         val apps = RxApps(client)
 
         disposable = async {
@@ -78,7 +78,7 @@ constructor(
     }
 
     override fun checkAuthentication(credential: Credential) {
-        database.selectFromAccessToken().instanceNameEq(credential.instanceName).firstOrNull()?.let{
+        database.selectFromAccessToken().instanceNameEq(credential.instanceName).firstOrNull()?.let {
             out?.onAuthorized(credential)
         } ?: out?.onUnAuthorizedOrExpired(credential)
     }

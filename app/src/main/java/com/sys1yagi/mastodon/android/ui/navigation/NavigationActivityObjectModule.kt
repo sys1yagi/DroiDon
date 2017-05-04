@@ -19,14 +19,20 @@ class NavigationActivityObjectModule(val instanceName: String, val view: Navigat
     }
 
     @Provides
-    fun provideMastodonClient(client: OkHttpClient, gson: Gson, databaseProvider: OrmaDatabaseProvider): MastodonClient {
+    fun provideMastodonClient(client: OkHttpClient.Builder, gson: Gson, databaseProvider: OrmaDatabaseProvider): MastodonClient {
         val accessToken = databaseProvider
                 .database
                 .selectFromAccessToken()
                 .instanceNameEq(instanceName)
                 .firstOrNull()?.accessToken
 
-        return MastodonClient(instanceName, client, gson, accessToken)
+        return MastodonClient.Builder(instanceName, client, gson)
+                .apply {
+                    accessToken?.let {
+                        accessToken(it)
+                    }
+                }
+                .build()
     }
 
     @ActivityScope

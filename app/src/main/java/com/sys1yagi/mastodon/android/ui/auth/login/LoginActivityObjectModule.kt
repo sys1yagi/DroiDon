@@ -16,8 +16,8 @@ class LoginActivityObjectModule(val instanceName: String, val view: LoginContrac
     }
 
     @Provides
-    fun provideMastodonClient(okHttpClient: OkHttpClient, gson: Gson): MastodonClient {
-        return MastodonClient(instanceName, okHttpClient, gson)
+    fun provideMastodonClient(builder: OkHttpClient.Builder, gson: Gson): MastodonClient {
+        return MastodonClient.Builder(instanceName, builder, gson).build()
     }
 
     @Provides

@@ -79,8 +79,8 @@ configurations {
 dependencies {
 
     // Mastodon
-    compile 'com.github.sys1yagi.mastodon4j:mastodon4j:0.0.7'
-    compile 'com.github.sys1yagi.mastodon4j:mastodon4j-rx:0.0.7'
+    compile 'com.github.sys1yagi.mastodon4j:mastodon4j:1.0.0'
+    compile 'com.github.sys1yagi.mastodon4j:mastodon4j-rx:1.0.0'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"

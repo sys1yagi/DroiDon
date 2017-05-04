@@ -15,12 +15,12 @@ import javax.inject.Inject
 class LoginRouter
 @Inject
 constructor(
-        val okHttpClient: OkHttpClient,
+        val okHttpClientBuilder: OkHttpClient.Builder,
         val gson: Gson
 )
     : LoginContract.Router {
     override fun openOAuthPage(context: Context, credential: Credential) {
-        val apps = Apps(MastodonClient(credential.instanceName, okHttpClient, gson))
+        val apps = Apps(MastodonClient.Builder(credential.instanceName, okHttpClientBuilder, gson).build())
         val url = apps.getOAuthUrl(credential.clientId, scope = Scope(Scope.Name.ALL))
         val viewIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         if (viewIntent.resolveActivity(context.packageManager) != null) {

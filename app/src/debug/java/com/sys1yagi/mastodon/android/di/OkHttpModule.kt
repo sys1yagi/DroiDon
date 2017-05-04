@@ -14,7 +14,5 @@ class OkHttpModule {
     @Provides
     fun provideOkHttpClient() = OkHttpClient
             .Builder()
-            .connectionSpecs(listOf(ConnectionSpec.MODERN_TLS))
             .addNetworkInterceptor(StethoInterceptor())
-            .build()
 }
