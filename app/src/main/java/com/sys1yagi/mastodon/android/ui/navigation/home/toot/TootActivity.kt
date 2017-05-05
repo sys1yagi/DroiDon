@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityTootBinding
@@ -59,6 +60,7 @@ class TootActivity : AppCompatActivity(), TootContract.View {
                 binding.status.setSelection(binding.status.length())
             }
         }
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
 
     override fun onResume() {

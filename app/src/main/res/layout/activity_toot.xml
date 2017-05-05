@@ -2,8 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-
-
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -42,9 +40,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="top|start"
                         android:hint="@string/what_s_happening"
-                        android:lines="10"
-                        android:padding="16dp"
-                />
+                        android:lines="9"
+                        android:padding="16dp"/>
                 <RelativeLayout
                         android:id="@+id/form"
                         android:layout_width="match_parent"
