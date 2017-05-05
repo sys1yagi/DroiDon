@@ -313,10 +313,6 @@
   copyrightHolder: #COPYRIGHT_HOLDER#
   license: #LICENSE#
   skip: true
-- artifact: com.github.sys1yagi.mastodon4j:mastodon4j-rx:+
-  name: mastodon4j-rx
-  copyrightHolder: Toshihiro Yagi
-  license: MIT License
 - artifact: com.github.sys1yagi.mastodon4j:mastodon4j:+
   name: mastodon4j
   copyrightHolder: Toshihiro Yagi
@@ -371,5 +367,9 @@
   license: The Apache Software License, Version 2.0
 - artifact: org.jetbrains.kotlinx:kotlinx-coroutines-rx2:+
   name: kotlinx-coroutines-rx2
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-android:+
+  name: kotlinx-coroutines-android
   copyrightHolder: JetBrains s.r.o.
   license: The Apache Software License, Version 2.0
