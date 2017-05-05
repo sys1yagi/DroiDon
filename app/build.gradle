@@ -80,12 +80,12 @@ dependencies {
 
     // Mastodon
     compile 'com.github.sys1yagi.mastodon4j:mastodon4j:1.0.0'
-    compile 'com.github.sys1yagi.mastodon4j:mastodon4j-rx:1.0.0'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.14'
-    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-rx2:0.14'
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutine_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$kotlin_coroutine_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutine_version"
 
     // UI
     compile 'com.github.sys1yagi.fragment-creator:library:0.8.2'

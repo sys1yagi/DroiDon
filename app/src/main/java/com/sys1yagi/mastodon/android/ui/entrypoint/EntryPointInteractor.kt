@@ -6,11 +6,12 @@ import com.sys1yagi.mastodon.android.data.database.Credential
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabase
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
 import com.sys1yagi.mastodon.android.extensions.async
+import com.sys1yagi.mastodon.android.extensions.ui
 import com.sys1yagi.mastodon4j.MastodonClient
 import com.sys1yagi.mastodon4j.api.Scope
 import com.sys1yagi.mastodon4j.api.entity.auth.AppRegistration
-import com.sys1yagi.mastodon4j.rx.RxApps
-import io.reactivex.disposables.Disposables
+import com.sys1yagi.mastodon4j.api.method.Apps
+import kotlinx.coroutines.experimental.Job
 import okhttp3.OkHttpClient
 import javax.inject.Inject
 
@@ -25,14 +26,14 @@ constructor(
 
     val database: OrmaDatabase = databaseProvider.database
     var out: EntryPointContract.InteractorOutput? = null
-    var disposable = Disposables.empty()
+    var disposable: Job? = null
 
     override fun startInteraction(out: EntryPointContract.InteractorOutput) {
         this.out = out
     }
 
     override fun stoplInteraction(out: EntryPointContract.InteractorOutput) {
-        disposable.dispose()
+        disposable?.cancel()
         this.out = null
     }
 
@@ -54,15 +55,18 @@ constructor(
 
     override fun registerCredential(credential: Credential) {
         val client = MastodonClient.Builder(credential.instanceName, okHttpClientBuilder, gson).build()
-        val apps = RxApps(client)
-
+        val apps = Apps(client)
         disposable = async {
             try {
-                val appRegistration = apps.createApp(clientName = "DroiDon", scope = Scope(Scope.Name.ALL)).await()
-                saveCredential(credential, appRegistration).await()
-                out?.onRegistrationFound(credential)
+                val appRegistration = apps.createApp(clientName = "DroiDon", scope = Scope(Scope.Name.ALL)).execute()
+                saveCredential(credential, appRegistration)
+                ui {
+                    out?.onRegistrationFound(credential)
+                }
             } catch(e: Throwable) {
-                out?.onError(e)
+                ui {
+                    out?.onError(e)
+                }
             }
         }
     }
@@ -74,7 +78,7 @@ constructor(
                     put("client_id", appRegistration.clientId)
                     put("client_secret", appRegistration.clientSecret)
                 })
-                .executeAsSingle()
+                .execute()
     }
 
     override fun checkAuthentication(credential: Credential) {

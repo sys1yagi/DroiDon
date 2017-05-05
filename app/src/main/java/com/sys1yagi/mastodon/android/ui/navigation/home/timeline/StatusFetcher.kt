@@ -1,5 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
+import com.sys1yagi.mastodon4j.MastodonRequest
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Status
@@ -15,5 +16,5 @@ interface StatusFetcher {
         LocalFederated
     }
 
-    fun fetch(range: Range): Single<Pageable<Status>>
+    fun fetch(range: Range): MastodonRequest<Pageable<Status>>
 }

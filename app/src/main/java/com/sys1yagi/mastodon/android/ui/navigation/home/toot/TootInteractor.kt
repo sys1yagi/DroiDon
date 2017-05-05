@@ -4,44 +4,49 @@ import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
 import com.sys1yagi.mastodon.android.extensions.async
+import com.sys1yagi.mastodon.android.extensions.toJob
+import com.sys1yagi.mastodon.android.extensions.ui
 import com.sys1yagi.mastodon4j.api.entity.Status
-import com.sys1yagi.mastodon4j.rx.RxMedia
-import com.sys1yagi.mastodon4j.rx.RxStatuses
-import io.reactivex.disposables.Disposables
+import com.sys1yagi.mastodon4j.api.method.Media
+import com.sys1yagi.mastodon4j.api.method.Statuses
+import kotlinx.coroutines.experimental.Job
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
 
-
 class TootInteractor
 @Inject
 constructor(
-        val statuses: RxStatuses,
-        val media: RxMedia
+        val statuses: Statuses,
+        val media: Media
 )
     : TootContract.Interactor {
 
     var out: TootContract.InteractorOutput? = null
-    var disposable = Disposables.empty()
+    var job: Job? = null
 
     override fun startInteraction(out: TootContract.InteractorOutput) {
         this.out = out
     }
 
     override fun stopInteraction(out: TootContract.InteractorOutput) {
-        disposable.dispose()
+        job?.cancel()
         this.out = null
     }
 
     override fun toot(status: String, mediaIds: List<Long>?, replyToStatus: Status?) {
-        disposable = async {
+        job = async {
             statuses.postStatus(
                     status,
                     inReplyToId = replyToStatus?.id,
-                    mediaIds = mediaIds
-            ).await()
-            out?.onSuccessToot()
+                    mediaIds = mediaIds,
+                    sensitive = false,
+                    spoilerText = null
+            ).execute()
+            ui {
+                out?.onSuccessToot()
+            }
         }
     }
 
@@ -69,11 +74,13 @@ constructor(
         val requestFile = RequestBody.create(MediaType.parse(mimeType), bytes)
         val part = MultipartBody.Part.createFormData("file", "DroiDon_$name", requestFile)
         async {
-            try {
-                val attachment = media.postMedia(part).await()
-                out?.onAttachmentUploaded(attachment)
-            } catch(e: Throwable) {
-                out?.onError(e)
+            val attachment = media.postMedia(part).toJob()
+            ui {
+                try {
+                    out?.onAttachmentUploaded(attachment.await())
+                } catch(e: Throwable) {
+                    out?.onError(e)
+                }
             }
         }
     }

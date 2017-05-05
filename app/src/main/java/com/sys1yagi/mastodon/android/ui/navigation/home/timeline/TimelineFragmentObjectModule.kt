@@ -3,12 +3,11 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.di.FragmentScope
 import com.sys1yagi.mastodon4j.MastodonClient
-import com.sys1yagi.mastodon4j.rx.RxPublic
-import com.sys1yagi.mastodon4j.rx.RxStatuses
-import com.sys1yagi.mastodon4j.rx.RxTimelines
+import com.sys1yagi.mastodon4j.api.method.Public
+import com.sys1yagi.mastodon4j.api.method.Statuses
+import com.sys1yagi.mastodon4j.api.method.Timelines
 import dagger.Module
 import dagger.Provides
-import timber.log.Timber
 import javax.inject.Named
 
 @FragmentScope
@@ -20,27 +19,27 @@ class TimelineFragmentObjectModule(val view: TimelineContract.View, val type: St
     }
 
     @Provides
-    fun provideStatusFetcher(rxTimelines: RxTimelines, rxPublic: RxPublic): StatusFetcher {
+    fun provideStatusFetcher(timelines: Timelines, public: Public): StatusFetcher {
         return when (type) {
-            StatusFetcher.Type.Home -> HomeStatusFetcher(rxTimelines)
-            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(rxPublic)
-            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(rxPublic)
-            else -> HomeStatusFetcher(rxTimelines)
+            StatusFetcher.Type.Home -> HomeStatusFetcher(timelines)
+            StatusFetcher.Type.LocalPublic -> LocalPublicStatusFetcher(public)
+            StatusFetcher.Type.FederatedPublic -> FederatedPublicStatusFetcher(public)
+            else -> HomeStatusFetcher(timelines)
         }
     }
 
     // TODO move to the same scope as MastodonClient
     @FragmentScope
     @Provides
-    fun provideRxTimelins(client: MastodonClient) = RxTimelines(client)
+    fun provideStatuses(client: MastodonClient) = Statuses(client)
 
     @FragmentScope
     @Provides
-    fun provideRxPublic(client: MastodonClient) = RxPublic(client)
+    fun providePublic(client: MastodonClient) = Public(client)
 
     @FragmentScope
     @Provides
-    fun provideRxStatuses(client: MastodonClient) = RxStatuses(client)
+    fun provideTimelines(client: MastodonClient) = Timelines(client)
 
     @Named("instanceName")
     @Provides

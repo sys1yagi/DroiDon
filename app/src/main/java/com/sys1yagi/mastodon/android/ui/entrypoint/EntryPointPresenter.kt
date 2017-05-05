@@ -3,7 +3,8 @@ package com.sys1yagi.mastodon.android.ui.entrypoint
 import android.app.Activity
 import com.sys1yagi.mastodon.android.data.database.Credential
 import com.sys1yagi.mastodon.android.extensions.async
-import io.reactivex.Completable
+import com.sys1yagi.mastodon.android.extensions.ui
+import kotlinx.coroutines.experimental.delay
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -33,9 +34,11 @@ class EntryPointPresenter
 
     override fun onInstanceNameNotRegistered() {
         async {
-            Completable.complete().delay(1, TimeUnit.SECONDS).await()
-            router.openSetInstanceNameActivity(activity)
-            view.finish()
+            delay(1, TimeUnit.SECONDS)
+            ui {
+                router.openSetInstanceNameActivity(activity)
+                view.finish()
+            }
         }
     }
 
@@ -60,11 +63,13 @@ class EntryPointPresenter
     }
 
     override fun onAuthorized(credential: Credential) {
+        view.showMessage("The ${credential.instanceName} already authorized!")
         async {
-            view.showMessage("The ${credential.instanceName} already authorized!")
-            Completable.complete().delay(1, TimeUnit.SECONDS).await()
-            router.openHomeActivity(activity, credential.instanceName)
-            view.finish()
+            delay(1, TimeUnit.SECONDS)
+            ui {
+                router.openHomeActivity(activity, credential.instanceName)
+                view.finish()
+            }
         }
     }
 }

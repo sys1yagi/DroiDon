@@ -3,16 +3,11 @@ package com.sys1yagi.mastodon.android.di
 import android.app.Application
 import android.content.Context
 import com.github.gfx.android.orma.AccessThreadConstraint
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabase
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
-import com.sys1yagi.mastodon4j.MastodonClient
-import com.sys1yagi.mastodon4j.rx.RxTimelines
 import dagger.Module
 import dagger.Provides
-import okhttp3.ConnectionSpec
-import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Singleton

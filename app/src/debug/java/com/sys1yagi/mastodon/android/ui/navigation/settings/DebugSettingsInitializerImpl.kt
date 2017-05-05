@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.data.database.OrmaDatabaseProvider
 import com.sys1yagi.mastodon.android.extensions.async
+import com.sys1yagi.mastodon.android.extensions.ui
 import javax.inject.Inject
 
 class DebugSettingsInitializerImpl
@@ -24,10 +25,12 @@ constructor(
         val disposeTokenAndInstanceName = fragment.findPreference(context.getString(R.string.dispose_token_and_instance_name))
         disposeTokenAndInstanceName.setOnPreferenceClickListener {
             async {
-                database.transactionAsCompletable {
+                database.transactionSync {
                     database.deleteAll()
-                }.await()
-                Toast.makeText(context, "dispose", Toast.LENGTH_SHORT).show()
+                }
+                ui {
+                    Toast.makeText(context, "dispose", Toast.LENGTH_SHORT).show()
+                }
             }
             true
         }

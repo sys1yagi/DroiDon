@@ -11,6 +11,7 @@ import com.sys1yagi.mastodon4j.api.entity.Status
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 import kotlinx.coroutines.experimental.yield
+import timber.log.Timber
 
 class TimelinePresenter
 constructor(
@@ -64,7 +65,12 @@ constructor(
     }
 
     override fun onReblogClick(status: TimelineStatus) {
-
+        if (status.isReblogged) {
+            interactor.reblog(status.entity.id)
+        } else {
+            interactor.unReblog(status.entity.id)
+        }
+        view.showTimeline(viewModel)
     }
 
     override fun onFavClick(status: TimelineStatus) {
@@ -85,21 +91,13 @@ constructor(
     override fun onFavResult(isSuccess: Boolean, statusId: Long) {
         if (!isSuccess) {
             statusMap[statusId]?.let {
-                it.isFavourited = false
+                it.isFavourited = !it.isFavourited
                 view.showTimeline(viewModel)
             }
         }
     }
 
     override fun onUnfavResult(isSuccess: Boolean, statusId: Long) {
-        runBlocking {
-            val job = launch(context) {
-
-                yield()
-            }
-        }
-
-
         if (!isSuccess) {
             statusMap[statusId]?.let {
                 it.isFavourited = true

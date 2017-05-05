@@ -3,7 +3,7 @@ package com.sys1yagi.mastodon.android.ui.auth.login
 import android.app.Activity
 import com.google.gson.Gson
 import com.sys1yagi.mastodon4j.MastodonClient
-import com.sys1yagi.mastodon4j.rx.RxApps
+import com.sys1yagi.mastodon4j.api.method.Apps
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -21,7 +21,7 @@ class LoginActivityObjectModule(val instanceName: String, val view: LoginContrac
     }
 
     @Provides
-    fun providesRxApps(client: MastodonClient): RxApps {
-        return RxApps(client)
+    fun providesApps(client: MastodonClient): Apps {
+        return Apps(client)
     }
 }

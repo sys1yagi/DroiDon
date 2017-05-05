@@ -132,6 +132,9 @@ class TimelineFragment : Fragment(), TimelineContract.View {
 
     override fun showError(message: String) {
         binding.refresh.isRefreshing = false
+        binding.progressBar.gone()
+        binding.recyclerView.gone()
+        binding.errorText.text = "ERROR..."
     }
 
     override fun refreshTimelineAfterPost() {
