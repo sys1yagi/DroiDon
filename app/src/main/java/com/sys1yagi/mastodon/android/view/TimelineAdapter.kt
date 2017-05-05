@@ -29,7 +29,7 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
 
     var onReplayClick: OnReplayClick = {}
 
-    var onBoostClick: OnReTweetClick = {}
+    var onReblogClick: OnReTweetClick = {}
 
     var onFavClick: OnFavClick = {}
 
@@ -54,7 +54,7 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.Holder>() {
                 onReplayClick(status)
             }
             binding.retweet.setOnClickListener {
-                onBoostClick(status)
+                onReblogClick(status)
             }
             binding.fav.setOnClickListener {
                 onFavClick(status)

@@ -73,11 +73,30 @@ constructor(
     }
 
     override fun reblog(statusId: Long) {
-
-
+        job = async {
+            val job = statuses.postReblog(statusId).toJob()
+            ui {
+                try {
+                    job.await()
+                    out?.onReblogResult(true, statusId)
+                } catch(e: Throwable) {
+                    out?.onReblogResult(false, statusId)
+                }
+            }
+        }
     }
 
     override fun unReblog(statusId: Long) {
-        // TODO
+        job = async {
+            val job = statuses.postUnreblog(statusId).toJob()
+            ui {
+                try {
+                    job.await()
+                    out?.onUnreblogResult(true, statusId)
+                } catch(e: Throwable) {
+                    out?.onUnreblogResult(false, statusId)
+                }
+            }
+        }
     }
 }

@@ -26,7 +26,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -84,8 +83,8 @@ class TimelineFragment : Fragment(), TimelineContract.View {
         adapter.onReplayClick = {
             presenter.onReplyClick(it)
         }
-        adapter.onBoostClick = {
-            // todo
+        adapter.onReblogClick = {
+            presenter.onReblogClick(it)
         }
         adapter.onFavClick = {
             presenter.onFavClick(it)

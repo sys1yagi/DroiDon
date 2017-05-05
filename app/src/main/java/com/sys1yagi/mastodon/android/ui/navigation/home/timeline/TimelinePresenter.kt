@@ -91,7 +91,7 @@ constructor(
     override fun onFavResult(isSuccess: Boolean, statusId: Long) {
         if (!isSuccess) {
             statusMap[statusId]?.let {
-                it.isFavourited = !it.isFavourited
+                it.isFavourited = false
                 view.showTimeline(viewModel)
             }
         }
@@ -107,11 +107,21 @@ constructor(
     }
 
     override fun onReblogResult(isSuccess: Boolean, statusId: Long) {
-
+        if (!isSuccess) {
+            statusMap[statusId]?.let {
+                it.isReblogged = false
+                view.showTimeline(viewModel)
+            }
+        }
     }
 
     override fun onUnreblogResult(isSuccess: Boolean, statusId: Long) {
-
+        if (!isSuccess) {
+            statusMap[statusId]?.let {
+                it.isReblogged = true
+                view.showTimeline(viewModel)
+            }
+        }
     }
 
     override fun onError(t: Throwable) {
