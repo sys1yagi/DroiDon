@@ -30,4 +30,14 @@ class TimelinePresenterTest {
         presenter.onTimeline(Pageable<Status>(listOf(status(4), status(5), status(1), status(2)), null), Range())
         assertThat(presenter.viewModel.statuses).hasSize(7)
     }
+
+    @Test
+    fun onTimelineLink() {
+        val presenter = TimelinePresenter(mock(), mock(), "mstdn.jp", mock(), mock())
+        assertThat(presenter.viewModel.link).isNull()
+
+        presenter.onTimeline(Pageable<Status>(listOf(status(1), status(2), status(3)), null), Range())
+
+
+    }
 }

@@ -50,6 +50,10 @@ class NotificationFragment : Fragment(), NotificationContract.View {
         presenter.onPause()
     }
 
+    override fun showNotifications(viewModel: NotificationViewModel) {
+
+    }
+
     override fun showError(message: String) {
 
     }
