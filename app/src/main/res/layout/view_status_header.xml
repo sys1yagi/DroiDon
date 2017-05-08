@@ -1,0 +1,39 @@
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="type" type="com.sys1yagi.mastodon4j.api.entity.Notification.Type"/>
+        <variable name="actionBy" type="com.sys1yagi.mastodon4j.api.entity.Account"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:orientation="horizontal">
+        <ImageView
+                android:id="@+id/action_by_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:visibility="@{actionBy == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_reblog_16"
+        />
+        <TextView
+                android:id="@+id/action_by_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:paddingBottom="8dp"
+                android:text="@{@string/status_reblogged_by(actionBy.displayName)}"
+                android:textColor="@color/gray"
+                android:textSize="14dp"
+                android:visibility="@{actionBy == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintLeft_toRightOf="@+id/icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="display name"/>
+    </LinearLayout>
+</layout>
