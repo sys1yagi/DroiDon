@@ -73,6 +73,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:text="@string/toot"
+                            style="@style/Widget.AppCompat.Button.Colored"
                     />
                 </RelativeLayout>
                 <LinearLayout
