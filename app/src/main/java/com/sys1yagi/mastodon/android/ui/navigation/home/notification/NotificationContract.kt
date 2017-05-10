@@ -8,6 +8,7 @@ interface NotificationContract {
 
     interface View {
         fun showNotifications(viewModel: NotificationViewModel)
+        fun showProgress()
         fun showError(message: String)
     }
 

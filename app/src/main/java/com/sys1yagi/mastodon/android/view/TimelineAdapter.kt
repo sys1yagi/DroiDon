@@ -13,6 +13,7 @@ import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.layoutInflator
 import com.sys1yagi.mastodon.android.extensions.visible
 import com.sys1yagi.mastodon4j.api.entity.Attachment
+import io.reactivex.Observable
 
 
 typealias OnReplayClick = (TimelineStatus) -> Unit

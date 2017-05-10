@@ -1,12 +1,12 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home.notification
 
-import javax.inject.Inject
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.extensions.isNextPage
 import com.sys1yagi.mastodon.android.extensions.merge
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Notification
+import javax.inject.Inject
 
 class NotificationPresenter
 @Inject constructor(
@@ -20,6 +20,12 @@ class NotificationPresenter
 
     override fun onResume() {
         interactor.startInteraction(this)
+        if (viewModel.notifications.isEmpty()) {
+            view.showProgress()
+            interactor.getNotifications(Range())
+        } else {
+            view.showNotifications(viewModel)
+        }
     }
 
     override fun onPause() {
@@ -27,7 +33,7 @@ class NotificationPresenter
     }
 
     override fun onNotifications(notifications: Pageable<Notification>, range: Range) {
-        val notification = notifications.part.map { com.sys1yagi.mastodon.android.data.model.Notification(it) }
+        val notification = notifications.part.map { com.sys1yagi.mastodon.android.data.model.NotificationModel(it) }
         if (range.isNextPage()) {
             viewModel.notifications.addAll(notification)
         } else {

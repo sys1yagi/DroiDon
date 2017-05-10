@@ -7,6 +7,7 @@ import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.exception.Mastodon4jRequestException
 import com.sys1yagi.mastodon4j.api.method.Notifications
 import io.reactivex.disposables.Disposables
+import timber.log.Timber
 import javax.inject.Inject
 
 class NotificationInteractor
@@ -30,7 +31,8 @@ constructor(
 
     override fun getNotifications(range: Range) {
         async {
-            val job = notifications.getNotifications().toJob()
+            val job = notifications.getNotifications()
+                    .toJob()
             ui {
                 try {
                     val n = job.await()
