@@ -13,7 +13,6 @@ interface SettingsContract {
         fun onResume() // base
         fun onPause()  // base
         fun initialize(fragment: PreferenceFragmentCompat)
-        fun onLogout()
     }
 
     interface Interactor {

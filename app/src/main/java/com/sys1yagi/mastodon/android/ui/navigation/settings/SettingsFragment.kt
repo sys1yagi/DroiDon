@@ -16,7 +16,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SettingsContract.View {
     lateinit var instanceName: String
 
     @Inject
-    lateinit var initializer: SettingsContract.Presenter
+    lateinit var presenter: SettingsContract.Presenter
 
     override fun onAttach(context: Context) {
         SettingsFragmentCreator.read(this)
@@ -25,15 +25,17 @@ class SettingsFragment : PreferenceFragmentCompat(), SettingsContract.View {
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        initializer.initialize(this)
+        presenter.initialize(this)
     }
 
     override fun onResume() {
         super.onResume()
+        presenter.onResume()
     }
 
     override fun onPause() {
         super.onPause()
+        presenter.onPause()
     }
 
     override fun showError(message: String) {

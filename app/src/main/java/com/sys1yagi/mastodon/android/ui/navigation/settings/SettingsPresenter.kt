@@ -3,6 +3,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.settings
 import android.support.v4.app.Fragment
 import android.support.v7.preference.PreferenceFragmentCompat
 import com.sys1yagi.mastodon.android.R
+import com.sys1yagi.mastodon.android.ui.entrypoint.EntryPointActivity
 import javax.inject.Inject
 
 open class SettingsPresenter
@@ -35,25 +36,23 @@ open class SettingsPresenter
         val openYourProfile = fragment.findPreference(context.getString(R.string.preferences_open_your_profile_key))
         openYourProfile.setOnPreferenceClickListener {
             // TODO
+            // router.openAccountProfile()
             true
         }
-
         val logout = fragment.findPreference(context.getString(R.string.preferences_logout_key))
         logout.setOnPreferenceClickListener {
-
+            interactor.logout()
             true
         }
-    }
-
-    override fun onLogout() {
-
     }
 
     override fun onLogoutSuccess() {
-
+        view.showError("ログアウトしました")
+        fragment.activity.finish()
+        fragment.context.startActivity(EntryPointActivity.createIntent(fragment.context))
     }
 
     override fun onLogoutFailed() {
-
+        view.showError("ログアウトに失敗しました")
     }
 }
