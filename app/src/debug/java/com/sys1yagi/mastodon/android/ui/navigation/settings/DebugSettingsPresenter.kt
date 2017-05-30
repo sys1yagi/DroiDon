@@ -1,5 +1,6 @@
 package com.sys1yagi.mastodon.android.ui.navigation.settings
 
+import android.support.v4.app.Fragment
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.widget.Toast
 import com.sys1yagi.mastodon.android.R
@@ -8,12 +9,17 @@ import com.sys1yagi.mastodon.android.extensions.async
 import com.sys1yagi.mastodon.android.extensions.ui
 import javax.inject.Inject
 
-class DebugSettingsInitializerImpl
+class DebugSettingsPresenter
 @Inject
 constructor(
+        instanceName: String,
+        fragment: Fragment,
+        view: SettingsContract.View,
+        interactor: SettingsContract.Interactor,
+        router: SettingsContract.Router,
         databaseProvider: OrmaDatabaseProvider
 )
-    : SettingsInitializerImpl() {
+    : SettingsPresenter(instanceName, fragment, view, interactor, router) {
 
     val database = databaseProvider.database
 

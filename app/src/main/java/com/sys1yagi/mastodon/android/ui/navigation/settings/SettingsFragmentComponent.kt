@@ -11,7 +11,7 @@ interface SettingsFragmentComponent : AndroidInjector<SettingsFragment> {
         abstract fun objectModule(objectModule: SettingsFragmentObjectModule)
 
         override fun seedInstance(instance: SettingsFragment) {
-            objectModule(SettingsFragmentObjectModule())
+            objectModule(SettingsFragmentObjectModule(instance.instanceName, instance))
         }
     }
 }

@@ -70,7 +70,7 @@ class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomN
     }
 
     override fun showSettings() {
-        val fragment = supportFragmentManager.findFragmentByTag(SETTINGS_TAG) ?: SettingsFragmentCreator.newBuilder().build()
+        val fragment = supportFragmentManager.findFragmentByTag(SETTINGS_TAG) ?: SettingsFragmentCreator.newBuilder(primaryInstanceName).build()
         switchFragment(fragment, SETTINGS_TAG)
         binding.navigation.menu.findItem(R.id.navigation_home).isChecked = true
     }

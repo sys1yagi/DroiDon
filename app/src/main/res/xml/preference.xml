@@ -7,5 +7,9 @@
                 android:key="@string/preferences_open_your_profile_key"
                 android:title="@string/preferences_open_your_profile"
         />
+        <PreferenceScreen
+                android:key="@string/preferences_logout_key"
+                android:title="@string/preferences_logout"
+        />
     </PreferenceCategory>
 </PreferenceScreen>

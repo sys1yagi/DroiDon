@@ -27,9 +27,12 @@
     <!-- preference -->
     <string name="preferences_file_name" translatable="false">com.sys1yagi.mastodon.android.preference</string>
     <string name="preferences_open_your_profile_key" translatable="false">open_your_profile</string>
+    <string name="preferences_logout_key" translatable="false">logout</string>
+
 
     <string name="preferences_category_profile">Profile</string>
     <string name="preferences_open_your_profile">Open Your Profile</string>
+    <string name="preferences_logout">Logout</string>
     <string name="which_instance_name">which instance name?</string>
     <string name="instance_name">instance name</string>
     <string name="add_instance_name">Add Instance Name</string>
