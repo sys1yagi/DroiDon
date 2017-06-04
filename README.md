@@ -5,7 +5,7 @@ UNDER DEVELOPMENT
 
 [![wercker status](https://app.wercker.com/status/ef28f812d5da53511d61f3d777505ad1/s/master "wercker status")](https://app.wercker.com/project/byKey/ef28f812d5da53511d61f3d777505ad1)
 [![codecov](https://codecov.io/gh/sys1yagi/DroiDon/branch/master/graph/badge.svg)](https://codecov.io/gh/sys1yagi/DroiDon)
-
+[![codebeat badge](https://codebeat.co/badges/efdaac35-b6e2-4cf6-9107-f5b59a5d54ac)](https://codebeat.co/projects/github-com-sys1yagi-droidon-master)
 
 DroiDon is android app for [Mastodon](https://github.com/tootsuite/mastodon)
 
