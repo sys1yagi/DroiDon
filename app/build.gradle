@@ -186,6 +186,12 @@ jacocoAndroidUnitTestReport {
     excludes += ["jp/co/tokubai/android/bargain/databinding/*.class"]
 }
 
+kotlin {
+    experimental {
+        coroutines 'enable'
+    }
+}
+
 configurations {
     all {
         resolutionStrategy.force 'com.android.support:multidex:1.0.2'
