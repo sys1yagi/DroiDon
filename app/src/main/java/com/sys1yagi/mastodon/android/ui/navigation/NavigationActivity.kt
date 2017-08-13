@@ -16,11 +16,11 @@ import com.sys1yagi.mastodon.android.ui.navigation.settings.SettingsFragmentCrea
 import com.sys1yagi.mastodon.android.ui.navigation.trip.TripFragmentCreator
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasDispatchingSupportFragmentInjector
+import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 
-class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomNavigationView.OnNavigationItemSelectedListener, HasDispatchingSupportFragmentInjector {
+class NavigationActivity : AppCompatActivity(), NavigationContract.View, BottomNavigationView.OnNavigationItemSelectedListener, HasSupportFragmentInjector {
 
     companion object {
         const val HOME_TAG = "home"

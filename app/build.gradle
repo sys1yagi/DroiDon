@@ -9,8 +9,8 @@ apply plugin: 'jacoco-android'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     dataBinding {
         enabled true
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId "com.sys1yagi.mastodon.android"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -98,7 +98,7 @@ dependencies {
     compile "com.android.support:preference-v7:$supportLibraryVersion"
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.android:flexbox:0.2.5'
+    compile 'com.google.android:flexbox:0.3.0'
     compile('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.5@aar') {
         transitive = true
     }
@@ -119,7 +119,7 @@ dependencies {
 
     // Network
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    compile 'com.facebook.fresco:fresco:1.2.0'
+    compile 'com.facebook.fresco:fresco:1.4.0'
 
     // Data
     compile("com.github.gfx.android.orma:orma:$ormaVersion") {
@@ -127,15 +127,15 @@ dependencies {
         exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
     }
     kapt "com.github.gfx.android.orma:orma-processor:$ormaVersion"
-    compile 'com.chibatching.kotpref:kotpref:2.1.1'
-    compile 'com.chibatching.kotpref:enum-support:2.1.1'
+    compile 'com.chibatching.kotpref:kotpref:2.1.2'
+    compile 'com.chibatching.kotpref:enum-support:2.1.2'
 
     // Util
     compile "com.google.code.gson:gson:$gsonVersion"
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
 
     compile 'com.jakewharton.timber:timber:4.5.1'
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:multidex:1.0.2'
 
     compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
@@ -146,9 +146,9 @@ dependencies {
 
     // Test
     testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:3.3.2"
+    testCompile "org.robolectric:robolectric:3.4"
     testCompile "org.robolectric:shadows-multidex:3.3.2"
-    testCompile "org.assertj:assertj-core:3.6.2"
+    testCompile "org.assertj:assertj-core:3.8.0"
     testCompile("com.squareup.assertj:assertj-android:$assertjAndroidVersion") {
         exclude group: 'com.android.support'
     }
@@ -166,7 +166,7 @@ dependencies {
         exclude group: 'com.squareup.okio', 'module': 'okio'
         exclude group: 'com.squareup.okhttp', 'module': 'okhttp'
     }
-    testCompile 'org.mockito:mockito-core:2.7.22'
+    testCompile 'org.mockito:mockito-core:2.8.47'
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -175,6 +175,7 @@ dependencies {
 
 repositories {
     mavenCentral()
+    maven { url "https://maven.google.com" }
     maven { url 'https://maven.fabric.io/public' }
 }
 
@@ -183,4 +184,10 @@ jacocoAndroidUnitTestReport {
     html.enabled true
     xml.enabled true
     excludes += ["jp/co/tokubai/android/bargain/databinding/*.class"]
+}
+
+configurations {
+    all {
+        resolutionStrategy.force 'com.android.support:multidex:1.0.2'
+    }
 }

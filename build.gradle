@@ -1,8 +1,8 @@
 buildscript {
-    ext.kotlin_version = '1.1.2-3'
-    ext.kotlin_coroutine_version = '0.15'
+    ext.kotlin_version = '1.2-M2'
+    ext.kotlin_coroutine_version = '0.17'
     ext.gmsPlayServicesVersion = '10.2.1'
-    ext.supportLibraryVersion = '25.3.1'
+    ext.supportLibraryVersion = '26.0.0'
     ext.assertjAndroidVersion = '1.1.1'
     ext.supportTestVersion = '0.5'
     ext.espressoVersion = '2.2.2'
@@ -11,24 +11,26 @@ buildscript {
     ext.gradleToolsVersion = '2.3.1'
     ext.rxJavaVersion = '2.0.8'
     ext.rxAndroidVersion = '2.0.1'
-    ext.dagger2Version = '2.10'
+    ext.dagger2Version = '2.11'
     ext.gsonVersion = '2.8.0'
     ext.stethoVerion = '1.5.0'
 
     repositories {
         jcenter()
+        maven { url "https://maven.google.com" }
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.2" }
     }
 
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleToolsVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.6.4'
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.7.0'
         classpath 'com.cookpad.android.licensetools:license-tools-plugin:0.21.1'
-        classpath 'com.google.gms:google-services:3.0.0'
+        classpath 'com.google.gms:google-services:3.1.0'
         classpath 'com.github.gfx.ribbonizer:plugin:1.0.0'
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.0'
-        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
+        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.2'
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
@@ -36,7 +38,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.2" }
     }
 }
 
