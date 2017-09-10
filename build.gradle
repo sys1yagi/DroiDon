@@ -25,8 +25,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleToolsVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.7.0'
-        classpath 'com.cookpad.android.licensetools:license-tools-plugin:0.21.1'
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.7.3'
+        classpath 'com.cookpad.android.licensetools:license-tools-plugin:0.23.0'
         classpath 'com.google.gms:google-services:3.1.0'
         classpath 'com.github.gfx.ribbonizer:plugin:1.0.0'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'

@@ -146,7 +146,7 @@ dependencies {
 
     // Test
     testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:3.4"
+    testCompile "org.robolectric:robolectric:3.4.2"
     testCompile "org.robolectric:shadows-multidex:3.3.2"
     testCompile "org.assertj:assertj-core:3.8.0"
     testCompile("com.squareup.assertj:assertj-android:$assertjAndroidVersion") {

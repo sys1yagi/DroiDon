@@ -1,6 +1,5 @@
 package com.sys1yagi.mastodon.android.ui.entrypoint
 
-import android.app.Activity
 import com.sys1yagi.mastodon.android.data.database.Credential
 import com.sys1yagi.mastodon.android.extensions.async
 import com.sys1yagi.mastodon.android.extensions.ui
@@ -10,11 +9,12 @@ import javax.inject.Inject
 
 class EntryPointPresenter
 @Inject constructor(
-        val activity: Activity,
-        val view: EntryPointContract.View,
-        val interactor: EntryPointContract.Interactor,
-        val router: EntryPointContract.Router
+        val interactor: EntryPointContract.Interactor
 ) : EntryPointContract.Presenter, EntryPointContract.InteractorOutput {
+
+    lateinit var view: EntryPointContract.View
+
+    lateinit var router: EntryPointContract.Router
 
     val viewModel = EntryPointViewModel()
 
@@ -32,11 +32,19 @@ class EntryPointPresenter
         view.showError(t.message ?: "error")
     }
 
+    override fun attachView(view: EntryPointContract.View) {
+        this.view = view
+    }
+
+    override fun attachRouter(router: EntryPointContract.Router) {
+        this.router = router
+    }
+
     override fun onInstanceNameNotRegistered() {
         async {
             delay(1, TimeUnit.SECONDS)
             ui {
-                router.openSetInstanceNameActivity(activity)
+                router.openSetInstanceNameActivity()
                 view.finish()
             }
         }
@@ -58,7 +66,7 @@ class EntryPointPresenter
     }
 
     override fun onUnAuthorizedOrExpired(credential: Credential) {
-        router.openLoginActivity(activity, credential.instanceName)
+        router.openLoginActivity(credential.instanceName)
         view.finish()
     }
 
@@ -67,7 +75,7 @@ class EntryPointPresenter
         async {
             delay(1, TimeUnit.SECONDS)
             ui {
-                router.openHomeActivity(activity, credential.instanceName)
+                router.openHomeActivity(credential.instanceName)
                 view.finish()
             }
         }

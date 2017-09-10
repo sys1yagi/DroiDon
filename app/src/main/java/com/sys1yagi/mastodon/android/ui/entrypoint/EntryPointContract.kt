@@ -12,6 +12,8 @@ interface EntryPointContract {
     }
 
     interface Presenter {
+        fun attachView(view: View)
+        fun attachRouter(router: Router)
         fun onResume() // base
         fun onPause()  // base
     }
@@ -36,8 +38,8 @@ interface EntryPointContract {
     }
 
     interface Router {
-        fun openSetInstanceNameActivity(activity: Activity)
-        fun openLoginActivity(activity: Activity, instanceName: String)
-        fun openHomeActivity(activity: Activity, instanceName: String)
+        fun openSetInstanceNameActivity()
+        fun openLoginActivity(instanceName: String)
+        fun openHomeActivity(instanceName: String)
     }
 }

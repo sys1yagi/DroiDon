@@ -1,6 +1,5 @@
 package com.sys1yagi.mastodon.android.ui.navigation.home
 
-import android.content.Context
 import android.support.v4.app.Fragment
 
 interface HomeContract {
