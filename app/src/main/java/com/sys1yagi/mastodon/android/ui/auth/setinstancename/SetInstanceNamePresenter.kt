@@ -1,17 +1,26 @@
 package com.sys1yagi.mastodon.android.ui.auth.setinstancename
 
-import android.app.Activity
 import javax.inject.Inject
 
 class SetInstanceNamePresenter
 @Inject constructor(
-        val activity: Activity,
-        val view: SetInstanceNameContract.View,
-        val interactor: SetInstanceNameContract.Interactor,
-        val router: SetInstanceNameContract.Router
+        val interactor: SetInstanceNameContract.Interactor
 ) : SetInstanceNameContract.Presenter, SetInstanceNameContract.InteractorOutput {
 
+    lateinit var view: SetInstanceNameContract.View
+
+    lateinit var router: SetInstanceNameContract.Router
+
     val viewModel = SetInstanceNameViewModel()
+
+
+    override fun attachView(view: SetInstanceNameContract.View) {
+        this.view = view
+    }
+
+    override fun attachRouter(router: SetInstanceNameContract.Router) {
+        this.router = router
+    }
 
     override fun onResume() {
         interactor.startInteraction(this)
@@ -27,7 +36,7 @@ class SetInstanceNamePresenter
 
     override fun onInstanceNameSaved() {
         view.finish()
-        router.openEntryPointActivity(activity)
+        router.openEntryPointActivity()
     }
 
     override fun onError(t: Throwable) {

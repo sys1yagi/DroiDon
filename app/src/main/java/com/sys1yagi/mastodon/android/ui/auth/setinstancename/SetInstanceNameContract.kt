@@ -1,8 +1,5 @@
 package com.sys1yagi.mastodon.android.ui.auth.setinstancename
 
-import android.app.Activity
-import io.reactivex.Completable
-
 interface SetInstanceNameContract {
 
     interface View {
@@ -11,6 +8,8 @@ interface SetInstanceNameContract {
     }
 
     interface Presenter {
+        fun attachView(view: SetInstanceNameContract.View)
+        fun attachRouter(router: SetInstanceNameContract.Router)
         fun onResume() // base
         fun onPause()  // base
         fun saveInstanceName(instanceName: String)
@@ -28,6 +27,6 @@ interface SetInstanceNameContract {
     }
 
     interface Router {
-        fun openEntryPointActivity(activity: Activity)
+        fun openEntryPointActivity()
     }
 }

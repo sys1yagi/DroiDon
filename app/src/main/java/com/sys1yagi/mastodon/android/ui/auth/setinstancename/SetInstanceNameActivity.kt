@@ -10,11 +10,12 @@ import com.sys1yagi.mastodon.android.databinding.ActivitySetInstanceNameBinding
 import com.sys1yagi.mastodon.android.extensions.contentViewBinding
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
+import com.sys1yagi.mastodon.android.ui.entrypoint.EntryPointActivity
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
 
-class SetInstanceNameActivity : AppCompatActivity(), SetInstanceNameContract.View {
+class SetInstanceNameActivity : AppCompatActivity(), SetInstanceNameContract.View, SetInstanceNameContract.Router {
 
     companion object {
         fun createIntent(context: Context): Intent {
@@ -32,6 +33,8 @@ class SetInstanceNameActivity : AppCompatActivity(), SetInstanceNameContract.Vie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
+        presenter.attachView(this)
+        presenter.attachRouter(this)
         binding.apply {
             addInstanceNameButton.setOnClickListener {
                 presenter.saveInstanceName(binding.instanceName.text.toString())
@@ -59,5 +62,9 @@ class SetInstanceNameActivity : AppCompatActivity(), SetInstanceNameContract.Vie
         binding.progressBar.gone()
         binding.errorText.visible()
         binding.errorText.text = message
+    }
+
+    override fun openEntryPointActivity() {
+        startActivity(EntryPointActivity.createIntent(this))
     }
 }
