@@ -25,7 +25,7 @@ class TootPresenter
         interactor.stopInteraction(this)
     }
 
-    override fun toot(status: String, replyToStatus: Status?) {
+    override fun toot(status: String, replyToStatus: ReplyTo?) {
         view.showProgress()
         interactor.toot(status, viewModel.media.map { it.id }.takeIf { it.isNotEmpty() }, replyToStatus)
     }

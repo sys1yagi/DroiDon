@@ -23,7 +23,7 @@ interface TootContract {
     interface Presenter {
         fun onResume() // base
         fun onPause()  // base
-        fun toot(status: String, replyToStatus: Status?)
+        fun toot(status: String, replyToStatus: ReplyTo?)
         fun onClickChooseAttachment()
         fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     }
@@ -31,7 +31,7 @@ interface TootContract {
     interface Interactor {
         fun startInteraction(out: InteractorOutput) // base
         fun stopInteraction(out: InteractorOutput) // base
-        fun toot(status: String, mediaIds: List<Long>? = null, replyToStatus: Status? = null)
+        fun toot(status: String, mediaIds: List<Long>? = null, replyToStatus: ReplyTo? = null)
         fun uploadAttachment(context: Context, uri: Uri)
     }
 

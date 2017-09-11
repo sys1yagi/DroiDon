@@ -9,8 +9,6 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import com.sys1yagi.mastodon.android.R
 import com.sys1yagi.mastodon.android.databinding.ActivityTootBinding
 import com.sys1yagi.mastodon.android.extensions.*
-import com.sys1yagi.mastodon.android.ui.navigation.NavigationActivity
-import com.sys1yagi.mastodon4j.api.entity.Status
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
@@ -20,11 +18,11 @@ class TootActivity : AppCompatActivity(), TootContract.View {
     companion object {
         const val ARGS_INSTANCE_NAME = "instance_name"
         const val ARGS_REPLY_TO_STATUS = "reply_to_status"
-        fun createIntent(context: Context, instanceName: String, targetStatus: Status? = null): Intent {
+        fun createIntent(context: Context, instanceName: String, targetStatus: ReplyTo? = null): Intent {
             return Intent(context, TootActivity::class.java).apply {
                 putExtra(ARGS_INSTANCE_NAME, instanceName)
                 targetStatus?.let {
-                    putExtra(ARGS_REPLY_TO_STATUS, context.gson().toJson(targetStatus))
+                    putExtra(ARGS_REPLY_TO_STATUS, targetStatus)
                 }
             }
         }
@@ -34,10 +32,9 @@ class TootActivity : AppCompatActivity(), TootContract.View {
     lateinit var presenter: TootContract.Presenter
 
     val primaryInstanceName by lazy<String> { intent.getRequired(ARGS_INSTANCE_NAME) }
+
     val replyToStatus by lazy {
-        intent.getOptional<String?>(ARGS_REPLY_TO_STATUS, null)?.let {
-            gson().fromJson(it, Status::class.java)
-        }
+        intent.getOptional<ReplyTo?>(ARGS_REPLY_TO_STATUS, null)
     }
 
     var disposable = Disposables.empty()
@@ -55,10 +52,8 @@ class TootActivity : AppCompatActivity(), TootContract.View {
         }
 
         replyToStatus?.let {
-            it.account?.let {
-                binding.status.setText("@${it.acct} ")
-                binding.status.setSelection(binding.status.length())
-            }
+            binding.status.setText("@${it.acct} ")
+            binding.status.setSelection(binding.status.length())
         }
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }

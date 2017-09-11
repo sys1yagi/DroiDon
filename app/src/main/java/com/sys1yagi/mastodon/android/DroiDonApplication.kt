@@ -19,18 +19,13 @@ class DroiDonApplication : MultiDexApplication(), HasActivityInjector {
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
-    lateinit var appComponent: AppComponent;
-
     override fun onCreate() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
-        appComponent = DaggerAppComponent
+        DaggerAppComponent
                 .builder()
-                .appModule(AppModule(this))
-                .okHttpModule(OkHttpModule())
-                .stethoModule(StethoModule(this))
-                .build()
-        appComponent.inject(this)
+                .create(this)
+                .inject(this)
 
         Timber.plant(DebugTree())
         AndroidThreeTen.init(this)

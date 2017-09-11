@@ -5,6 +5,7 @@ import com.stfalcon.frescoimageviewer.ImageViewer
 import com.sys1yagi.mastodon.android.data.model.TimelineStatus
 import com.sys1yagi.mastodon.android.extensions.isNextPage
 import com.sys1yagi.mastodon.android.extensions.merge
+import com.sys1yagi.mastodon.android.ui.navigation.home.toot.ReplyTo
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Attachment
@@ -62,7 +63,9 @@ constructor(
     }
 
     override fun onReplyClick(status: TimelineStatus) {
-        router.openTootActivity(fragment, instanceName, status.entity)
+        router.openTootActivity(fragment, instanceName, status.entity.let {
+            ReplyTo(it.id, it.account?.acct ?: "?")
+        })
     }
 
     override fun onReblogClick(status: TimelineStatus) {

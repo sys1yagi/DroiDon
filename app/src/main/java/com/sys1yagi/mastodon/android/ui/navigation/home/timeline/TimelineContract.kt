@@ -2,6 +2,7 @@ package com.sys1yagi.mastodon.android.ui.navigation.home.timeline
 
 import android.support.v4.app.Fragment
 import com.sys1yagi.mastodon.android.data.model.TimelineStatus
+import com.sys1yagi.mastodon.android.ui.navigation.home.toot.ReplyTo
 import com.sys1yagi.mastodon4j.api.Pageable
 import com.sys1yagi.mastodon4j.api.Range
 import com.sys1yagi.mastodon4j.api.entity.Attachment
@@ -51,6 +52,6 @@ interface TimelineContract {
     }
 
     interface Router {
-        fun openTootActivity(fragment: Fragment, instanceName: String, replyToStatus: Status?)
+        fun openTootActivity(fragment: Fragment, instanceName: String, replyToStatus: ReplyTo?)
     }
 }

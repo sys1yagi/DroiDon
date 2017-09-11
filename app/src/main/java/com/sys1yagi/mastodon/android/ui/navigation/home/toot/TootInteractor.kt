@@ -20,8 +20,7 @@ class TootInteractor
 constructor(
         val statuses: Statuses,
         val media: Media
-)
-    : TootContract.Interactor {
+) : TootContract.Interactor {
 
     var out: TootContract.InteractorOutput? = null
     var job: Job? = null
@@ -35,7 +34,7 @@ constructor(
         this.out = null
     }
 
-    override fun toot(status: String, mediaIds: List<Long>?, replyToStatus: Status?) {
+    override fun toot(status: String, mediaIds: List<Long>?, replyToStatus: ReplyTo?) {
         job = async {
             statuses.postStatus(
                     status,
@@ -78,7 +77,7 @@ constructor(
             ui {
                 try {
                     out?.onAttachmentUploaded(attachment.await())
-                } catch(e: Throwable) {
+                } catch (e: Throwable) {
                     out?.onError(e)
                 }
             }
