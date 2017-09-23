@@ -13,7 +13,6 @@ import com.sys1yagi.mastodon.android.extensions.getRequired
 import com.sys1yagi.mastodon.android.extensions.gone
 import com.sys1yagi.mastodon.android.extensions.visible
 import dagger.android.AndroidInjection
-import timber.log.Timber
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {

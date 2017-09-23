@@ -1,14 +1,15 @@
 buildscript {
-    ext.kotlin_version = '1.1.4-3'
-    ext.kotlin_coroutine_version = '0.17'
+    ext.kotlin_version = '1.1.50'
+    ext.kotlin_coroutine_version = '0.18'
     ext.gmsPlayServicesVersion = '10.2.1'
-    ext.supportLibraryVersion = '26.0.0'
+    ext.supportLibraryVersion = '26.1.0'
     ext.assertjAndroidVersion = '1.1.1'
     ext.supportTestVersion = '0.5'
     ext.espressoVersion = '2.2.2'
     ext.okhttpVersion = '3.6.0'
     ext.ormaVersion = '4.2.3'
     ext.gradleToolsVersion = '2.3.1'
+    ext.dataBindingVersion = '2.3.1'
     ext.rxJavaVersion = '2.0.8'
     ext.rxAndroidVersion = '2.0.1'
     ext.dagger2Version = '2.11'
@@ -19,7 +20,6 @@ buildscript {
         jcenter()
         maven { url "https://maven.google.com" }
         maven { url 'https://maven.fabric.io/public' }
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.2" }
     }
 
     dependencies {
@@ -40,7 +40,6 @@ allprojects {
         jcenter()
         maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.2" }
     }
 }
 
