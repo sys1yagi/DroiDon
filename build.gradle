@@ -8,7 +8,7 @@ buildscript {
     ext.espressoVersion = '2.2.2'
     ext.okhttpVersion = '3.6.0'
     ext.ormaVersion = '4.2.3'
-    ext.gradleToolsVersion = '2.3.1'
+    ext.gradleToolsVersion = '3.0.0-beta6'
     ext.dataBindingVersion = '2.3.1'
     ext.rxJavaVersion = '2.0.8'
     ext.rxAndroidVersion = '2.0.1'
